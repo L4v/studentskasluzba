@@ -1,13 +1,14 @@
 package studentskasluzba;
 
+import java.util.ArrayList;
+
 public class Predmet {
 	private String sifra;
 	private String naziv;
 	private int semestar;
 	private int godina;
 	private Profesor profesor;
-	// TODO(Jovan): Implementirati listu studenata
-	//private ArrayList<Student> studenti;
+	private ArrayList<Student> studenti;
 	public Predmet(String sifra, String naziv, int semestar, int godina, Profesor profesor) {
 		super();
 		this.sifra = sifra;
@@ -18,8 +19,20 @@ public class Predmet {
 	}
 	
 	public Predmet()
-	{}
+	{
+		studenti = new ArrayList<Student>();
+	}
 
+	public void addStudent(Student s)
+	{
+		studenti.add(s);
+	}
+	
+	public Student getStudent(int i)
+	{
+		return studenti.get(i);
+	}
+	
 	public String getSifra() {
 		return sifra;
 	}
