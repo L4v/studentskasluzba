@@ -9,12 +9,12 @@ import javax.swing.JTextField;
 @SuppressWarnings("serial")
 public class PretragaPolje extends JTextField{
 	// NOTE(Jovan): Tekst koji se pojavi kao hint ukoliko je polje pretrage prazno
-	private String DefaultTekst = "ime:<ime>;prezime:<prezime>;indeks:<XX-Y-WWWW>";
+	private String defaultTekst = "ime:<ime>;prezime:<prezime>;indeks:<XX-Y-WWWW>";
 	
 	public PretragaPolje()
 	{
 		super();
-		this.setText(DefaultTekst);
+		this.setText(defaultTekst);
 		
 		// NOTE(Jovan): Listener za izmenu teksta pri fokusu
 		this.addFocusListener(new FocusListener() {
@@ -23,7 +23,7 @@ public class PretragaPolje extends JTextField{
 			public void focusGained(FocusEvent arg0) {
 				// NOTE(Jovan): Ako tekst polje nije editovano
 				// kada se selektuje, ukloni hint
-				if(PretragaPolje.this.getText().equals(PretragaPolje.this.DefaultTekst))
+				if(PretragaPolje.this.getText().equals(PretragaPolje.this.defaultTekst))
 				{
 					PretragaPolje.this.setText("");
 				}
@@ -46,6 +46,6 @@ public class PretragaPolje extends JTextField{
 	
 	public String GetDefaultTekst()
 	{
-		return this.DefaultTekst;
+		return this.defaultTekst;
 	}
 }
