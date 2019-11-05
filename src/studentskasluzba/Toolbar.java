@@ -1,7 +1,6 @@
 package studentskasluzba;
 
 import java.awt.BorderLayout;
-
 import javax.swing.JToolBar;
 
 import dugmici.DodajDugme;
