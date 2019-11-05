@@ -14,6 +14,7 @@ public class GlavniProzor extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension ScreenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setSize(ScreenSize.width * 3/4, ScreenSize.height * 3/4);
+		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		
 		Toolbar GlavniToolbar = new Toolbar(); 
