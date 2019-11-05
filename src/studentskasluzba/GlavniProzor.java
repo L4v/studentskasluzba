@@ -18,5 +18,8 @@ public class GlavniProzor extends JFrame{
 		
 		Toolbar GlavniToolbar = new Toolbar(); 
 		this.add(GlavniToolbar, BorderLayout.NORTH);
+		
+		MojMenuBar menu = new MojMenuBar();
+		this.setJMenuBar(menu);
 	}
 }
