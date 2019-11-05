@@ -1,8 +1,12 @@
 package studentskasluzba;
 
 import java.awt.BorderLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.JToolBar;
 
+import dialog.DodajPredmet;
 import dugmici.DodajDugme;
 import dugmici.IzmeniDugme;
 import dugmici.ObrisiDugme;
@@ -24,6 +28,41 @@ public class Toolbar extends JToolBar{
 		this.add(dodaj);
 		this.add(izmeni);
 		this.add(obrisi);
+		
+		// TODO(Jovan): OVO SAMO TEST
+		dodaj.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				DodajPredmet dodaj = new DodajPredmet();
+				dodaj.setVisible(true);
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		
 		// NOTE(Jovan): Search polje i dugme
 		PretragaPolje pretraga = new PretragaPolje();
