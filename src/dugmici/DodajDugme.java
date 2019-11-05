@@ -18,5 +18,6 @@ public class DodajDugme extends JButton{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		this.setToolTipText("Dodaj");
 	}
 }

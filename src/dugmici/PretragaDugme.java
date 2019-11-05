@@ -18,5 +18,6 @@ public class PretragaDugme extends JButton{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		this.setToolTipText("Pretraga");
 	}
 }

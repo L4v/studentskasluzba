@@ -18,5 +18,6 @@ public class ObrisiDugme extends JButton{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		this.setToolTipText("Obrisi");
 	}
 }

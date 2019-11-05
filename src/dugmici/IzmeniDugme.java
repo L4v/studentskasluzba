@@ -18,5 +18,6 @@ public class IzmeniDugme extends JButton{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		this.setToolTipText("Izmeni");
 	}
 }

@@ -2,7 +2,6 @@ package studentskasluzba;
 
 import java.awt.BorderLayout;
 
-import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
 import dugmici.DodajDugme;
@@ -20,12 +19,17 @@ public class Toolbar extends JToolBar{
 		this.setFloatable(false);
 		
 		// NOTE(Jovan): Dugmici za Add, Edit, Delete
-		this.add(new DodajDugme());
-		this.add(new IzmeniDugme());
-		this.add(new ObrisiDugme());
+		DodajDugme Dodaj = new DodajDugme();
+		IzmeniDugme Izmeni = new IzmeniDugme();
+		ObrisiDugme Obrisi = new ObrisiDugme();
+		this.add(Dodaj);
+		this.add(Izmeni);
+		this.add(Obrisi);
 		
 		// NOTE(Jovan): Search polje i dugme
-		this.add(new JTextField(), BorderLayout.EAST);
-		this.add(new PretragaDugme());
+		PretragaPolje Pretraga = new PretragaPolje();
+		PretragaDugme Pretrazi = new PretragaDugme();
+		this.add(Pretraga, BorderLayout.EAST);
+		this.add(Pretrazi);		
 	}
 }
