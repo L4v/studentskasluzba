@@ -8,5 +8,7 @@ public class Toolbar extends JToolBar{
 	{
 		super();
 		this.add(new DodajDugme());
+		this.add(new IzmeniDugme());
+		this.add(new ObrisiDugme());
 	}
 }

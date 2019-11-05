@@ -16,7 +16,6 @@ public class DodajDugme extends JButton{
 			Image Icon = ImageIO.read(getClass().getResource("/icons/add-user.png"));
 			this.setIcon(new ImageIcon(Icon));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
