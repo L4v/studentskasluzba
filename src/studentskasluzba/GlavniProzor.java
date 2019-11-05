@@ -22,5 +22,8 @@ public class GlavniProzor extends JFrame{
 		
 		MojMenuBar menu = new MojMenuBar();
 		this.setJMenuBar(menu);
+		
+		StatusBar st_bar=new StatusBar();
+		this.add(st_bar, BorderLayout.SOUTH);
 	}
 }
