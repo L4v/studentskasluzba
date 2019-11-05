@@ -1,9 +1,8 @@
-package dialog;
+package dijalog;
 
 import java.awt.GridLayout;
 
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 

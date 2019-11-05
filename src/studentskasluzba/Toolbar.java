@@ -6,7 +6,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JToolBar;
 
-import dialog.DodajPredmet;
+import dijalog.DodajPredmet;
 import dugmici.DodajDugme;
 import dugmici.IzmeniDugme;
 import dugmici.ObrisiDugme;
