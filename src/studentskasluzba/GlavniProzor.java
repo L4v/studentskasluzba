@@ -12,13 +12,13 @@ public class GlavniProzor extends JFrame{
 	{
 		super();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Dimension ScreenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setSize(ScreenSize.width * 3/4, ScreenSize.height * 3/4);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setSize(screenSize.width * 3/4, screenSize.height * 3/4);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		
-		Toolbar GlavniToolbar = new Toolbar(); 
-		this.add(GlavniToolbar, BorderLayout.NORTH);
+		Toolbar glavniToolbar = new Toolbar(); 
+		this.add(glavniToolbar, BorderLayout.NORTH);
 		
 		MojMenuBar menu = new MojMenuBar();
 		this.setJMenuBar(menu);
