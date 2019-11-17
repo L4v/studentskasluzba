@@ -98,11 +98,11 @@ public class Student {
 		this.email = email;
 	}
 
-	public String getBrojIndeksa() {
+	public String getIndeks() {
 		return brojIndeksa;
 	}
 
-	public void setBrojIndeksa(String brojIndeksa) {
+	public void setIndeks(String brojIndeksa) {
 		this.brojIndeksa = brojIndeksa;
 	}
 
@@ -114,11 +114,11 @@ public class Student {
 		this.datumUpisa = datumUpisa;
 	}
 
-	public String getTrenutnaGodStudija() {
+	public String getTrenutnaGodina() {
 		return trenutnaGodStudija;
 	}
 
-	public void setTrenutnaGodStudija(String trenutnaGodStudija) {
+	public void setTrenutnaGodina(String trenutnaGodStudija) {
 		this.trenutnaGodStudija = trenutnaGodStudija;
 	}
 

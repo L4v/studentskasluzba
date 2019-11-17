@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 
 @SuppressWarnings("serial")
 public class GlavniProzor extends JFrame{
@@ -25,6 +27,8 @@ public class GlavniProzor extends JFrame{
 		
 		StatusBar st_bar=new StatusBar();
 		this.add(st_bar, BorderLayout.SOUTH);
+		
+		// TODO(Jovan): Prikazati tabele
 		
 		
 	}
