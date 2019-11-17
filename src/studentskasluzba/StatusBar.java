@@ -33,7 +33,7 @@ public class StatusBar extends JPanel{
         statBar.setLayout(new BorderLayout());
         statBar.setBackground(Color.CYAN);
         
-        JLabel text=new JLabel("Studentska služba");
+        JLabel text=new JLabel("Studentska slu\u017eba");
         JLabel datum=new JLabel();
         
         statBar.add(text, BorderLayout.WEST);
