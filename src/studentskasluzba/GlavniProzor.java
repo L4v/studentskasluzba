@@ -25,5 +25,7 @@ public class GlavniProzor extends JFrame{
 		
 		StatusBar st_bar=new StatusBar();
 		this.add(st_bar, BorderLayout.SOUTH);
+		
+		
 	}
 }

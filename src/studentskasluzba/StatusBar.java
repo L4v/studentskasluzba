@@ -1,51 +1,48 @@
 package studentskasluzba;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.Locale;
+
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 public class StatusBar extends JPanel{
 
-	/**
+    /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	//private JLabel lblTime = new JLabel();
-	private JLabel lblDate = new JLabel();
-	//private JLabel lblText = new JLabel();
-	private DateFormat formatter;
-	private String today;
-	private JPanel pnlContent;
 
-    public StatusBar() {
+	public StatusBar() {
         setLayout(new BorderLayout());
         
-        pnlContent = new JPanel(new GridBagLayout()); 
-      
-        formatter = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.getDefault());
-        today = formatter.format(new Date());
-        lblDate.setText(today);
+        JPanel statBar=new JPanel();
+        statBar.setLayout(new BorderLayout());
         
-        pnlContent.add(lblDate, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.WEST,
-				GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+        JLabel text=new JLabel("Studentska služba");
+        JLabel datum=new JLabel();
         
-        pnlContent.setBackground(Color.cyan);
+        statBar.add(text, BorderLayout.WEST);
+        statBar.add(datum,BorderLayout.EAST);
         
-        this.add(pnlContent, BorderLayout.CENTER);
-    }
-    
-    public void changeDate() {
-    	formatter = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.getDefault());
-        today = formatter.format(new Date());
-        lblDate.setText(today);
-    }
+        Timer current=new Timer(0, new ActionListener() {
+        	
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        		Date today = new Date();
+        		String currentTime=DateFormat.getDateTimeInstance().format(today);
+        		datum.setText(currentTime);
+        	}
+        });
+        
+        current.start();
+        
+        add(statBar);        
+}
+
 }
