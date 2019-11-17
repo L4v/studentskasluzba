@@ -1,11 +1,13 @@
 package studentskasluzba;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.util.Date;
-
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,7 +24,14 @@ public class StatusBar extends JPanel{
         setLayout(new BorderLayout());
         
         JPanel statBar=new JPanel();
+        Toolkit tk = Toolkit.getDefaultToolkit();
+		Dimension scSize = tk.getScreenSize();
+		int width = scSize.width;
+		statBar.setPreferredSize(new Dimension(width,30));
+        
+        
         statBar.setLayout(new BorderLayout());
+        statBar.setBackground(Color.CYAN);
         
         JLabel text=new JLabel("Studentska služba");
         JLabel datum=new JLabel();
