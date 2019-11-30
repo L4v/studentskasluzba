@@ -17,23 +17,7 @@ public class StudentTable extends JTable{
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		new AbstractTableModel() {
-			private static final long serialVersionUID = -3588998810155657304L;
-
-			@Override
-			public int getColumnCount() {
-				return 6;
-			}
-
-			@Override
-			public int getRowCount() {
-				return BazaStudenata.getInstance().getStudents().size();
-			}
-
-			@Override
-			public Object getValueAt(int row, int column) {
-				return BazaStudenata.getInstance().getValueAt(row, column);
-			}};
+		this.setModel(new AbstractTableModelStudenti());
 	}
 	
 	// NOTE(Jovan): Menja boju selektovane torke	

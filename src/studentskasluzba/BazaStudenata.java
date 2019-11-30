@@ -75,5 +75,9 @@ public class BazaStudenata {
 		
 		}
 	}
+
+	public String getColumnName(int column) {
+		return Obelezja.get(column);
+	}
 	
 }

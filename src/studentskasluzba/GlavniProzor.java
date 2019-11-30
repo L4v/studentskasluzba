@@ -3,13 +3,18 @@ package studentskasluzba;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.table.AbstractTableModel;
 
 @SuppressWarnings("serial")
 public class GlavniProzor extends JFrame{
+	
+	private JTabbedPane tabbedPane;
 	public GlavniProzor()
 	{
 		super();
@@ -28,8 +33,12 @@ public class GlavniProzor extends JFrame{
 		StatusBar st_bar=new StatusBar();
 		this.add(st_bar, BorderLayout.SOUTH);
 		
-		// TODO(Jovan): Prikazati tabele
-		
-		
+		// TODO(Jovan): Srediti izgled i dodati Profesor i Predemet
+		tabbedPane = new JTabbedPane();
+		StudentTab studentTab = new StudentTab();
+		StudentTab studentTab2 = new StudentTab();
+		tabbedPane.addTab("Student", studentTab);
+		tabbedPane.addTab("Student2", studentTab2);
+		this.add(tabbedPane, BorderLayout.CENTER);
 	}
 }
