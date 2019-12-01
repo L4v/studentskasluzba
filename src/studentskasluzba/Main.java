@@ -5,7 +5,7 @@ public class Main {
 	{
 		// NOTE(Jovan): Instancira bazu studenata
 		BazaProfesor.getInstance();
-		GlavniProzor prozor = new GlavniProzor();
+		GlavniProzor prozor = GlavniProzor.getInstance();
 		prozor.setVisible(true);
 		
 	}

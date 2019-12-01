@@ -16,7 +16,7 @@ public class PredmetTable extends JTable {
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableModelPredmet());
-		
+		this.setAutoCreateRowSorter(true);
 	}
 	
 	// NOTE(Jovan): Promena boje prilikom selekcije torke

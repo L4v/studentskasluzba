@@ -16,4 +16,9 @@ public class ProfesorTab extends JScrollPane{
 		tabelaProfesora.setFillsViewportHeight(true);
 		this.setViewportView(tabelaProfesora);
 	}
+	
+	public AbstractTableModelProfesor getModel()
+	{
+		return (AbstractTableModelProfesor)this.tabelaProfesora.getModel();
+	}
 }

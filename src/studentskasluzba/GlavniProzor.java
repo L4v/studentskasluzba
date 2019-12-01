@@ -6,20 +6,48 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+enum Selektovan
+{
+	STUDENT,
+	PROFESOR,
+	PREDMET
+}
 
 @SuppressWarnings("serial")
-public class GlavniProzor extends JFrame{
+public class GlavniProzor extends JFrame implements ChangeListener{
+	
+	public static GlavniProzor instance = null;
 	
 	private JTabbedPane tabbedPane;
-	public GlavniProzor()
+	private ProfesorTab profesorTab;
+	private PredmetTab predmetTab;
+	// NOTE(Jovan): Sluzi za Dodaj i slicne operacije koje zavise
+	// od toga koji je tab selektovan
+	private Selektovan selektovanTab;
+	public static GlavniProzor getInstance()
+	{
+		if(instance == null)
+		{
+			instance = new GlavniProzor();
+		}
+		return instance;
+	}
+	private GlavniProzor()
 	{
 		super();
+		// NOTE(Jovan): Podesavanja prozora
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setSize(screenSize.width * 3/4, screenSize.height * 3/4);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		
+		this.selektovanTab = Selektovan.STUDENT;
+		
+		// NOTE(Jovan): Inicijalizacija ostalih komponenti
 		Toolbar glavniToolbar = new Toolbar(); 
 		this.add(glavniToolbar, BorderLayout.NORTH);
 		
@@ -30,13 +58,52 @@ public class GlavniProzor extends JFrame{
 		this.add(st_bar, BorderLayout.SOUTH);
 		
 		// TODO(Jovan): Srediti izgled
+		// TODO(Jovan -> Kris): Dodaj bazu studenata
 		tabbedPane = new JTabbedPane();
-		ProfesorTab profesorTab = new ProfesorTab();
-		PredmetTab predmetTab = new PredmetTab();
+		tabbedPane.addChangeListener(this);
+		profesorTab = new ProfesorTab();
+		predmetTab = new PredmetTab();
 		tabbedPane.addTab("Profesori", profesorTab);
 		tabbedPane.addTab("Predmeti", predmetTab);
 		this.add(tabbedPane, BorderLayout.CENTER);
 		
+	}
+	
+	public Selektovan getSelektovanTab()
+	{
+		return this.selektovanTab;
+	}
+	
+	@Override
+	public void stateChanged(ChangeEvent e) {
+		JTabbedPane tabbedPane = (JTabbedPane)e.getSource();
+		int selectedIndex = tabbedPane.getSelectedIndex();
+		switch(selectedIndex)
+		{
+			case 0:
+			{
+				this.selektovanTab = Selektovan.STUDENT;
+			}
+			case 1:
+			{
+				this.selektovanTab = Selektovan.PROFESOR;
+			}
+			case 2:
+			{
+				this.selektovanTab = Selektovan.PREDMET;
+			}
+			default:
+			{
+				return;
+			}
+		}
+	}
+	public void azurirajPrikaz() {
+		// TODO(Jovan -> Kris): Dodati za studente
+		AbstractTableModelPredmet modelPredmeta = predmetTab.getModel();
+		AbstractTableModelProfesor modelProfesora = profesorTab.getModel();
 		
+		modelPredmeta.fireTableDataChanged();
+		modelProfesora.fireTableDataChanged();
 	}
 }

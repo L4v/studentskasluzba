@@ -38,11 +38,13 @@ public class BazaPredmet {
 	{
 		// TODO(Jovan): Provera postojanja?
 		this.Torke.add(p);
+		GlavniProzor.getInstance().azurirajPrikaz();
 	}
 	
 	public void removePredmet(int row)
 	{
 		this.Torke.remove(row);
+		GlavniProzor.getInstance().azurirajPrikaz();
 	}
 	
 	public ArrayList<Predmet> getPredmete()

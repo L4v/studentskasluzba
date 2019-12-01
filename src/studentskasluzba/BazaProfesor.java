@@ -46,11 +46,13 @@ public class BazaProfesor {
 	{
 		// TODO(Jovan): Provera da li vec postoji?
 		this.Torke.add(p);
+		GlavniProzor.getInstance().azurirajPrikaz();
 	}
 	
 	public void removeProfesor(int row)
 	{
 		this.Torke.remove(row);
+		GlavniProzor.getInstance().azurirajPrikaz();
 	}
 	
 	public ArrayList<Profesor> getProfesore()

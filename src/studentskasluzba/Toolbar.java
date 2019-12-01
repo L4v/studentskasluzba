@@ -36,6 +36,7 @@ public class Toolbar extends JToolBar{
 			public void mouseClicked(MouseEvent arg0) {
 				DodajPredmet dodaj = new DodajPredmet();
 				dodaj.setVisible(true);
+				
 			}
 
 			@Override

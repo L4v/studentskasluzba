@@ -18,4 +18,9 @@ public class PredmetTab extends JScrollPane{
 		this.setViewportView(tabelaPredmeta);;
 	}
 	
+	public AbstractTableModelPredmet getModel()
+	{
+		return (AbstractTableModelPredmet)this.tabelaPredmeta.getModel();
+	}
+	
 }

@@ -126,4 +126,11 @@ public class Profesor {
 		this.zvanje = zvanje;
 	}
 	
+	@Override
+	public String toString()
+	{
+		String Result = this.brLicneKarte + " " + this.ime + " " + this.prezime;
+		return Result;
+	}
+	
 }
