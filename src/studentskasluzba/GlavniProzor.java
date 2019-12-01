@@ -45,7 +45,6 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		
-		this.selektovanTab = Selektovan.STUDENT;
 		
 		// NOTE(Jovan): Inicijalizacija ostalih komponenti
 		Toolbar glavniToolbar = new Toolbar(); 
@@ -63,10 +62,12 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 		tabbedPane.addChangeListener(this);
 		profesorTab = new ProfesorTab();
 		predmetTab = new PredmetTab();
+		PredmetTab tmp = new PredmetTab();
+		tabbedPane.addTab("Student", tmp);
 		tabbedPane.addTab("Profesori", profesorTab);
 		tabbedPane.addTab("Predmeti", predmetTab);
 		this.add(tabbedPane, BorderLayout.CENTER);
-		
+		this.selektovanTab = Selektovan.STUDENT;
 	}
 	
 	public Selektovan getSelektovanTab()
@@ -83,14 +84,17 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 			case 0:
 			{
 				this.selektovanTab = Selektovan.STUDENT;
+				break;
 			}
 			case 1:
 			{
 				this.selektovanTab = Selektovan.PROFESOR;
+				break;
 			}
 			case 2:
 			{
 				this.selektovanTab = Selektovan.PREDMET;
+				break;
 			}
 			default:
 			{

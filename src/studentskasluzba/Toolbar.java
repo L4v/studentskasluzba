@@ -34,8 +34,31 @@ public class Toolbar extends JToolBar{
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				DodajPredmet dodaj = new DodajPredmet();
-				dodaj.setVisible(true);
+				switch(GlavniProzor.getInstance().getSelektovanTab())
+				{
+				 case STUDENT:
+				 {
+					 // TODO(Jovan->Kris): Prikazivanje dijaloga za
+					 // dodavanje studenta
+					 break;
+				 }
+				 case PROFESOR:
+				 {
+					 // TODO(Jovan): Prikazivanje dijaloga za
+					 // dodavanje profesora
+					 break;
+				 }
+				 case PREDMET:
+				 {
+					DodajPredmet dodaj = new DodajPredmet();
+					dodaj.setVisible(true);
+					break;
+				 }
+				 default:
+				 {
+					 return;
+				 }
+				}
 				
 			}
 
