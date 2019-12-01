@@ -24,6 +24,8 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 	private JTabbedPane tabbedPane;
 	private ProfesorTab profesorTab;
 	private PredmetTab predmetTab;
+	
+	private StudentTab studentTab;
 	// NOTE(Jovan): Sluzi za Dodaj i slicne operacije koje zavise
 	// od toga koji je tab selektovan
 	private Selektovan selektovanTab;
@@ -57,13 +59,13 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 		this.add(st_bar, BorderLayout.SOUTH);
 		
 		// TODO(Jovan): Srediti izgled
-		// TODO(Jovan -> Kris): Dodaj bazu studenata
+				
 		tabbedPane = new JTabbedPane();
 		tabbedPane.addChangeListener(this);
 		profesorTab = new ProfesorTab();
 		predmetTab = new PredmetTab();
-		PredmetTab tmp = new PredmetTab();
-		tabbedPane.addTab("Student", tmp);
+		studentTab = new StudentTab();
+		tabbedPane.addTab("Student", studentTab);
 		tabbedPane.addTab("Profesori", profesorTab);
 		tabbedPane.addTab("Predmeti", predmetTab);
 		this.add(tabbedPane, BorderLayout.CENTER);
@@ -103,11 +105,15 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 		}
 	}
 	public void azurirajPrikaz() {
-		// TODO(Jovan -> Kris): Dodati za studente
+		AbstractTableModelStudent modelStudenta = studentTab.getModel();
+		
 		AbstractTableModelPredmet modelPredmeta = predmetTab.getModel();
 		AbstractTableModelProfesor modelProfesora = profesorTab.getModel();
 		
+		modelStudenta.fireTableDataChanged();
+		
 		modelPredmeta.fireTableDataChanged();
 		modelProfesora.fireTableDataChanged();
+		
 	}
 }

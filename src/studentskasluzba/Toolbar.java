@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JToolBar;
 
 import dijalog.DodajPredmet;
+import dijalog.DodavanjeStudenta;
 import dugmici.DodajDugme;
 import dugmici.IzmeniDugme;
 import dugmici.ObrisiDugme;
@@ -38,9 +39,9 @@ public class Toolbar extends JToolBar{
 				{
 				 case STUDENT:
 				 {
-					 // TODO(Jovan->Kris): Prikazivanje dijaloga za
-					 // dodavanje studenta
-					 break;
+					DodavanjeStudenta dodaj = new DodavanjeStudenta();
+					dodaj.setVisible(true);
+					break;
 				 }
 				 case PROFESOR:
 				 {
