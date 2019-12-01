@@ -2,6 +2,8 @@ package studentskasluzba;
 
 import java.util.ArrayList;
 
+enum Status{B,S;}
+
 public class Student {
 
 	private String ime;
@@ -19,7 +21,7 @@ public class Student {
 	
 	public Student(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon,
 			String email, String brojIndeksa, String datumUpisa, String trenutnaGodStudija, Status statusStudenta,
-			double prosecnaOcena, ArrayList<Predmet> predmeti) {
+			double prosecnaOcena) {
 		super();
 		this.ime = ime;
 		this.prezime = prezime;
