@@ -60,6 +60,10 @@ public class BazaStudenata {
 		return this.torke;
 	}
 	
+	public Student getStudent(int row) {
+		return this.torke.get(row);
+	}
+	
 	public int getBrojAtributa()
 	{
 		return this.atributi.size();
