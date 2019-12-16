@@ -12,6 +12,7 @@ import dijalog.BrisanjeStudenta;
 import dijalog.DodavanjePredmeta;
 import dijalog.DodavanjeProfesora;
 import dijalog.DodavanjeStudenta;
+import dijalog.DodavanjeStudentaNaPredmet;
 import dijalog.IzmenaStudenta;
 import dugmici.DodajDugme;
 import dugmici.IzmeniDugme;
@@ -106,6 +107,8 @@ public class Toolbar extends JToolBar{
 			}
 			
 		});
+		
+		
 		// NOTE(Jovan): Dodavanje profesora na predmet
 		profNaPredmet.addMouseListener(new MouseListener() {
 			
@@ -151,9 +154,8 @@ public class Toolbar extends JToolBar{
 			
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				// TODO(Jovan): Dodati dijalog za dodavanje studenta na predmet
-				DodavanjeStudentaNaPredmet dodaj = 
-						new DodavanjeStudentaNaPredmet();
+				
+				DodavanjeStudentaNaPredmet dodaj = new DodavanjeStudentaNaPredmet();
 				dodaj.setVisible(true);
 			}
 			

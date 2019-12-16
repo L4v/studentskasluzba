@@ -7,7 +7,7 @@ public class BazaStudenata {
 	private static BazaStudenata instance = null;
 
 	private ArrayList<String> atributi;
-	private ArrayList<Student> torke;
+	private ArrayList<Student> studenti;
 	
 	public static BazaStudenata getInstance()
 	{
@@ -21,7 +21,7 @@ public class BazaStudenata {
 	private BazaStudenata()
 	{
 		atributi = new ArrayList<String>();
-		torke = new ArrayList<Student>();
+		studenti = new ArrayList<Student>();
 		
 		atributi.add("Broj indeksa");
 		atributi.add("Ime");
@@ -38,30 +38,30 @@ public class BazaStudenata {
 		Student st1 = new Student("Petar", "Petrovi\u0107", "09.01.1998","Njego\u0161eva 50","0609988776","petar.petrovic@mail.com","RA350/17","05.07.2017","3",StatusStudent.B,9.12);
 		Student st2 = new Student("Marko", "Markovi\u0107","20.06.1999","Tolstojeva 33","0610011223","marko.markovic99@mail.com","RA333/18","04.07.2018","2",StatusStudent.S,8.69);
 		Student st3 = new Student("Jovana", "Jovanovi\u0107", "07.10.2000","\u0160ekspirova 10","0621234567","jovana.jovanovic123@mail.com","RA367/19","06.07.2019","1",StatusStudent.B,9.50);
-		torke.add(st1);
-		torke.add(st2);
-		torke.add(st3);
+		studenti.add(st1);
+		studenti.add(st2);
+		studenti.add(st3);
 	}
 	
 	public void addStudent(Student s)
 	{
-		this.torke.add(s);
+		this.studenti.add(s);
 		GlavniProzor.getInstance().azurirajPrikaz();
 	}
 	
 	public void removeStudent(int row)
 	{
-		this.torke.remove(row);
+		this.studenti.remove(row);
 		GlavniProzor.getInstance().azurirajPrikaz();
 	}
 	
 	public ArrayList<Student> getStudente()
 	{
-		return this.torke;
+		return this.studenti;
 	}
 	
 	public Student getStudent(int row) {
-		return this.torke.get(row);
+		return this.studenti.get(row);
 	}
 	
 	public int getBrojAtributa()
@@ -71,12 +71,12 @@ public class BazaStudenata {
 	
 	public int getBrojTorki()
 	{
-		return this.torke.size();
+		return this.studenti.size();
 	}
 	
 	public String getValueAt(int row, int column)
 	{
-		Student Result = torke.get(row);
+		Student Result = studenti.get(row);
 		switch(column)
 		{
 			case 0:
@@ -134,6 +134,24 @@ public class BazaStudenata {
 
 	public String getColumnName(int column) {
 		return atributi.get(column);
+	}
+	
+	public void izmeniStudenta(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon, String email, String brojIndeksa, String datumUpisa, String trenutnaGodStudija, StatusStudent statusStudenta, double prosecnaOcena) {
+		for (Student s : studenti) {
+			if (s.getIndeks().equals(brojIndeksa)) {
+				s.setIme(ime);
+				s.setPrezime(prezime);
+				s.setDatumRodjenja(datumRodjenja);
+				s.setAdresaStanovanja(adresaStanovanja);
+				s.setKontaktTelefon(kontaktTelefon);
+				s.setEmail(email);
+				s.setIndeks(brojIndeksa);
+				s.setDatumUpisa(datumUpisa);
+				s.setTrenutnaGodina(trenutnaGodStudija);
+				s.setStatusStudenta(statusStudenta);
+				s.setProsecnaOcena(prosecnaOcena);
+			}
+		}
 	}
 	
 }
