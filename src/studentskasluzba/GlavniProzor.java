@@ -9,13 +9,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-enum Selektovan
-{
-	STUDENT,
-	PROFESOR,
-	PREDMET
-}
-
 @SuppressWarnings("serial")
 public class GlavniProzor extends JFrame implements ChangeListener{
 	
@@ -88,16 +81,19 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 			case 0:
 			{
 				this.selektovanTab = Selektovan.STUDENT;
+				glavniToolbar.azuriraj(Selektovan.STUDENT);
 				break;
 			}
 			case 1:
 			{
 				this.selektovanTab = Selektovan.PROFESOR;
+				glavniToolbar.azuriraj(Selektovan.PROFESOR);
 				break;
 			}
 			case 2:
 			{
 				this.selektovanTab = Selektovan.PREDMET;
+				glavniToolbar.azuriraj(Selektovan.PREDMET);
 				break;
 			}
 			default:
