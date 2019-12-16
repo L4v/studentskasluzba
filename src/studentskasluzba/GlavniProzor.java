@@ -23,7 +23,7 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 	private StudentTab studentTab;
 	// NOTE(Jovan): Sluzi za Dodaj i slicne operacije koje zavise
 	// od toga koji je tab selektovan
-	private Selektovan selektovanTab;
+	private SelektovanTab selektovanTab;
 	public static GlavniProzor getInstance()
 	{
 		if(instance == null)
@@ -64,10 +64,34 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 		tabbedPane.addTab("Profesori", profesorTab);
 		tabbedPane.addTab("Predmeti", predmetTab);
 		this.add(tabbedPane, BorderLayout.CENTER);
-		this.selektovanTab = Selektovan.STUDENT;
+		this.selektovanTab = SelektovanTab.STUDENT;
 	}
 	
-	public Selektovan getSelektovanTab()
+	public int getSelektovanuTorku()
+	{
+		int Result = -1;
+		switch(getSelektovanTab())
+		{
+			case STUDENT:
+			{
+				Result = studentTab.getSelektovanuTorku();
+				break;
+			}
+			case PROFESOR:
+			{
+				Result = profesorTab.getSelektovanuTorku();
+				break;
+			}
+			case PREDMET:
+			{
+				Result = predmetTab.getSelektovanuTorku();
+				break;
+			}
+		}
+		return Result;
+	}
+	
+	public SelektovanTab getSelektovanTab()
 	{
 		return this.selektovanTab;
 	}
@@ -80,20 +104,20 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 		{
 			case 0:
 			{
-				this.selektovanTab = Selektovan.STUDENT;
-				glavniToolbar.azuriraj(Selektovan.STUDENT);
+				this.selektovanTab = SelektovanTab.STUDENT;
+				glavniToolbar.azuriraj(SelektovanTab.STUDENT);
 				break;
 			}
 			case 1:
 			{
-				this.selektovanTab = Selektovan.PROFESOR;
-				glavniToolbar.azuriraj(Selektovan.PROFESOR);
+				this.selektovanTab = SelektovanTab.PROFESOR;
+				glavniToolbar.azuriraj(SelektovanTab.PROFESOR);
 				break;
 			}
 			case 2:
 			{
-				this.selektovanTab = Selektovan.PREDMET;
-				glavniToolbar.azuriraj(Selektovan.PREDMET);
+				this.selektovanTab = SelektovanTab.PREDMET;
+				glavniToolbar.azuriraj(SelektovanTab.PREDMET);
 				break;
 			}
 			default:

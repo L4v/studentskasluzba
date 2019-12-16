@@ -6,7 +6,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import studentskasluzba.Selektovan;
+import studentskasluzba.SelektovanTab;
 
 @SuppressWarnings("serial")
 public class DodajDugme extends JButton{
@@ -29,7 +29,7 @@ public class DodajDugme extends JButton{
 		this.setToolTipText(tooltip);
 	}
 	
-	public void updateIcon(Selektovan s)
+	public void updateIcon(SelektovanTab s)
 	{
 		switch(s)
 		{

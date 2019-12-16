@@ -17,6 +17,11 @@ public class ProfesorTab extends JScrollPane{
 		this.setViewportView(tabelaProfesora);
 	}
 	
+	public int getSelektovanuTorku()
+	{
+		return this.tabelaProfesora.getSelectedRow();
+	}
+	
 	public AbstractTableModelProfesor getModel()
 	{
 		return (AbstractTableModelProfesor)this.tabelaProfesora.getModel();
