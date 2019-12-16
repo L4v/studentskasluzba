@@ -1,8 +1,10 @@
 package studentskasluzba;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Profesor {
+public class Profesor implements Serializable {
+	private static final long serialVersionUID = 6394180833275172534L;
 	private String ime;
 	private String prezime;
 	private String datumRodjenja;

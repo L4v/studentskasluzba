@@ -1,5 +1,13 @@
 package studentskasluzba;
 
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class BazaPredmet {
@@ -32,18 +40,62 @@ public class BazaPredmet {
 		Predmet tmp = new Predmet("OOP-1", "Objektno", 2, 1, savo);
 		
 		Torke.add(tmp);
+		loadDB();
 	}
 	
+	public void loadDB()
+	{
+		FileInputStream fi;
+		try {
+			fi = new FileInputStream(new File("PredmetiDB.sdb"));
+			ObjectInputStream oi = new ObjectInputStream(fi);
+			Predmet p = (Predmet)oi.readObject();
+			addPredmet(p);
+			fi.close();
+			oi.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void saveDB()
+	{
+		for (Predmet p : this.Torke)
+		{
+			try {
+				FileOutputStream f = new FileOutputStream(new File("PredmetiDB.sdb"));
+				ObjectOutputStream o = new ObjectOutputStream(f);
+				
+				o.writeObject(p);
+				f.close();
+				o.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 	public void addPredmet(Predmet p)
 	{
 		// TODO(Jovan): Provera postojanja?
 		this.Torke.add(p);
+		//this.saveDB();
 		GlavniProzor.getInstance().azurirajPrikaz();
 	}
 	
 	public void removePredmet(int row)
 	{
 		this.Torke.remove(row);
+		//this.saveDB();
 		GlavniProzor.getInstance().azurirajPrikaz();
 	}
 	
