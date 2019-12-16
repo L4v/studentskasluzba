@@ -25,6 +25,8 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 	private ProfesorTab profesorTab;
 	private PredmetTab predmetTab;
 	
+	private Toolbar glavniToolbar;
+	
 	private StudentTab studentTab;
 	// NOTE(Jovan): Sluzi za Dodaj i slicne operacije koje zavise
 	// od toga koji je tab selektovan
@@ -49,7 +51,7 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 		
 		
 		// NOTE(Jovan): Inicijalizacija ostalih komponenti
-		Toolbar glavniToolbar = new Toolbar(); 
+		glavniToolbar = new Toolbar(); 
 		this.add(glavniToolbar, BorderLayout.NORTH);
 		
 		MojMenuBar menu = new MojMenuBar();

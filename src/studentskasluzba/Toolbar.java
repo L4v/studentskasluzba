@@ -3,7 +3,9 @@ package studentskasluzba;
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JToolBar;
 
 import dijalog.DodavanjePredmeta;
@@ -27,6 +29,7 @@ public class Toolbar extends JToolBar{
 	// NOTE(Jovan): Sluzi za odredjivanje dugmica koji
 	// ce se prikazati
 	private Rezim rezim;
+	private ArrayList<JButton> dodatni;
 	
 	public Toolbar()
 	{
@@ -42,7 +45,7 @@ public class Toolbar extends JToolBar{
 		this.add(dodaj);
 		this.add(izmeni);
 		this.add(obrisi);
-		
+		dodatni = new ArrayList<JButton>();
 		profNaPredmet = new DodajDugme("Dodaj profesora na predmet");
 		studentNaPredmet = new DodajDugme("Dodaj studenta na predmet");
 		dodaj.addMouseListener(new MouseListener() {
@@ -177,7 +180,7 @@ public class Toolbar extends JToolBar{
 		this.add(pretraga, BorderLayout.EAST);
 		this.add(pretrazi);		
 		
-		update();
+		//update();
 	}
 	// NOTE(Jovan): Vrsi azuriranje toolbara prilikom promene
 	// selektovanog taba
@@ -185,10 +188,21 @@ public class Toolbar extends JToolBar{
 	{
 		switch(GlavniProzor.getInstance().getSelektovanTab())
 		{
-		case STUDENT:
-		{
-			
-		}break;
+			case STUDENT:
+			{
+				break;
+			}
+			case PROFESOR:
+			{
+				
+				break;
+			}
+			case PREDMET:
+			{
+				break;
+			}
+		default:
+			break;
 		}
 	}
 }
