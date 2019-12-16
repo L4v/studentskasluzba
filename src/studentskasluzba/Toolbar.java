@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JToolBar;
 
+import dijalog.BrisanjeStudenta;
 import dijalog.DodavanjePredmeta;
 import dijalog.DodavanjeProfesora;
 import dijalog.DodavanjeStudenta;
@@ -189,7 +190,8 @@ public class Toolbar extends JToolBar{
 				{
 					case STUDENT:
 					{
-						// TODO(Jovan->Kris): Dodati
+						BrisanjeStudenta obrisi = new BrisanjeStudenta();
+						obrisi.setVisible(true);
 						break;
 					}
 					case PROFESOR:

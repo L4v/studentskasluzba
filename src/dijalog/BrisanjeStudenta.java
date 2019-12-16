@@ -17,7 +17,7 @@ public class BrisanjeStudenta extends JDialog{
 	public BrisanjeStudenta() {
 	
 		setTitle("Brisanje studenta");
-		setSize(300,300);
+		setSize(350,150);
 		setLocationRelativeTo(null);
 		this.setModal(true);
 		
@@ -36,7 +36,7 @@ public class BrisanjeStudenta extends JDialog{
 		tmp.setIcon(Icon);
 		
 		panel1.add(tmp, BorderLayout.WEST);
-		panel1.add(message);
+		panel1.add(message, BorderLayout.CENTER);
 		
 		panel2.add(odustanak, BorderLayout.EAST);
 		panel2.add(potvrda, BorderLayout.EAST);
