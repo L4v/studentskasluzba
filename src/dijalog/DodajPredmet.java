@@ -88,9 +88,10 @@ public class DodajPredmet extends JDialog{
 		dodajButton.addMouseListener(new MouseListener() {
 
 			// TODO(Jovan): Mozda dodati shake? :D
+			// TODO(Jovan): isEmpty() ne radi na nekim sistemima, zasto o Boze zasto
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				if(sifra.getText().isBlank() || naziv.getText().isBlank())
+				if(sifra.getText().isEmpty() || naziv.getText().isEmpty())
 				{
 					warningLabel.setVisible(true);
 				}

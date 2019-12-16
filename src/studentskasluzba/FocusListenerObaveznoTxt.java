@@ -17,7 +17,7 @@ public class FocusListenerObaveznoTxt implements FocusListener{
 	@Override
 	public void focusLost(FocusEvent arg0) {
 		JTextField text = (JTextField)arg0.getComponent();
-		if(text.getText().isBlank())
+		if(text.getText().isEmpty())
 		{
 			text.setBackground(new Color(171, 171, 171));
 		}
