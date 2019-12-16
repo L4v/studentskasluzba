@@ -80,11 +80,11 @@ public class DodavanjeStudenta extends JDialog{
 		JTextField datumUpisaT = new JTextField();
 		JTextField prosekT = new JTextField();
 		
-		JLabel warningLabel = new JLabel("Niste popunili sva polja");
+		JLabel warningLabel = new JLabel("Niste popunili sva polja"); 
 		warningLabel.setForeground(Color.RED);
 		warningLabel.setVisible(false);
 		
-		imeT.addFocusListener(new FocusListenerObaveznoTxt());
+		imeT.addFocusListener(new FocusListenerObaveznoTxt());      
 		prezimeT.addFocusListener(new FocusListenerObaveznoTxt());
 		datRodjT.addFocusListener(new FocusListenerObaveznoTxt());
 		adresaT.addFocusListener(new FocusListenerObaveznoTxt());
