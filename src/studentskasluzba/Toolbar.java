@@ -43,6 +43,9 @@ public class Toolbar extends JToolBar{
 		studentNaPredmet = new DodajDugme("Dodaj studenta na predmet");
 		this.add(profNaPredmet);
 		this.add(studentNaPredmet);
+		
+		// NOTE(Jovan): Dodavanje studenta/predmeta/profesora u zavisnosti
+		// od selektovanog taba
 		dodaj.addMouseListener(new MouseListener() {
 
 			@Override
@@ -100,6 +103,7 @@ public class Toolbar extends JToolBar{
 			}
 			
 		});
+		// NOTE(Jovan): Dodavanje profesora na predmet
 		profNaPredmet.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -148,6 +152,58 @@ public class Toolbar extends JToolBar{
 				DodavanjeStudentaNaPredmet dodaj = 
 						new DodavanjeStudentaNaPredmet();
 				dodaj.setVisible(true);
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		// NOTE(Jovan): Uklanjanje studenta/predmeta/profesora u zavisnosti
+		// od selektovanog taba
+		obrisi.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				switch(GlavniProzor.getInstance().getSelektovanTab())
+				{
+					case STUDENT:
+					{
+						// TODO(Jovan->Kris): Dodati
+						break;
+					}
+					case PROFESOR:
+					{
+						// TODO(Jovan): Dodati
+						break;
+					}
+					case PREDMET:
+					{
+						// TODO(Jovan): Dodati
+						break;
+					}
+				}
+				
 			}
 			
 			@Override
