@@ -6,7 +6,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JToolBar;
 
-import dijalog.DodajPredmet;
+import dijalog.DodavanjePredmeta;
 import dijalog.DodavanjeStudenta;
 import dugmici.DodajDugme;
 import dugmici.IzmeniDugme;
@@ -51,7 +51,7 @@ public class Toolbar extends JToolBar{
 				 }
 				 case PREDMET:
 				 {
-					DodajPredmet dodaj = new DodajPredmet();
+					DodavanjePredmeta dodaj = new DodavanjePredmeta();
 					dodaj.setVisible(true);
 					break;
 				 }

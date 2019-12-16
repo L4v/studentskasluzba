@@ -2,6 +2,7 @@ package dijalog;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -21,7 +22,7 @@ import studentskasluzba.Predmet;
 import studentskasluzba.Profesor;
 
 @SuppressWarnings("serial")
-public class DodajPredmet extends JDialog{
+public class DodavanjePredmeta extends JDialog{
 
 	private JPanel fieldsPanel;
 	private JPanel buttonsPanel;
@@ -30,12 +31,16 @@ public class DodajPredmet extends JDialog{
 	private JTextField sifra, naziv;
 	private JComboBox<Profesor> profesori;
 	private JComboBox<Integer> godina, semestar;
-	public DodajPredmet()
+	
+	public DodavanjePredmeta()
 	{
 		super();
 		this.setSize(450, 250);
+		this.setMinimumSize(new Dimension(450, 250));
 		this.setLocationRelativeTo(null);
-		this.setResizable(false);
+		this.setResizable(true);
+		this.setModal(true);
+		this.setTitle("Dodavanje predmeta");
 		
 		warningLabel = new JLabel("POPUNITI SVA POLJA");
 		warningLabel.setForeground(Color.RED);
@@ -66,15 +71,15 @@ public class DodajPredmet extends JDialog{
 		
 		this.add(warningLabel, BorderLayout.NORTH);
 		fieldsPanel = new JPanel(new GridLayout(5, 2));
-		fieldsPanel.add(new JLabel("Sifra predmeta"));
+		fieldsPanel.add(new JLabel("Sifra predmeta*"));
 		fieldsPanel.add(sifra);
-		fieldsPanel.add(new JLabel("Naziv predmeta"));
+		fieldsPanel.add(new JLabel("Naziv predmeta*"));
 		fieldsPanel.add(naziv);
-		fieldsPanel.add(new JLabel("Godina"));
+		fieldsPanel.add(new JLabel("Godina*"));
 		fieldsPanel.add(godina);
-		fieldsPanel.add(new JLabel("Semestar"));
+		fieldsPanel.add(new JLabel("Semestar*"));
 		fieldsPanel.add(semestar);
-		fieldsPanel.add(new JLabel("Profesor"));
+		fieldsPanel.add(new JLabel("Profesor*"));
 		fieldsPanel.add(profesori);
 		this.add(fieldsPanel, BorderLayout.CENTER);
 		buttonsPanel = new JPanel(new GridLayout(1, 2));
