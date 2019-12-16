@@ -12,6 +12,7 @@ import dijalog.BrisanjeStudenta;
 import dijalog.DodavanjePredmeta;
 import dijalog.DodavanjeProfesora;
 import dijalog.DodavanjeStudenta;
+import dijalog.IzmenaStudenta;
 import dugmici.DodajDugme;
 import dugmici.IzmeniDugme;
 import dugmici.ObrisiDugme;
@@ -175,6 +176,64 @@ public class Toolbar extends JToolBar{
 			}
 		});
 		
+		//NOTE(Kristian) : izmena studenta,prof,predmeta
+		izmeni.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				switch(GlavniProzor.getInstance().getSelektovanTab())
+				{
+					case STUDENT:
+					{
+						if (GlavniProzor.getInstance().getSelektovanuTorku()==-1) {
+							JOptionPane.showMessageDialog(null, "Niste selektovali studenta!");
+							return;
+						}
+						IzmenaStudenta izmeni = new IzmenaStudenta();
+						izmeni.setVisible(true);
+						break;
+					}
+					case PROFESOR:
+					{
+						// TODO(Jovan): Dodati
+						break;
+					}
+					case PREDMET:
+					{
+						// TODO(Jovan): Dodati
+						break;
+					}
+				}
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		
+		
 		// NOTE(Jovan): Uklanjanje studenta/predmeta/profesora u zavisnosti
 		// od selektovanog taba
 		obrisi.addMouseListener(new MouseListener() {
@@ -239,7 +298,7 @@ public class Toolbar extends JToolBar{
 		this.add(pretrazi);		
 		
 	}
-	
+
 	
 	// NOTE(Jovan): Vrsi azuriranje toolbara prilikom promene
 	// selektovanog taba
