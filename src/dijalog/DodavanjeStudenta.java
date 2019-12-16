@@ -17,6 +17,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import studentskasluzba.BazaStudenata;
+import studentskasluzba.FocusListenerObaveznoBroj;
 import studentskasluzba.FocusListenerObaveznoTxt;
 import studentskasluzba.StatusStudent;
 import studentskasluzba.Student;
@@ -87,11 +88,11 @@ public class DodavanjeStudenta extends JDialog{
 		prezimeT.addFocusListener(new FocusListenerObaveznoTxt());
 		datRodjT.addFocusListener(new FocusListenerObaveznoTxt());
 		adresaT.addFocusListener(new FocusListenerObaveznoTxt());
-		brTelefonaT.addFocusListener(new FocusListenerObaveznoTxt());
+		brTelefonaT.addFocusListener(new FocusListenerObaveznoBroj(-1));
 		brIndeksaT.addFocusListener(new FocusListenerObaveznoTxt());
 		emailT.addFocusListener(new FocusListenerObaveznoTxt());
 		datumUpisaT.addFocusListener(new FocusListenerObaveznoTxt());
-		prosekT.addFocusListener(new FocusListenerObaveznoTxt());
+		prosekT.addFocusListener(new FocusListenerObaveznoBroj(-2));
 		
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridx = 0;
@@ -252,8 +253,7 @@ public class DodavanjeStudenta extends JDialog{
 		c22.gridx = 0;
 		c22.gridy = 12;
 		c22.insets = new Insets(15, 2, 2, 2);
-		c22.anchor = GridBagConstraints.CENTER;
-		getContentPane().add(panel, c22);
+		getContentPane().add(warningLabel, c22);
 		
 		GridBagConstraints c23 = new GridBagConstraints();
 		c23.gridx = 1;
