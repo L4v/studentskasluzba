@@ -3,9 +3,8 @@ package studentskasluzba;
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 
-import javax.swing.JButton;
+import javax.swing.ImageIcon;
 import javax.swing.JToolBar;
 
 import dijalog.DodavanjePredmeta;
@@ -16,38 +15,34 @@ import dugmici.IzmeniDugme;
 import dugmici.ObrisiDugme;
 import dugmici.PretragaDugme;
 
-enum Rezim{
-	STUDENTI,
-	PREDMETI,
-	PROFESORI
-}
-
-@SuppressWarnings("serial")
 public class Toolbar extends JToolBar{
+	private static final long serialVersionUID = -4611960868780210810L;
+	DodajDugme dodaj;
+	IzmeniDugme izmeni;
+	ObrisiDugme obrisi;
 	private DodajDugme profNaPredmet;
 	private DodajDugme studentNaPredmet;
 	// NOTE(Jovan): Sluzi za odredjivanje dugmica koji
 	// ce se prikazati
-	private Rezim rezim;
-	private ArrayList<JButton> dodatni;
 	
 	public Toolbar()
 	{
 		super();
-		rezim = Rezim.STUDENTI;
 		// NOTE(Jovan): Onesposobljava pomeranje
 		this.setFloatable(false);
 		
 		// NOTE(Jovan): Default dugmici za Add, Edit, Delete
-		DodajDugme dodaj = new DodajDugme("Dodaj");
-		IzmeniDugme izmeni = new IzmeniDugme();
-		ObrisiDugme obrisi = new ObrisiDugme();
+		dodaj = new DodajDugme("Dodaj");
+		izmeni = new IzmeniDugme();
+		obrisi = new ObrisiDugme();
 		this.add(dodaj);
 		this.add(izmeni);
 		this.add(obrisi);
-		dodatni = new ArrayList<JButton>();
 		profNaPredmet = new DodajDugme("Dodaj profesora na predmet");
+		profNaPredmet.setIcon(new ImageIcon(getClass().getResource("/icons/add-prof.png")));
 		studentNaPredmet = new DodajDugme("Dodaj studenta na predmet");
+		this.add(profNaPredmet);
+		this.add(studentNaPredmet);
 		dodaj.addMouseListener(new MouseListener() {
 
 			@Override
@@ -180,25 +175,37 @@ public class Toolbar extends JToolBar{
 		this.add(pretraga, BorderLayout.EAST);
 		this.add(pretrazi);		
 		
-		//update();
 	}
+	
+	
 	// NOTE(Jovan): Vrsi azuriranje toolbara prilikom promene
 	// selektovanog taba
-	public void update()
+	public void azuriraj(Selektovan s)
 	{
-		switch(GlavniProzor.getInstance().getSelektovanTab())
+		switch(s)
 		{
 			case STUDENT:
 			{
+				dodaj.updateIcon(s);
+				dodaj.setToolTipText(dodaj.getToolTipText() + " " + s.name().toLowerCase());
+				profNaPredmet.setVisible(false);
+				studentNaPredmet.setVisible(false);
 				break;
 			}
 			case PROFESOR:
 			{
-				
+				dodaj.updateIcon(s);
+				dodaj.setToolTipText(dodaj.getToolTipText() + " " + s.name().toLowerCase());
+				profNaPredmet.setVisible(false);
+				studentNaPredmet.setVisible(false);
 				break;
 			}
 			case PREDMET:
 			{
+				dodaj.updateIcon(s);
+				dodaj.setToolTipText(dodaj.getToolTipText() + " " + s.name().toLowerCase());
+				profNaPredmet.setVisible(true);
+				studentNaPredmet.setVisible(true);
 				break;
 			}
 		default:
