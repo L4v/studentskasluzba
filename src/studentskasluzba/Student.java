@@ -2,8 +2,6 @@ package studentskasluzba;
 
 import java.util.ArrayList;
 
-enum Status{B,S;}
-
 public class Student {
 
 	private String ime;
@@ -15,12 +13,12 @@ public class Student {
 	private String brojIndeksa;
 	private String datumUpisa;
 	private String trenutnaGodStudija;
-	private Status statusStudenta;
+	private StatusStudent statusStudenta;
 	private double prosecnaOcena;
 	private ArrayList<Predmet> predmeti;
 	
 	public Student(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon,
-			String email, String brojIndeksa, String datumUpisa, String trenutnaGodStudija, Status statusStudenta,
+			String email, String brojIndeksa, String datumUpisa, String trenutnaGodStudija, StatusStudent statusStudenta,
 			double prosecnaOcena) {
 		super();
 		this.ime = ime;
@@ -124,11 +122,11 @@ public class Student {
 		this.trenutnaGodStudija = trenutnaGodStudija;
 	}
 
-	public Status getStatusStudenta() {
+	public StatusStudent getStatusStudenta() {
 		return statusStudenta;
 	}
 
-	public void setStatusStudenta(Status statusStudenta) {
+	public void setStatusStudenta(StatusStudent statusStudenta) {
 		this.statusStudenta = statusStudenta;
 	}
 
