@@ -236,7 +236,7 @@ public class Toolbar extends JToolBar{
 	
 	// NOTE(Jovan): Vrsi azuriranje toolbara prilikom promene
 	// selektovanog taba
-	public void azuriraj(Selektovan s)
+	public void azuriraj(SelektovanTab s)
 	{
 		switch(s)
 		{
