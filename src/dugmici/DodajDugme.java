@@ -9,7 +9,7 @@ import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 public class DodajDugme extends JButton{
-	public DodajDugme()
+	public DodajDugme(String tooltip)
 	{
 		super();
 		try {
@@ -18,6 +18,6 @@ public class DodajDugme extends JButton{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		this.setToolTipText("Dodaj");
+		this.setToolTipText(tooltip);
 	}
 }
