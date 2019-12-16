@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
 
 import dijalog.BrisanjeStudenta;
@@ -190,6 +191,10 @@ public class Toolbar extends JToolBar{
 				{
 					case STUDENT:
 					{
+						if (GlavniProzor.getInstance().getSelektovanuTorku()==-1) {
+							JOptionPane.showMessageDialog(null, "Niste selektovali studenta!");
+							return;
+						}
 						BrisanjeStudenta obrisi = new BrisanjeStudenta();
 						obrisi.setVisible(true);
 						break;

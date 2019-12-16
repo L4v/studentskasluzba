@@ -1,11 +1,21 @@
 package dijalog;
 
-import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import studentskasluzba.BazaStudenata;
+import studentskasluzba.GlavniProzor;
 
 public class BrisanjeStudenta extends JDialog{
 
@@ -17,32 +27,121 @@ public class BrisanjeStudenta extends JDialog{
 	public BrisanjeStudenta() {
 	
 		setTitle("Brisanje studenta");
-		setSize(350,150);
+		setSize(400,150);
 		setLocationRelativeTo(null);
 		this.setModal(true);
 		
-		getContentPane().setLayout(new BorderLayout());
-		JPanel panel1 = new JPanel();
-		panel1.setLayout(new BorderLayout());
-		JPanel panel2 = new JPanel();
-		panel2.setLayout(new BorderLayout());
+		getContentPane().setLayout(new GridBagLayout());
 		
-		JLabel message = new JLabel("Da li ste sigurni da \u017elite da obri\u0160ete studenta?");
+		JLabel message = new JLabel("Da li ste sigurni da \u017elite da obri\u0161ete studenta?");
 		JButton potvrda = new JButton("Potvrda");
 		JButton odustanak = new JButton("Odustanak");
 		
-		ImageIcon Icon = new ImageIcon("/icons/add-user.png");
+		ImageIcon icon=null;
+		try {
+			icon = new ImageIcon(ImageIO.read(getClass().getResource("/icons/delete.png")));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		JLabel tmp = new JLabel();
-		tmp.setIcon(Icon);
+		tmp.setIcon(icon);
 		
-		panel1.add(tmp, BorderLayout.WEST);
-		panel1.add(message, BorderLayout.CENTER);
+		JPanel p = new JPanel();
+		p.add(odustanak);
+		p.add(potvrda);
 		
-		panel2.add(odustanak, BorderLayout.EAST);
-		panel2.add(potvrda, BorderLayout.EAST);
 		
-		add(panel1, BorderLayout.NORTH);
-		add(panel2, BorderLayout.SOUTH);
+		GridBagConstraints c = new GridBagConstraints();
+		c.gridx = 0;
+		c.gridy = 0;
+		c.insets = new Insets(2, 2, 2, 30);
+		c.anchor = GridBagConstraints.WEST;
+		getContentPane().add(tmp, c);
+		
+		GridBagConstraints c1 = new GridBagConstraints();
+		c1.gridx = 1;
+		c1.gridy = 0;
+		c1.insets = new Insets(2, 2, 2, 30);
+		c1.anchor = GridBagConstraints.WEST;
+		getContentPane().add(message, c1);
+		
+		GridBagConstraints c2 = new GridBagConstraints();
+		c2.gridx = 1;
+		c2.gridy = 1;
+		c2.insets = new Insets(30, 2, 2, 2);
+		c2.anchor = GridBagConstraints.EAST;
+		getContentPane().add(p, c2);
+		
+		potvrda.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				BazaStudenata.getInstance().removeStudent(GlavniProzor.getInstance().getSelektovanuTorku());
+				dispose();
+				
+			}
+		});
+		
+		odustanak.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				
+			}
+		});
+		
+		
 		
 	}
 }
