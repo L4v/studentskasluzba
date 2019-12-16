@@ -12,6 +12,7 @@ public class FocusListenerObaveznoBroj implements FocusListener{
 
 	// NOTE(Jovan): Koje duzine treba biti broj
 	// U slucaju da je duzina = -1, ne proverava se
+	// NOTE(Kristian): Ako je -2 proverava prosek
 	private int duzina;
 	public FocusListenerObaveznoBroj(int d) {
 		this.duzina = d;
@@ -25,11 +26,20 @@ public class FocusListenerObaveznoBroj implements FocusListener{
 	@Override
 	public void focusLost(FocusEvent arg0) {
 		JTextField text = (JTextField)arg0.getComponent();
-		if(text.getText().matches("[0-9]+") == false
-				|| ((duzina != -1) && (text.getText().length() != duzina)))
-		{
-			text.setBackground(new Color(171, 171, 171));
+		if (duzina >= -1) {
+			if(text.getText().matches("[0-9]+") == false
+					|| ((duzina != -1) && (text.getText().length() != duzina)))
+			{
+				text.setBackground(new Color(231,76,60));
+			}
+		} else if (duzina==-2) { //NOTE(Kristian): prosek mora biti izmedju 6.00 i 10.00
+			if(text.getText().matches("([6-9]|10)\\.[0-9]{1,2}") == false)
+			{
+				text.setBackground(new Color(231,76,60));
+			}
 		}
 	}
+	
+	
 
 }
