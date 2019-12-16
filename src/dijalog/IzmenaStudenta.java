@@ -32,7 +32,7 @@ public class IzmenaStudenta extends JDialog{
 
 	public IzmenaStudenta() {
 		
-		setTitle("Dodavanje studenta");
+		setTitle("Izmena studenta");
 		setSize(450,550);
 		setLocationRelativeTo(null);
 		this.setModal(true);
@@ -283,8 +283,7 @@ public class IzmenaStudenta extends JDialog{
 		} else
 			radBtnB.setSelected(true);
 			radBtnS.setSelected(false);
-		
-		
+	
 		
 		potvrdi.addMouseListener(new MouseListener() {
 			
@@ -338,6 +337,8 @@ public class IzmenaStudenta extends JDialog{
 					} else {
 						 statusStud = StatusStudent.B;
 					}
+					
+					BazaStudenata.getInstance().removeStudent(GlavniProzor.getInstance().getSelektovanuTorku());
 					
 					Student s = new Student(ime, prezime, datRodj, adresa, brTelefona, email, brIndeksa, datumUpisa, trenutnaGod, statusStud, prosek);
 					BazaStudenata.getInstance().addStudent(s);

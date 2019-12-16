@@ -33,7 +33,7 @@ public class BrisanjeStudenta extends JDialog{
 		
 		getContentPane().setLayout(new GridBagLayout());
 		
-		JLabel message = new JLabel("Da li ste sigurni da \u017elite da obri\u0161ete studenta?");
+		JLabel message = new JLabel("Da li ste sigurni da \u017eelite da obri\u0161ete studenta?");
 		JButton potvrda = new JButton("Potvrda");
 		JButton odustanak = new JButton("Odustanak");
 		
