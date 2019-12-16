@@ -35,9 +35,9 @@ public class BazaStudenata {
 		atributi.add("Adresa");
 		atributi.add("Datum ro\u0111enja");
 		
-		Student st1 = new Student("Petar", "Petrovi\u0107", "09.01.1998","Njego\u0161eva 50","0609988776","petar.petrovic@mail.com","RA350/17","05.07.2017","3",Status.B,9.12);
-		Student st2 = new Student("Marko", "Markovi\u0107","20.06.1999","Tolstojeva 33","0610011223","marko.markovic99@mail.com","RA333/18","04.07.2018","2",Status.S,8.69);
-		Student st3 = new Student("Jovana", "Jovanovi\u0107", "07.10.2000","\u0160ekspirova 10","0621234567","jovana.jovanovic123@mail.com","RA367/19","06.07.2019","1",Status.B,9.50);
+		Student st1 = new Student("Petar", "Petrovi\u0107", "09.01.1998","Njego\u0161eva 50","0609988776","petar.petrovic@mail.com","RA350/17","05.07.2017","3",StatusStudent.B,9.12);
+		Student st2 = new Student("Marko", "Markovi\u0107","20.06.1999","Tolstojeva 33","0610011223","marko.markovic99@mail.com","RA333/18","04.07.2018","2",StatusStudent.S,8.69);
+		Student st3 = new Student("Jovana", "Jovanovi\u0107", "07.10.2000","\u0160ekspirova 10","0621234567","jovana.jovanovic123@mail.com","RA367/19","06.07.2019","1",StatusStudent.B,9.50);
 		torke.add(st1);
 		torke.add(st2);
 		torke.add(st3);
@@ -93,7 +93,7 @@ public class BazaStudenata {
 			}
 			case 4:
 			{
-				if (Result.getStatusStudenta()==Status.B)
+				if (Result.getStatusStudenta()==StatusStudent.B)
 					return "B";
 				else
 					return "S";
