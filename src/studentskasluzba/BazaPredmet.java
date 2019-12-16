@@ -40,9 +40,9 @@ public class BazaPredmet {
 		Predmet tmp = new Predmet("OOP-1", "Objektno", 2, 1, savo);
 		
 		Torke.add(tmp);
-		loadDB();
+		//loadDB();
 	}
-	
+	/*
 	public void loadDB()
 	{
 		FileInputStream fi;
@@ -83,7 +83,7 @@ public class BazaPredmet {
 				e.printStackTrace();
 			}
 		}
-	}
+	}*/
 	public void addPredmet(Predmet p)
 	{
 		// TODO(Jovan): Provera postojanja?

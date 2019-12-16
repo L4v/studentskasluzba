@@ -275,11 +275,14 @@ public class IzmenaStudenta extends JDialog{
 		emailT.setText(s.getEmail());
 		datumUpisaT.setText(s.getDatumUpisa());
 		prosekT.setText(Double.toString(s.getProsecnaOcena()));
-		trenGod.setToolTipText(s.getTrenutnaGodina());
-		if (s.getStatusStudenta()==StatusStudent.S) {
+		trenGod.setSelectedIndex(Integer.parseInt(s.getTrenutnaGodina())-1);
+		
+		if (s.getStatusStudenta()==StatusStudent.S) {   
 			radBtnS.setSelected(true);
-		} else
 			radBtnB.setSelected(false);
+		} else
+			radBtnB.setSelected(true);
+			radBtnS.setSelected(false);
 		
 		
 		
