@@ -14,26 +14,26 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import studentskasluzba.BazaProfesor;
+import studentskasluzba.BazaPredmet;
 import studentskasluzba.GlavniProzor;
 
-public class BrisanjeProfesora extends JDialog{
+public class BrisanjePredmeta extends JDialog{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public BrisanjeProfesora() {
+	public BrisanjePredmeta() {
 		
-		setTitle("Brisanje profesora");
+		setTitle("Brisanje predmeta");
 		setSize(400,150);
 		setLocationRelativeTo(null);
 		this.setModal(true);
 		
 		getContentPane().setLayout(new GridBagLayout());
 		
-		JLabel message = new JLabel("Da li ste sigurni da \u017eelite da obri\u0161ete profesora?");
+		JLabel message = new JLabel("Da li ste sigurni da \u017eelite da obri\u0161ete predmet?");
 		JButton potvrda = new JButton("Potvrda");
 		JButton odustanak = new JButton("Odustanak");
 		
@@ -102,7 +102,7 @@ public class BrisanjeProfesora extends JDialog{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				BazaProfesor.getInstance().removeProfesor(GlavniProzor.getInstance().getSelektovanuTorku());
+				BazaPredmet.getInstance().removePredmet(GlavniProzor.getInstance().getSelektovanuTorku());
 				dispose();
 				
 			}
@@ -140,8 +140,5 @@ public class BrisanjeProfesora extends JDialog{
 				
 			}
 		});
-		
-		
-		
 	}
 }
