@@ -94,6 +94,7 @@ public class StudentiNaPredmetu extends JDialog{
 				int i = list.getSelectedIndex();
 				if (i==-1) {
 					JOptionPane.showMessageDialog(null, "Niste selektovali studenta!","Warning", JOptionPane.WARNING_MESSAGE);
+					return;
 				}
 				int choise = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da \u017Eelite da obri\u0161ete studenta?","Brisanje studenta sa predmeta",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
 				if (choise==JOptionPane.YES_OPTION) {
