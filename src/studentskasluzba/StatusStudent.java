@@ -1,6 +1,8 @@
 package studentskasluzba;
 
-public enum StatusStudent {
+import java.io.Serializable;
+
+public enum StatusStudent implements Serializable{
 
 	B,S;
 	
