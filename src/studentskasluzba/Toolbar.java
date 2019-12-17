@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
 
+import dijalog.BrisanjePredmeta;
 import dijalog.BrisanjeProfesora;
 import dijalog.BrisanjeStudenta;
 import dijalog.DodavanjePredmeta;
@@ -181,7 +182,7 @@ public class Toolbar extends JToolBar{
 			}
 		});
 		
-		//NOTE(Kristian) : izmena studenta,prof,predmeta
+		//NOTE(Kristian) : izmena studenta,profesora,predmeta
 		izmeni.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -244,7 +245,7 @@ public class Toolbar extends JToolBar{
 		
 		
 		
-		// NOTE(Jovan): Uklanjanje studenta/predmeta/profesora u zavisnosti
+		// NOTE(Kristian): izmena studenta,profesora,predmeta
 		// od selektovanog taba
 		obrisi.addMouseListener(new MouseListener() {
 			
@@ -280,7 +281,12 @@ public class Toolbar extends JToolBar{
 					}
 					case PREDMET:
 					{
-						// TODO(Jovan): Dodati
+						if (GlavniProzor.getInstance().getSelektovanuTorku()==-1) {
+							JOptionPane.showMessageDialog(null, "Niste selektovali predmet!");
+							return;
+						}
+						BrisanjePredmeta obrisi = new BrisanjePredmeta();
+						obrisi.setVisible(true);
 						break;
 					}
 				}
