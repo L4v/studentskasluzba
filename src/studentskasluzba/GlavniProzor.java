@@ -41,6 +41,7 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 		this.setSize(screenSize.width * 3/4, screenSize.height * 3/4);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
+		this.setTitle("Studentska slu\u017eba");
 		
 		
 		// NOTE(Jovan): Inicijalizacija ostalih komponenti
