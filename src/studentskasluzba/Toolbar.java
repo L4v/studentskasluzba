@@ -11,6 +11,7 @@ import javax.swing.JToolBar;
 import dijalog.BrisanjeStudenta;
 import dijalog.DodavanjePredmeta;
 import dijalog.DodavanjeProfesora;
+import dijalog.DodavanjeProfesoraNaPredmet;
 import dijalog.DodavanjeStudenta;
 import dijalog.DodavanjeStudentaNaPredmet;
 import dijalog.IzmenaStudenta;
