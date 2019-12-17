@@ -1,12 +1,15 @@
 package dijalog;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import studentskasluzba.BazaPredmet;
 import studentskasluzba.Student;
@@ -17,7 +20,8 @@ public class StudentiNaPredmetu extends JDialog{
 	private JPanel studentsPanel;
 	private JPanel buttonsPanel;
 	private JButton ukloniButton, otkaziButton;
-	private JComboBox<String> studenti;
+	private JScrollPane studenti;
+	private JList<String> list;
 	// NOTE(Jovan): Sluzi za odredjivanje kog studenta treba prikazati
 	private int row;
 	public StudentiNaPredmetu(int row)
@@ -34,7 +38,7 @@ public class StudentiNaPredmetu extends JDialog{
 		this.studentsPanel = new JPanel();
 		this.buttonsPanel = new JPanel(new GridLayout(1, 2));
 		
-		this.studenti = new JComboBox<String>();
+		ArrayList<String> listaStudenata = new ArrayList<String>();
 		for(Student s : BazaPredmet.getInstance().getPredmet(row).getStudenti())
 		{
 			StringBuilder sb = new StringBuilder();
@@ -43,8 +47,10 @@ public class StudentiNaPredmetu extends JDialog{
 			sb.append(s.getIme());
 			sb.append(" ");
 			sb.append(s.getPrezime());
-			studenti.addItem(sb.toString());
+			listaStudenata.add(sb.toString());
 		}
+		this.list = new JList<String>(listaStudenata.toArray(new String[0]));
+		this.studenti = new JScrollPane(list);
 		studentsPanel.add(this.studenti);
 		
 		this.ukloniButton = new JButton("Obrisi");
@@ -53,5 +59,8 @@ public class StudentiNaPredmetu extends JDialog{
 		// TODO(Jovan -> Krisian): Dodati funkcionalnost
 		this.buttonsPanel.add(ukloniButton);
 		this.buttonsPanel.add(otkaziButton);
+		
+		this.add(studentsPanel, BorderLayout.CENTER);
+		this.add(buttonsPanel, BorderLayout.SOUTH);
 	}
 }

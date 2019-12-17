@@ -38,7 +38,7 @@ public class ButtonColumnStudenti extends AbstractCellEditor
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				fireEditingStopped();
-				StudentiNaPredmetu dialog = new StudentiNaPredmetu(column);
+				StudentiNaPredmetu dialog = new StudentiNaPredmetu(table.getSelectedRow());
 				dialog.setVisible(true);
 			}
 		});
