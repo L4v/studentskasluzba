@@ -9,8 +9,15 @@ import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import studentskasluzba.BazaPredmet;
+import studentskasluzba.BazaStudenata;
+import studentskasluzba.GlavniProzor;
+import studentskasluzba.Predmet;
+import studentskasluzba.Student;
 
 public class DodavanjeStudentaNaPredmet extends JDialog{
 
@@ -121,8 +128,19 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
+				String brIndeksa=text.getText();
+				Student s = BazaStudenata.getInstance().getStudent(brIndeksa);
+				if (s==null) {
+					JOptionPane.showMessageDialog(null, "Student ne postoji u bazi podataka!","Warning", JOptionPane.WARNING_MESSAGE);
+				}
+				Predmet p = BazaPredmet.getInstance().getPredmet(GlavniProzor.getInstance().getSelektovanuTorku());
+				if (!s.getTrenutnaGodina().equals(Integer.toString(p.getGodina()))) {
+					JOptionPane.showMessageDialog(null, "Trenutna godina studija studenta nije ista sa predmetom!","Warning", JOptionPane.WARNING_MESSAGE);
+					dispose();
+					return;
+				}
+				p.addStudent(s);
+				dispose();
 			}
 		});
 		
