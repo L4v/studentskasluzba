@@ -36,8 +36,8 @@ public class MojMenuBar extends JMenuBar{
 		miNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		
 		miClose.setIcon(new ImageIcon("res/icons/delete-button.png"));
-		miClose.setMnemonic(KeyEvent.VK_C);
-		miClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+		miClose.setMnemonic(KeyEvent.VK_X);
+		miClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
 		
 		//dodavanje funkcionalnosti new
 		miNew.addActionListener(new ActionListener() {
