@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import studentskasluzba.BazaPredmet;
-import studentskasluzba.BazaStudenata;
 import studentskasluzba.GlavniProzor;
 import studentskasluzba.Student;
 
@@ -61,7 +60,6 @@ public class StudentiNaPredmetu extends JDialog{
 		this.ukloniButton = new JButton("Obrisi");
 		this.otkaziButton = new JButton("Otkazi");
 		
-		// TODO(Jovan -> Krisian): Dodati funkcionalnost
 		this.buttonsPanel.add(ukloniButton);
 		this.buttonsPanel.add(otkaziButton);
 		
@@ -97,8 +95,11 @@ public class StudentiNaPredmetu extends JDialog{
 				if (i==-1) {
 					JOptionPane.showMessageDialog(null, "Niste selektovali studenta!","Warning", JOptionPane.WARNING_MESSAGE);
 				}
-				BazaPredmet.getInstance().getPredmet(GlavniProzor.getInstance().getSelektovanuTorku()).removeStudent(i);
-				dispose();
+				int choise = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da \u017Eelite da obri\u0161ete studenta?","Brisanje studenta sa predmeta",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+				if (choise==JOptionPane.YES_OPTION) {
+					BazaPredmet.getInstance().getPredmet(GlavniProzor.getInstance().getSelektovanuTorku()).removeStudent(i);
+					dispose();
+				}
 				
 			}
 		});
