@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class BazaPredmet {
 	private static BazaPredmet instance = null;
+	private static final String NAME_DB = "PredmetiDB.sdb";
 	
 	private ArrayList<String> Obelezja;
 	private ArrayList<Predmet> Torke;
@@ -43,19 +44,33 @@ public class BazaPredmet {
 	}
 	public void loadDB()
 	{
-		FileInputStream fi;
-			try {
-				fi = new FileInputStream(new File("PredmetiDB.sdb"));
-			ObjectInputStream oi = new ObjectInputStream(fi);
+		try {
+			// NOTE(Jovan): Ako ne postoji fajl, napravi
+			File dbFile = new File(NAME_DB);
+			dbFile.createNewFile();
+			FileInputStream fi = new FileInputStream(new File(NAME_DB));
+			ObjectInputStream oi = null;
+			try 
+			{
+				oi = new ObjectInputStream(fi);
+			}catch(EOFException e)
+			{
+				// NOTE(Jovan): Ovo ce se okinuti u slucaju da je kreiran prazan fajl,
+				// pa izlazimo iz metode
+				fi.close();
+				return;
+			}
+
+			// NOTE(Jovan): Drop bazu kako bi ucitali novu
 			dropDB();
-			Predmet p = (Predmet)oi.readObject();
 				// NOTE(Jovan): Ne pozivamo addPredmet metodu jer moze doci do kruznog
 				// pozivanja koda, pa do stack overflowa kada se popuni backtrace
-			while(p != null)
+			Predmet p;
+			do 
 			{
-				this.Torke.add(p);
 				try {
 					p = (Predmet)oi.readObject();
+					this.Torke.add(p);
 				}
 				catch(EOFException e)
 				{
@@ -63,7 +78,7 @@ public class BazaPredmet {
 					// pa ga ovde hvatamo i prekidamo petlju
 					break;
 				}
-			}
+			}while(p != null);
 			
 			fi.close();
 			oi.close();

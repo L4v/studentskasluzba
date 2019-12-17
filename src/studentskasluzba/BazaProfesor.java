@@ -1,9 +1,18 @@
 package studentskasluzba;
 
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class BazaProfesor {
 	private static BazaProfesor instance = null;
+	private static final String NAZIV_DB = "ProfesoriDB.sdb";
 	
 	private ArrayList<String> Obelezja;
 	private ArrayList<Profesor> Torke;
@@ -42,6 +51,97 @@ public class BazaProfesor {
 		Torke.add(tmp2);
 	}
 	
+
+	public void loadDB()
+	{
+		FileInputStream fi;
+			try {
+				// NOTE(Jovan): Ako ne postoji datoteka, napravice je
+				File dbFile = new File(NAZIV_DB);
+				dbFile.createNewFile();
+				fi = new FileInputStream(new File(NAZIV_DB));
+				ObjectInputStream oi = null;
+				try 
+				{
+					oi = new ObjectInputStream(fi);
+				}catch(EOFException e)
+				{
+					// NOTE(Jovan): Ovo ce se okinuti u slucaju da je kreiran prazan fajl,
+					// pa izlazimo iz metode
+					fi.close();
+					return;
+				}
+			
+			// NOTE(Jovan): Drop bazu kako bi ucitali novu
+			dropDB();
+				// NOTE(Jovan): Ne pozivamo addProfesor metodu jer moze doci do kruznog
+				// pozivanja koda, pa do stack overflowa kada se popuni backtrace
+			Profesor p;
+			do
+			{
+				try {
+					p = (Profesor)oi.readObject();
+					this.Torke.add(p);
+				}
+				catch(EOFException e)
+				{
+					// NOTE(Jovan): Kada dodje do kraja file-a, izbacice EOF exception,
+					// pa ga ovde hvatamo i prekidamo petlju
+					break;
+				}
+			}while(p != null);
+			
+			oi.close();
+			fi.close();
+			GlavniProzor.getInstance().azurirajPrikaz();
+
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
+	
+	public void saveDB()
+	{
+		FileOutputStream f = null;
+		ObjectOutputStream o = null;
+			try {
+				f = new FileOutputStream(new File("ProfesoriDB.sdb"));
+				o = new ObjectOutputStream(f);
+				
+				for (Profesor p : this.Torke)
+				{
+					if(f == null || o == null)
+					{
+						// NOTE(Jovan): Ako nije nasao fajl, nista
+						break;
+					}
+					o.writeObject(p);
+				}
+				f.close();
+				o.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
+	
+	// NOTE(Jovan): Prilikom loadovanja da dropuje celu bazu
+	private void dropDB()
+	{
+		this.Torke.clear();
+		GlavniProzor.getInstance().azurirajPrikaz();
+	}
+	
+	
 	public boolean addProfesor(Profesor p)
 	{
 		for(Profesor profesor : Torke) {
@@ -51,6 +151,7 @@ public class BazaProfesor {
 		}
 		this.Torke.add(p);
 		GlavniProzor.getInstance().azurirajPrikaz();
+		saveDB();
 		return true;
 	}
 	
@@ -58,6 +159,7 @@ public class BazaProfesor {
 	{
 		this.Torke.remove(row);
 		GlavniProzor.getInstance().azurirajPrikaz();
+		saveDB();
 	}
 	
 	public ArrayList<Profesor> getProfesore()
@@ -150,6 +252,7 @@ public class BazaProfesor {
 			}
 		}
 		GlavniProzor.getInstance().azurirajPrikaz();
+		saveDB();
 	}
 	
 }
