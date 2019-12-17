@@ -7,6 +7,12 @@ public class AbstractTableModelPredmet extends AbstractTableModel{
 	private static final long serialVersionUID = 6578321466970727429L;
 
 	@Override
+	public boolean isCellEditable(int row, int col)
+	{
+		return col == BazaPredmet.getInstance().getBrojObelezja();
+	}
+	
+	@Override
 	public int getColumnCount() {
 		return BazaPredmet.getInstance().getBrojObelezja() + 1;
 	}

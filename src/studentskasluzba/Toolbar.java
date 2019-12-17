@@ -324,7 +324,7 @@ public class Toolbar extends JToolBar{
 			case STUDENT:
 			{
 				dodaj.updateIcon(s);
-				dodaj.setToolTipText(dodaj.getToolTipText() + " " + s.name().toLowerCase());
+				dodaj.setToolTipText("Dodaj studenta");
 				profNaPredmet.setVisible(false);
 				studentNaPredmet.setVisible(false);
 				break;
@@ -332,7 +332,7 @@ public class Toolbar extends JToolBar{
 			case PROFESOR:
 			{
 				dodaj.updateIcon(s);
-				dodaj.setToolTipText(dodaj.getToolTipText() + " " + s.name().toLowerCase());
+				dodaj.setToolTipText("Dodaj profesora");
 				profNaPredmet.setVisible(false);
 				studentNaPredmet.setVisible(false);
 				break;
@@ -340,7 +340,7 @@ public class Toolbar extends JToolBar{
 			case PREDMET:
 			{
 				dodaj.updateIcon(s);
-				dodaj.setToolTipText(dodaj.getToolTipText() + " " + s.name().toLowerCase());
+				dodaj.setToolTipText("Dodaj predmet");
 				profNaPredmet.setVisible(true);
 				studentNaPredmet.setVisible(true);
 				break;
