@@ -12,23 +12,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class DodavanjeStudentaNaPredmet extends JDialog{
+public class DodavanjeProfesoraNaPredmet extends JDialog{
+	private static final long serialVersionUID = -8256272619031522397L;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	public DodavanjeStudentaNaPredmet() {
-	
-		setTitle("Predmet - dodavanje studenta");
+	public DodavanjeProfesoraNaPredmet()
+	{
+		setTitle("Predmet - dodavanje profesora");
 		setSize(400,150);
 		setLocationRelativeTo(null);
 		this.setModal(true);
 		
 		getContentPane().setLayout(new GridBagLayout());
 		
-		JLabel message = new JLabel("Indeks studenta*");
+		JLabel message = new JLabel("Broj li\u010Dne karte profesora*");
 		JTextField text = new JTextField();
 		JButton potvrda = new JButton("Potvrda");
 		JButton odustanak = new JButton("Odustanak");
@@ -125,8 +121,5 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 				
 			}
 		});
-		
 	}
-	
-	
 }

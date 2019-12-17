@@ -60,6 +60,10 @@ public class BazaProfesor {
 		return this.Torke;
 	}
 	
+	public Profesor getProfesor(int row) {
+		return this.Torke.get(row);
+	}
+	
 	public int getBrojObelezja()
 	{
 		return this.Obelezja.size();
@@ -123,6 +127,24 @@ public class BazaProfesor {
 
 	public String getColumnName(int column) {
 		return Obelezja.get(column);
+	}
+	
+	public void izmeniProfesora(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon,String email, String adresaKancelarije, String brLicneKarte, String titula, String zvanje) {
+		for(Profesor p : Torke) {
+			if(p.getBrLicneKarte().equals(brLicneKarte)) {
+				p.setIme(ime);
+				p.setPrezime(prezime);
+				p.setDatumRodjenja(datumRodjenja);
+				p.setAdresaStanovanja(adresaStanovanja);
+				p.setKontaktTelefon(kontaktTelefon);
+				p.setEmail(email);
+				p.setAdresaKancelarije(adresaKancelarije);
+				p.setBrLicneKarte(brLicneKarte);
+				p.setTitula(titula);
+				p.setZvanje(zvanje);
+			}
+		}
+		GlavniProzor.getInstance().azurirajPrikaz();
 	}
 	
 }

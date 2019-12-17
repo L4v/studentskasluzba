@@ -8,11 +8,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
 
+import dijalog.BrisanjeProfesora;
 import dijalog.BrisanjeStudenta;
 import dijalog.DodavanjePredmeta;
 import dijalog.DodavanjeProfesora;
+import dijalog.DodavanjeProfesoraNaPredmet;
 import dijalog.DodavanjeStudenta;
 import dijalog.DodavanjeStudentaNaPredmet;
+import dijalog.IzmenaProfesora;
 import dijalog.IzmenaStudenta;
 import dugmici.DodajDugme;
 import dugmici.IzmeniDugme;
@@ -203,7 +206,12 @@ public class Toolbar extends JToolBar{
 					}
 					case PROFESOR:
 					{
-						// TODO(Jovan): Dodati
+						if (GlavniProzor.getInstance().getSelektovanuTorku()==-1) {
+							JOptionPane.showMessageDialog(null, "Niste selektovali profesora!");
+							return;
+						}
+						IzmenaProfesora izmeni = new IzmenaProfesora();
+						izmeni.setVisible(true);
 						break;
 					}
 					case PREDMET:
@@ -262,7 +270,12 @@ public class Toolbar extends JToolBar{
 					}
 					case PROFESOR:
 					{
-						// TODO(Jovan): Dodati
+						if (GlavniProzor.getInstance().getSelektovanuTorku()==-1) {
+							JOptionPane.showMessageDialog(null, "Niste selektovali profesora!");
+							return;
+						}
+						BrisanjeProfesora obrisi = new BrisanjeProfesora();
+						obrisi.setVisible(true);
 						break;
 					}
 					case PREDMET:

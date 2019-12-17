@@ -340,11 +340,6 @@ public class IzmenaStudenta extends JDialog{
 					
 					BazaStudenata.getInstance().izmeniStudenta(ime, prezime, datRodj, adresa, brTelefona, email, brIndeksa, datumUpisa, trenutnaGod, statusStud, prosek);
 					
-					/*
-					BazaStudenata.getInstance().removeStudent(GlavniProzor.getInstance().getSelektovanuTorku());
-					Student s = new Student(ime, prezime, datRodj, adresa, brTelefona, email, brIndeksa, datumUpisa, trenutnaGod, statusStud, prosek);
-					BazaStudenata.getInstance().addStudent(s);
-					*/
 					
 					dispose();
 				}
