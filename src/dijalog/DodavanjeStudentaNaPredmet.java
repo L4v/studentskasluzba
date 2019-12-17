@@ -130,6 +130,9 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 			public void mouseClicked(MouseEvent e) {
 				String brIndeksa=text.getText();
 				Student s = BazaStudenata.getInstance().getStudent(brIndeksa);
+				if (s==null) {
+					JOptionPane.showMessageDialog(null, "Student ne postoji u bazi podataka!","Warning", JOptionPane.WARNING_MESSAGE);
+				}
 				Predmet p = BazaPredmet.getInstance().getPredmet(GlavniProzor.getInstance().getSelektovanuTorku());
 				if (!s.getTrenutnaGodina().equals(Integer.toString(p.getGodina()))) {
 					JOptionPane.showMessageDialog(null, "Trenutna godina studija studenta nije ista sa predmetom!","Warning", JOptionPane.WARNING_MESSAGE);

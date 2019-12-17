@@ -10,10 +10,12 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import studentskasluzba.BazaPredmet;
+import studentskasluzba.BazaStudenata;
 import studentskasluzba.GlavniProzor;
 import studentskasluzba.Student;
 
@@ -91,7 +93,12 @@ public class StudentiNaPredmetu extends JDialog{
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				int i = list.getSelectedIndex();
+				if (i==-1) {
+					JOptionPane.showMessageDialog(null, "Niste selektovali studenta!","Warning", JOptionPane.WARNING_MESSAGE);
+				}
+				BazaPredmet.getInstance().getPredmet(GlavniProzor.getInstance().getSelektovanuTorku()).removeStudent(i);
+				dispose();
 				
 			}
 		});
