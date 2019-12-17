@@ -15,7 +15,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import studentskasluzba.BazaProfesor;
-import studentskasluzba.BazaStudenata;
 import studentskasluzba.GlavniProzor;
 
 public class BrisanjeProfesora extends JDialog{
