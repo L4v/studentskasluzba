@@ -15,7 +15,8 @@ public class PredmetTab extends JScrollPane{
 		// NOTE(Jovan): Podesavamo da tabela zauzme celu visinu
 		// iako nije popunjena
 		tabelaPredmeta.setFillsViewportHeight(true);
-		this.setViewportView(tabelaPredmeta);;
+		this.setViewportView(tabelaPredmeta);
+		
 	}
 	
 	public int getSelektovanuTorku()
