@@ -129,12 +129,10 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 	}
 	public void azurirajPrikaz() {
 		AbstractTableModelStudent modelStudenta = studentTab.getModel();
-		
 		AbstractTableModelPredmet modelPredmeta = predmetTab.getModel();
 		AbstractTableModelProfesor modelProfesora = profesorTab.getModel();
 		
 		modelStudenta.fireTableDataChanged();
-		
 		modelPredmeta.fireTableDataChanged();
 		modelProfesora.fireTableDataChanged();
 		
