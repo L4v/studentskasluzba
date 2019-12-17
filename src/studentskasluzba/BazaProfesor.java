@@ -42,11 +42,16 @@ public class BazaProfesor {
 		Torke.add(tmp2);
 	}
 	
-	public void addProfesor(Profesor p)
+	public boolean addProfesor(Profesor p)
 	{
-		// TODO(Jovan): Provera da li vec postoji?
+		for(Profesor profesor : Torke) {
+			if(profesor.getBrLicneKarte().equals(p.getBrLicneKarte())) {
+				return false;
+			}
+		}
 		this.Torke.add(p);
 		GlavniProzor.getInstance().azurirajPrikaz();
+		return true;
 	}
 	
 	public void removeProfesor(int row)

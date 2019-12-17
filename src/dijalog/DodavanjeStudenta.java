@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -316,7 +317,10 @@ public class DodavanjeStudenta extends JDialog{
 					}
 					
 					Student s = new Student(ime, prezime, datRodj, adresa, brTelefona, email, brIndeksa, datumUpisa, trenutnaGod, statusStud, prosek);
-					BazaStudenata.getInstance().addStudent(s);
+					
+					if (!BazaStudenata.getInstance().addStudent(s)) {
+						JOptionPane.showMessageDialog(null, "Student sa tim brojem indeksa ve\u0107 postoji!","Warning", JOptionPane.WARNING_MESSAGE);	
+					}
 					dispose();
 				}
 				

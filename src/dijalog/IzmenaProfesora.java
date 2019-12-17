@@ -83,7 +83,7 @@ public class IzmenaProfesora extends JDialog{
 		fieldsPanel.add(email);
 		fieldsPanel.add(new JLabel("Adresa kancelarije*"));
 		fieldsPanel.add(adrKancelarije);
-		fieldsPanel.add(new JLabel("Broj licne karte*"));
+		fieldsPanel.add(new JLabel("Broj li\u010Dne karte*"));
 		fieldsPanel.add(brLicneKarte);
 		fieldsPanel.add(new JLabel("Titula*"));
 		fieldsPanel.add(titula);

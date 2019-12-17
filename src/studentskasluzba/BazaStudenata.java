@@ -43,10 +43,16 @@ public class BazaStudenata {
 		studenti.add(st3);
 	}
 	
-	public void addStudent(Student s)
+	public boolean addStudent(Student s)
 	{
+		for(Student student : studenti) {
+			if (student.getIndeks().equals(s.getIndeks())) {
+				return false;
+			}
+		}
 		this.studenti.add(s);
 		GlavniProzor.getInstance().azurirajPrikaz();
+		return true;
 	}
 	
 	public void removeStudent(int row)

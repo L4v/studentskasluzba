@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -109,7 +110,11 @@ public class DodavanjePredmeta extends JDialog{
 					Profesor profesorPredmeta = (Profesor)profesori.getSelectedItem();
 					Predmet p = new Predmet(sifraPredmeta, nazivPredmeta, semestarPredmeta,
 							godinaPredmeta, profesorPredmeta);
-					BazaPredmet.getInstance().addPredmet(p);
+					
+					if(!BazaPredmet.getInstance().addPredmet(p)) {
+						JOptionPane.showMessageDialog(null, "Predmet sa tom \u0161ifrom ve\u0107 postoji!","Warning", JOptionPane.WARNING_MESSAGE);
+					}
+					
 					dispose();
 				}
 			}
