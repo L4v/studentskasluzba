@@ -25,6 +25,11 @@ public class Predmet implements Serializable {
 		studenti = new ArrayList<Student>();
 	}
 
+	public ArrayList<Student> getStudenti()
+	{
+		return this.studenti;
+	}
+	
 	public void addStudent(Student s)
 	{
 		studenti.add(s);

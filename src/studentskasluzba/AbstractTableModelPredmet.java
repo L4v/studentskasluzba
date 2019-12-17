@@ -1,5 +1,6 @@
 package studentskasluzba;
 
+import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
 
 public class AbstractTableModelPredmet extends AbstractTableModel{
@@ -7,7 +8,7 @@ public class AbstractTableModelPredmet extends AbstractTableModel{
 
 	@Override
 	public int getColumnCount() {
-		return BazaPredmet.getInstance().getBrojObelezja();
+		return BazaPredmet.getInstance().getBrojObelezja() + 1;
 	}
 
 	@Override
@@ -17,13 +18,31 @@ public class AbstractTableModelPredmet extends AbstractTableModel{
 
 	@Override
 	public Object getValueAt(int row, int column) {
+		if (column == BazaPredmet.getInstance().getBrojObelezja())
+		{
+			return new JButton("Prikazi");
+		}
 		return BazaPredmet.getInstance().getValueAt(row, column);
+	}
+	
+	@Override
+	public Class<?> getColumnClass(int col)
+	{
+		if(col == BazaPredmet.getInstance().getBrojObelezja())
+		{
+			return JButton.class;
+		}
+		return String.class;
 	}
 	
 	@Override
 	public String getColumnName(int column)
 	{
-		return BazaProfesor.getInstance().getColumnName(column);
+		if(column == BazaPredmet.getInstance().getBrojObelezja())
+		{
+			return "Studenti";
+		}
+		return BazaPredmet.getInstance().getColumnName(column);
 	}
 
 }
