@@ -3,6 +3,8 @@ package dijalog;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -12,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import studentskasluzba.BazaPredmet;
+import studentskasluzba.GlavniProzor;
 import studentskasluzba.Student;
 
 public class StudentiNaPredmetu extends JDialog{
@@ -59,6 +62,77 @@ public class StudentiNaPredmetu extends JDialog{
 		// TODO(Jovan -> Krisian): Dodati funkcionalnost
 		this.buttonsPanel.add(ukloniButton);
 		this.buttonsPanel.add(otkaziButton);
+		
+		ukloniButton.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				
+			}
+		});
+		
+		
+		otkaziButton.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				
+			}
+		});
+		
+		
+		
+		
 		
 		this.add(studentsPanel, BorderLayout.CENTER);
 		this.add(buttonsPanel, BorderLayout.SOUTH);

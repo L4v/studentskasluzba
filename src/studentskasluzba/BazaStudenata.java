@@ -70,6 +70,15 @@ public class BazaStudenata {
 		return this.studenti.get(row);
 	}
 	
+	public Student getStudent(String brIndeksa) {
+		for(Student s : studenti) {
+			if(s.getIndeks().equals(brIndeksa)) {
+				return s;
+			}
+		}
+		return null;
+	}
+	
 	public int getBrojAtributa()
 	{
 		return this.atributi.size();
