@@ -76,12 +76,17 @@ public class BazaPredmet {
 			}
 		}
 	}*/
-	public void addPredmet(Predmet p)
+	public boolean addPredmet(Predmet p)
 	{
-		// TODO(Jovan): Provera postojanja?
+		for(Predmet predmet : Torke) {
+			if (predmet.getSifra().equals(p.getSifra())) {
+				return false;
+			}
+		}
 		this.Torke.add(p);
 		//this.saveDB();
 		GlavniProzor.getInstance().azurirajPrikaz();
+		return true;
 	}
 	
 	public void removePredmet(int row)

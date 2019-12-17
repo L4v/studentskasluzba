@@ -11,6 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -78,7 +79,7 @@ public class DodavanjeProfesora extends JDialog{
 		fieldsPanel.add(email);
 		fieldsPanel.add(new JLabel("Adresa kancelarije*"));
 		fieldsPanel.add(adrKancelarije);
-		fieldsPanel.add(new JLabel("Broj licne karte*"));
+		fieldsPanel.add(new JLabel("Broj li\u010Dne karte*"));
 		fieldsPanel.add(brLicneKarte);
 		fieldsPanel.add(new JLabel("Titula*"));
 		fieldsPanel.add(titula);
@@ -123,7 +124,12 @@ public class DodavanjeProfesora extends JDialog{
 					Profesor p = new Profesor(ime.getText(), prezime.getText(), datum.getText(),
 							adrStanovanja.getText(), telefon.getText(), email.getText(), adrKancelarije.getText(),
 							brLicneKarte.getText(), titula.getText(), zvanje.getText());
-					BazaProfesor.getInstance().addProfesor(p);
+					
+					if (!BazaProfesor.getInstance().addProfesor(p)) {
+						JOptionPane.showMessageDialog(null, "Profesor sa tim brojem li\u010D karte ve\u0107 postoji!","Warning", JOptionPane.WARNING_MESSAGE);	
+					}
+					
+					
 					dispose();
 				}
 			}
