@@ -132,6 +132,7 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 				Student s = BazaStudenata.getInstance().getStudent(brIndeksa);
 				if (s==null) {
 					JOptionPane.showMessageDialog(null, "Student ne postoji u bazi podataka!","Warning", JOptionPane.WARNING_MESSAGE);
+					return;
 				}
 				Predmet p = BazaPredmet.getInstance().getPredmet(GlavniProzor.getInstance().getSelektovanuTorku());
 				if (!s.getTrenutnaGodina().equals(Integer.toString(p.getGodina()))) {

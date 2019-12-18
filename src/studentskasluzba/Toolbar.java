@@ -159,6 +159,10 @@ public class Toolbar extends JToolBar{
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				
+				if (GlavniProzor.getInstance().getSelektovanuTorku()==-1) {
+					JOptionPane.showMessageDialog(null, "Niste selektovali predmet!");
+					return;
+				}
 				DodavanjeStudentaNaPredmet dodaj = new DodavanjeStudentaNaPredmet();
 				dodaj.setVisible(true);
 			}
