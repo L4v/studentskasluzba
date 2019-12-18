@@ -32,16 +32,16 @@ public class BazaProfesor {
 		Torke = new ArrayList<Profesor>();
 		
 		
-		Obelezja.add("BR_LICNE_KARTE");
-		Obelezja.add("IME");
-		Obelezja.add("PREZIME");
-		Obelezja.add("TITULA");
-		Obelezja.add("ZVANJE");
-		Obelezja.add("DATUM_RODJENJA");
-		Obelezja.add("ADRESA_ST.");
-		Obelezja.add("TELEFON");
-		Obelezja.add("EMAIL");
-		Obelezja.add("ADRESA_K");
+		Obelezja.add("Broj li\u010dne karte");
+		Obelezja.add("Ime");
+		Obelezja.add("Prezime");
+		Obelezja.add("Titula");
+		Obelezja.add("Zvanje");
+		Obelezja.add("Datum ro\u0111enja");
+		Obelezja.add("Adresa stanovanja");
+		Obelezja.add("Telefon");
+		Obelezja.add("Email");
+		Obelezja.add("Adresa kancelarije");
 		
 		Profesor tmp = new Profesor("Savo", "Oroz", "01.01.1901", "Balzakova 69", "0607671370",
 				"savo.oroz@savoandco.com", "Savin Trg 5", "123456789", "Nzm", "Nempojma");

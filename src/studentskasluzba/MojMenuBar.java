@@ -11,12 +11,14 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
+import dijalog.AboutDialog;
 import dijalog.BrisanjePredmeta;
 import dijalog.BrisanjeProfesora;
 import dijalog.BrisanjeStudenta;
 import dijalog.DodavanjePredmeta;
 import dijalog.DodavanjeProfesora;
 import dijalog.DodavanjeStudenta;
+import dijalog.HelpDialog;
 import dijalog.IzmenaProfesora;
 import dijalog.IzmenaStudenta;
 
@@ -201,6 +203,29 @@ public class MojMenuBar extends JMenuBar{
 		miAbout.setIcon(new ImageIcon("res/icons/about.png"));
 		miAbout.setMnemonic(KeyEvent.VK_A);
 		miAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
+		
+		//dodavanje funkcionalnosti help
+		miHelp.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				HelpDialog miHelp = new HelpDialog();
+				miHelp.setVisible(true);
+			}
+		});
+		
+		//dodavanje funkcionalnosti about
+		miAbout.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AboutDialog miAbout = new AboutDialog();
+				miAbout.setVisible(true);
+				
+			}
+		});
+		
+		
 		
 		help.add(miHelp);
 		help.add(miAbout);
