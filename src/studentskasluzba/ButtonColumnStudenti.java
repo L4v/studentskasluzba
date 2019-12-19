@@ -30,8 +30,8 @@ public class ButtonColumnStudenti extends AbstractCellEditor
 		this.table.getColumnModel().getColumn(column).setCellEditor(this);
 		this.table.addMouseListener(this);
 		
-		this.renderButton = new JButton("Prikazi");
-		this.editorButton = new JButton("Prikazi");
+		this.renderButton = new JButton("Prika\u017ei");
+		this.editorButton = new JButton("Prika\u017ei");
 		
 		this.editorButton.addActionListener(new ActionListener() {
 			

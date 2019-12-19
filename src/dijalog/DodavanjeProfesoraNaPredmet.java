@@ -9,15 +9,24 @@ import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import studentskasluzba.BazaPredmet;
+import studentskasluzba.BazaProfesor;
+import studentskasluzba.GlavniProzor;
+import studentskasluzba.Profesor;
 
 public class DodavanjeProfesoraNaPredmet extends JDialog{
 	private static final long serialVersionUID = -8256272619031522397L;
 
+	JTextField text;
 	public DodavanjeProfesoraNaPredmet()
 	{
-		setTitle("Predmet - dodavanje profesora");
+		int row = GlavniProzor.getInstance().getSelektovanuTorku();
+		this.setTitle("Predmet - dodavanje profesora na: " +
+				BazaPredmet.getInstance().getValueAt(row , 1));
 		setSize(400,150);
 		setLocationRelativeTo(null);
 		this.setModal(true);
@@ -25,7 +34,7 @@ public class DodavanjeProfesoraNaPredmet extends JDialog{
 		getContentPane().setLayout(new GridBagLayout());
 		
 		JLabel message = new JLabel("Broj li\u010Dne karte profesora*");
-		JTextField text = new JTextField();
+		text = new JTextField();
 		JButton potvrda = new JButton("Potvrda");
 		JButton odustanak = new JButton("Odustanak");
 		
@@ -99,8 +108,16 @@ public class DodavanjeProfesoraNaPredmet extends JDialog{
 			
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
+				Profesor p = BazaProfesor.getInstance().getProfesor(text.getText());
+				if(p == null)
+				{
+					JOptionPane.showMessageDialog(null, "Profesor ne postoji u bazi podataka!","Warning", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+				BazaPredmet.getInstance().getPredmet(GlavniProzor.getInstance().getSelektovanuTorku()).setProfesor(p);
+				GlavniProzor.getInstance().azurirajPrikaz();
+				GlavniProzor.getInstance().saveAllDBs();
+				dispose();
 			}
 			
 			@Override
