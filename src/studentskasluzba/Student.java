@@ -50,6 +50,10 @@ public class Student implements Serializable{
 	{
 		return predmeti.get(i);
 	}
+	
+	public ArrayList<Predmet> getPredmeti(){
+		return this.predmeti;
+	}
 
 	public String getIme() {
 		return ime;
