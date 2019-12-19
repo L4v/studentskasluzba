@@ -12,10 +12,12 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
-import dijalog.PredmetiStudenta;
+import dijalog.PredmetiProfesora;
 
-public class ButtonColumnPredmetiStudenta extends AbstractCellEditor implements TableCellRenderer, TableCellEditor, MouseListener{
+public class ButtonColumnPredmetiProfesora extends AbstractCellEditor implements TableCellRenderer, TableCellEditor, MouseListener{
 
+	
+	
 	/**
 	 * 
 	 */
@@ -25,7 +27,7 @@ public class ButtonColumnPredmetiStudenta extends AbstractCellEditor implements 
 	private JTable table;
 	private boolean isEditorActive = false;
 	
-	public ButtonColumnPredmetiStudenta(JTable table, int column)
+	public ButtonColumnPredmetiProfesora(JTable table, int column)
 	{
 		this.table = table;
 		this.table.getColumnModel().getColumn(column).setCellRenderer(this);
@@ -40,14 +42,14 @@ public class ButtonColumnPredmetiStudenta extends AbstractCellEditor implements 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				fireEditingStopped();
-				PredmetiStudenta dialog = new PredmetiStudenta(table.getSelectedRow());
+				PredmetiProfesora dialog = new PredmetiProfesora(table.getSelectedRow());
 				dialog.setVisible(true);
 			}
 		});
 		this.isEditorActive = false;
 	}
 	
-	
+
 	@Override
 	public Object getCellEditorValue() {
 		// TODO Auto-generated method stub

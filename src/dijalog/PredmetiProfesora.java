@@ -29,7 +29,7 @@ public class PredmetiProfesora extends JDialog{
 		this.setMinimumSize(new Dimension(450,250));
 		this.setLocationRelativeTo(null);
 		this.setModal(true);
-		this.setTitle("Predmeti profesora (broj li\u010dne karte): " + BazaProfesor.getInstance().getValueAt(row, 1));
+		this.setTitle("Predmeti profesora (broj li\u010dne karte): " + BazaProfesor.getInstance().getValueAt(row, 0));
 		
 		this.predmetiPanel = new JPanel();
 		
