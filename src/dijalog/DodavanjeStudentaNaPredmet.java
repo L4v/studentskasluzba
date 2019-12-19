@@ -141,7 +141,8 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 					return;
 				}
 				p.addStudent(s);
-				//BazaPredmet.getInstance().saveDB();
+				BazaStudenata.getInstance().getStudent(s.getIndeks()).addPredmet(p);
+				GlavniProzor.getInstance().saveAllDBs();
 				dispose();
 			}
 		});
