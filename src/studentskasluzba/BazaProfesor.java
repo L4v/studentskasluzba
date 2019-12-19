@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class BazaProfesor {
 	private static BazaProfesor instance = null;
-	private static final String NAZIV_DB = "ProfesoriDB.sdb";
+	private static final String NAME_DB = "ProfesoriDB.sdb";
 	
 	private ArrayList<String> Obelezja;
 	private ArrayList<Profesor> Torke;
@@ -57,9 +57,9 @@ public class BazaProfesor {
 		FileInputStream fi;
 			try {
 				// NOTE(Jovan): Ako ne postoji datoteka, napravice je
-				File dbFile = new File(NAZIV_DB);
+				File dbFile = new File(NAME_DB);
 				dbFile.createNewFile();
-				fi = new FileInputStream(new File(NAZIV_DB));
+				fi = new FileInputStream(new File(NAME_DB));
 				ObjectInputStream oi = null;
 				try 
 				{
@@ -112,7 +112,7 @@ public class BazaProfesor {
 		FileOutputStream f = null;
 		ObjectOutputStream o = null;
 			try {
-				f = new FileOutputStream(new File("ProfesoriDB.sdb"));
+				f = new FileOutputStream(new File(NAME_DB));
 				o = new ObjectOutputStream(f);
 				
 				for (Profesor p : this.Torke)

@@ -99,7 +99,7 @@ public class BazaPredmet {
 	public void saveDB()
 	{
 			try {
-				FileOutputStream f = new FileOutputStream(new File("PredmetiDB.sdb"));
+				FileOutputStream f = new FileOutputStream(new File(NAME_DB));
 				ObjectOutputStream o = new ObjectOutputStream(f);
 
 				for (Predmet p : this.Torke)

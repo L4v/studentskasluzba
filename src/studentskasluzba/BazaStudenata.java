@@ -111,7 +111,7 @@ public class BazaStudenata {
 	public void saveDB()
 	{
 			try {
-				FileOutputStream f = new FileOutputStream(new File("PredmetiDB.sdb"));
+				FileOutputStream f = new FileOutputStream(new File(NAME_DB));
 				ObjectOutputStream o = new ObjectOutputStream(f);
 
 				for (Student s : this.studenti)
