@@ -47,10 +47,10 @@ public class DodavanjePredmeta extends JDialog{
 		warningLabel.setForeground(Color.RED);
 		warningLabel.setVisible(false);
 		sifra = new JTextField();
-		sifra.addFocusListener(new FocusListenerObaveznoTxt());
+		sifra.addFocusListener(new FocusListenerObaveznoTxt(0));
 		
 		naziv = new JTextField();
-		naziv.addFocusListener(new FocusListenerObaveznoTxt());
+		naziv.addFocusListener(new FocusListenerObaveznoTxt(0));
 		
 		godina = new JComboBox<Integer>();
 		semestar = new JComboBox<Integer>();
@@ -69,6 +69,10 @@ public class DodavanjePredmeta extends JDialog{
 		{
 			profesori.addItem(p);
 		}
+		// NOTE(Jovan): Dodajemo "nema" kako bi imali mogucnost
+		// da ne odaberemo jos profesora za predmet
+		Profesor nema = new Profesor("NEMA", "", "", "", "", "", "", "", "", "");
+		profesori.addItem(nema);
 		
 		this.add(warningLabel, BorderLayout.NORTH);
 		fieldsPanel = new JPanel(new GridLayout(5, 2));

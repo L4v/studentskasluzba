@@ -82,6 +82,7 @@ public class MojMenuBar extends JMenuBar{
 			public void actionPerformed(ActionEvent e) {
 				int choise = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da \u017Eelite da zatvorite aplikaciju?","Zatvaranje aplikacije",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
 				if (choise==JOptionPane.YES_OPTION) {
+					GlavniProzor.getInstance().saveAllDBs();
 					System.exit(0);
 				}
 			}
