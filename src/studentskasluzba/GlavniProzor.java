@@ -59,11 +59,10 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 				
 			}
 
+			// NOTE(Jovan): Prilikom gasenja aplikacije sacuvaj baze
 			@Override
 			public void windowClosing(WindowEvent arg0) {
-				BazaStudenata.getInstance().saveDB();
-				BazaProfesor.getInstance().saveDB();
-				BazaPredmet.getInstance().saveDB();
+				saveAllDBs();
 			}
 
 			@Override
@@ -115,6 +114,14 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 		tabbedPane.addTab("Predmeti", predmetTab);
 		this.add(tabbedPane, BorderLayout.CENTER);
 		this.selektovanTab = SelektovanTab.STUDENT;
+	}
+	
+	// NOTE(Jovan): Sacuva stanje svih baze podataka
+	public void saveAllDBs()
+	{
+		BazaStudenata.getInstance().saveDB();
+		BazaProfesor.getInstance().saveDB();
+		BazaPredmet.getInstance().saveDB();
 	}
 	
 	public int getSelektovanuTorku()

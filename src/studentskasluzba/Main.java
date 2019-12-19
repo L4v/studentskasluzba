@@ -8,7 +8,6 @@ public class Main {
 		BazaPredmet.getInstance();
 		BazaStudenata.getInstance();
 		
-		// TODO(Jovan->Kristian): Dodati ovo pls
 		BazaStudenata.getInstance().loadDB();
 		BazaProfesor.getInstance().loadDB();
 		BazaPredmet.getInstance().loadDB();

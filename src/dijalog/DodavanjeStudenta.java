@@ -85,14 +85,14 @@ public class DodavanjeStudenta extends JDialog{
 		warningLabel.setForeground(Color.RED);
 		warningLabel.setVisible(false);
 		
-		imeT.addFocusListener(new FocusListenerObaveznoTxt());      
-		prezimeT.addFocusListener(new FocusListenerObaveznoTxt());
-		datRodjT.addFocusListener(new FocusListenerObaveznoTxt());
-		adresaT.addFocusListener(new FocusListenerObaveznoTxt());
+		imeT.addFocusListener(new FocusListenerObaveznoTxt(0));      
+		prezimeT.addFocusListener(new FocusListenerObaveznoTxt(0));
+		datRodjT.addFocusListener(new FocusListenerObaveznoTxt(-2));
+		adresaT.addFocusListener(new FocusListenerObaveznoTxt(0));
 		brTelefonaT.addFocusListener(new FocusListenerObaveznoBroj(-1));
-		brIndeksaT.addFocusListener(new FocusListenerObaveznoTxt());
-		emailT.addFocusListener(new FocusListenerObaveznoTxt());
-		datumUpisaT.addFocusListener(new FocusListenerObaveznoTxt());
+		brIndeksaT.addFocusListener(new FocusListenerObaveznoTxt(-1));
+		emailT.addFocusListener(new FocusListenerObaveznoTxt(-3));
+		datumUpisaT.addFocusListener(new FocusListenerObaveznoTxt(-2));
 		prosekT.addFocusListener(new FocusListenerObaveznoBroj(-2));
 		
 		GridBagConstraints c = new GridBagConstraints();
