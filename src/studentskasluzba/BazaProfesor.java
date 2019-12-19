@@ -171,6 +171,21 @@ public class BazaProfesor {
 		return this.Torke.get(row);
 	}
 	
+	public Profesor getProfesor(String lk)
+	{
+		Profesor Result = null;
+		for(Profesor p : this.Torke)
+		{
+			if(p.getBrLicneKarte().equalsIgnoreCase(lk))
+			{
+				Result = p;
+				// NOTE(Jovan): Nema duplikata
+				break;
+			}
+		}
+		return Result;
+	}
+	
 	public int getBrojObelezja()
 	{
 		return this.Obelezja.size();

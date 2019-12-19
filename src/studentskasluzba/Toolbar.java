@@ -124,7 +124,12 @@ public class Toolbar extends JToolBar{
 			
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				// TODO(Jovan): Dialog za profNaPredmet
+				int row = GlavniProzor.getInstance().getSelektovanuTorku();
+				if (row == -1)
+				{
+					JOptionPane.showMessageDialog(null, "Potrebno je selektovati predmet!", "Warning", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
 				DodavanjeProfesoraNaPredmet dodaj = 
 						new DodavanjeProfesoraNaPredmet();
 				dodaj.setVisible(true);
