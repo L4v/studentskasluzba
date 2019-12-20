@@ -16,7 +16,6 @@ import javax.swing.JScrollPane;
 
 import studentskasluzba.BazaPredmet;
 import studentskasluzba.BazaStudenata;
-import studentskasluzba.GlavniProzor;
 import studentskasluzba.Predmet;
 import studentskasluzba.Student;
 
