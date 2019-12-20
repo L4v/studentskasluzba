@@ -52,6 +52,10 @@ public class Profesor implements Serializable {
 		return this.predmeti;
 	}
 	
+	public void removePredmet(Predmet p) {
+		predmeti.remove(p);
+	}
+	
 	public String getIme() {
 		return ime;
 	}

@@ -1,15 +1,24 @@
 package dijalog;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import studentskasluzba.BazaProfesor;
+import studentskasluzba.BazaStudenata;
 import studentskasluzba.Predmet;
+import studentskasluzba.Profesor;
+import studentskasluzba.Student;
 
 public class PredmetiProfesora extends JDialog{
 
@@ -20,6 +29,8 @@ public class PredmetiProfesora extends JDialog{
 	private JPanel predmetiPanel;
 	private JScrollPane predmeti;
 	private JList<String> list;
+	private JPanel buttonsPanel;
+	private JButton obrisiButton, otkaziButton;
 	private int row;
 	
 	public PredmetiProfesora(int row) {
@@ -32,6 +43,7 @@ public class PredmetiProfesora extends JDialog{
 		this.setTitle("Predmeti profesora (broj li\u010dne karte): " + BazaProfesor.getInstance().getValueAt(row, 0));
 		
 		this.predmetiPanel = new JPanel();
+		this.buttonsPanel = new JPanel(new GridLayout(1, 2));
 		
 		ArrayList<String> listaPredmeta = new ArrayList<String>();
 		for(Predmet p : BazaProfesor.getInstance().getProfesor(row).getPredmeti()) {
@@ -42,7 +54,44 @@ public class PredmetiProfesora extends JDialog{
 		this.predmeti = new JScrollPane(list);
 		predmetiPanel.add(this.predmeti);
 		
-		this.add(predmetiPanel);
+		this.obrisiButton = new JButton("Obri\u0161i");
+		this.otkaziButton = new JButton("Otka\u017ei");
+		
+		this.buttonsPanel.add(obrisiButton);
+		this.buttonsPanel.add(otkaziButton);
+		
+		this.add(predmetiPanel, BorderLayout.CENTER);
+		this.add(buttonsPanel, BorderLayout.SOUTH);
+		
+		otkaziButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+			}
+		});
+		
+		obrisiButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int i = list.getSelectedIndex();
+				if (i==-1) {
+					JOptionPane.showMessageDialog(null, "Niste selektovali predmet!","Warning", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+				int choise = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da \u017Eelite da obri\u0161ete predmet?","Brisanje predmeta studenta",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+				if (choise==JOptionPane.YES_OPTION) {
+					Predmet p = BazaProfesor.getInstance().getProfesor(PredmetiProfesora.this.row).getPredmet(i);
+					Profesor prof = BazaProfesor.getInstance().getProfesor(PredmetiProfesora.this.row);
+					// TODO doraditi da ukloni prof sa tog predmeti u tabeli predmeta
+					prof.removePredmet(p);
+					
+					dispose();
+				}
+			}
+		});
 		
 	}
 }
