@@ -39,8 +39,9 @@ public class ButtonColumnPredmetiStudenta extends AbstractCellEditor implements 
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				int row = ButtonColumnPredmetiStudenta.this.table.convertRowIndexToModel(table.getEditingRow());
 				fireEditingStopped();
-				PredmetiStudenta dialog = new PredmetiStudenta(table.getSelectedRow());
+				PredmetiStudenta dialog = new PredmetiStudenta(row);
 				dialog.setVisible(true);
 			}
 		});
