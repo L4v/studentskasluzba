@@ -3,8 +3,8 @@ package dijalog;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -73,69 +73,20 @@ public class BrisanjeStudenta extends JDialog{
 		c2.anchor = GridBagConstraints.EAST;
 		getContentPane().add(p, c2);
 		
-		potvrda.addMouseListener(new MouseListener() {
+		potvrda.addActionListener(new ActionListener() {
 			
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
+			public void actionPerformed(ActionEvent e) {
 				BazaStudenata.getInstance().removeStudent(GlavniProzor.getInstance().getSelektovanuTorku());
 				dispose();
 				
 			}
 		});
 		
-		odustanak.addMouseListener(new MouseListener() {
+		odustanak.addActionListener(new ActionListener() {
 			
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				dispose();
 				
 			}

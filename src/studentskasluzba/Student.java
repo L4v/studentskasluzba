@@ -55,6 +55,11 @@ public class Student implements Serializable{
 		return this.predmeti;
 	}
 
+	public void removePredmet(Predmet p) {
+		this.predmeti.remove(p);
+	}
+	
+	
 	public String getIme() {
 		return ime;
 	}

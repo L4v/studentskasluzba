@@ -15,7 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import studentskasluzba.BazaPredmet;
-import studentskasluzba.GlavniProzor;
+import studentskasluzba.BazaStudenata;
+import studentskasluzba.Predmet;
 import studentskasluzba.Student;
 
 public class StudentiNaPredmetu extends JDialog{
@@ -98,7 +99,15 @@ public class StudentiNaPredmetu extends JDialog{
 				}
 				int choise = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da \u017Eelite da obri\u0161ete studenta?","Brisanje studenta sa predmeta",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
 				if (choise==JOptionPane.YES_OPTION) {
-					BazaPredmet.getInstance().getPredmet(GlavniProzor.getInstance().getSelektovanuTorku()).removeStudent(i);
+					Student s = BazaPredmet.getInstance().getPredmet(StudentiNaPredmetu.this.row).getStudent(i);
+					Predmet p = BazaPredmet.getInstance().getPredmet(StudentiNaPredmetu.this.row);
+					s.removePredmet(p);
+					p.removeStudent(i); //da ukloni studenta sa predmeta
+					
+					for(Predmet pr : BazaStudenata.getInstance().getStudent(i).getPredmeti())
+					{
+						System.out.println(pr.getSifra());
+					}
 					dispose();
 				}
 				

@@ -4,8 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -95,16 +95,10 @@ public class DodavanjeProfesora extends JDialog{
 		buttonsPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
 		this.add(buttonsPanel, BorderLayout.SOUTH);
 		
-		dodajButton.addMouseListener(new MouseListener() {
+		dodajButton.addActionListener(new ActionListener() {
 			
 			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				// TODO(Jovan): Custom jtext za proveru da li je prazan
 				if(ime.getText().isEmpty() ||
 						prezime.getText().isEmpty() ||
@@ -132,54 +126,15 @@ public class DodavanjeProfesora extends JDialog{
 					
 					dispose();
 				}
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 		});
-		otkaziButton.addMouseListener(new MouseListener() {
+	
+		otkaziButton.addActionListener(new ActionListener() {
 			
 			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				dispose();
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 		});

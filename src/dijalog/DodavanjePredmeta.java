@@ -4,8 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -95,12 +95,14 @@ public class DodavanjePredmeta extends JDialog{
 		buttonsPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
 		this.add(buttonsPanel, BorderLayout.SOUTH);
 		
-		dodajButton.addMouseListener(new MouseListener() {
-
+		
+		
+		dodajButton.addActionListener(new ActionListener() {
 			// TODO(Jovan): Mozda dodati shake? :D
 			// TODO(Jovan): isEmpty() ne radi na nekim sistemima, zasto o Boze zasto
+			
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				if(sifra.getText().isEmpty() || naziv.getText().isEmpty())
 				{
 					warningLabel.setVisible(true);
@@ -121,64 +123,17 @@ public class DodavanjePredmeta extends JDialog{
 					
 					dispose();
 				}
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				
 			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
 		});
-		otkaziButton.addMouseListener(new MouseListener() {
-
+		
+		otkaziButton.addActionListener(new ActionListener() {
+			
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
 				dispose();
 			}
-
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
 		});
 	}
 	
