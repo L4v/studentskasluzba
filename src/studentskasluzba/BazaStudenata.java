@@ -167,7 +167,7 @@ public class BazaStudenata {
 	
 	public Student getStudent(String brIndeksa) {
 		for(Student s : studenti) {
-			if(s.getIndeks().equals(brIndeksa)) {
+			if(s.getIndeks().equalsIgnoreCase(brIndeksa)) {
 				return s;
 			}
 		}

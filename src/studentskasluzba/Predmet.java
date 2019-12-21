@@ -31,9 +31,18 @@ public class Predmet implements Serializable {
 		return this.studenti;
 	}
 	
-	public void addStudent(Student s)
+	public boolean addStudent(Student s)
 	{
+		// NOTE(Jovan->Kris): Dodao proveru za postojanje
+		for(Student st : this.studenti)
+		{
+			if(st.getIndeks().equalsIgnoreCase(s.getIndeks()))
+			{
+				return false;
+			}
+		}
 		studenti.add(s);
+		return true;
 	}
 	
 	public void removeStudent(int i) {
@@ -85,5 +94,9 @@ public class Predmet implements Serializable {
 		this.profesor = profesor;
 	}
 	
+	public void removeProfesor()
+	{
+		this.profesor = new Profesor("NEMA", "", "", "", "", "", "", "", "", "");
+	}
 	
 }

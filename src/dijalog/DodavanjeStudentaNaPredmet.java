@@ -76,8 +76,8 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 			}
 		});
 		
-		potvrda.addActionListener(new ActionListener() {
-			
+		// NOTE(Jovan): Action listener za dodavanje	
+		ActionListener dodavanje = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String brIndeksa=text.getText();
@@ -87,18 +87,25 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 					return;
 				}
 				Predmet p = BazaPredmet.getInstance().getPredmet(GlavniProzor.getInstance().getSelektovanuTorku());
-				if (!s.getTrenutnaGodina().equals(Integer.toString(p.getGodina()))) {
+				if (!s.getTrenutnaGodina().equalsIgnoreCase(Integer.toString(p.getGodina()))) {
 					JOptionPane.showMessageDialog(null, "Trenutna godina studija studenta nije ista sa predmetom!","Warning", JOptionPane.WARNING_MESSAGE);
 					dispose();
 					return;
 				}
-				p.addStudent(s);
+				// NOTE(Jovan): U slucaju da ne uspe dodavanje
+				if(!p.addStudent(s))
+				{
+					JOptionPane.showMessageDialog(null, "Student ve\u0107 poha\u0111a ovaj predmet.");
+					dispose();
+				}
 				BazaStudenata.getInstance().getStudent(s.getIndeks()).addPredmet(p);
 				GlavniProzor.getInstance().saveAllDBs();
 				dispose();
 				
 			}
-		});
+		};
+		potvrda.addActionListener(dodavanje);
+		text.addActionListener(dodavanje);
 		
 	}
 	

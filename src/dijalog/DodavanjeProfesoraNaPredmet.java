@@ -3,8 +3,8 @@ package dijalog;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -64,50 +64,11 @@ public class DodavanjeProfesoraNaPredmet extends JDialog{
 		c2.insets = new Insets(30, 2, 2, 2);
 		c2.anchor = GridBagConstraints.EAST;
 		getContentPane().add(p, c2);
-	
-		odustanak.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				dispose();
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
 		
-		potvrda.addMouseListener(new MouseListener() {
-			
+		ActionListener dodavanje = new ActionListener() {
+
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
+			public void actionPerformed(ActionEvent arg0) {
 				Profesor p = BazaProfesor.getInstance().getProfesor(text.getText());
 				if(p == null)
 				{
@@ -118,25 +79,11 @@ public class DodavanjeProfesoraNaPredmet extends JDialog{
 				GlavniProzor.getInstance().azurirajPrikaz();
 				GlavniProzor.getInstance().saveAllDBs();
 				dispose();
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
 				
 			}
 			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
+		};
+		potvrda.addActionListener(dodavanje);
+		text.addActionListener(dodavanje);
 	}
 }

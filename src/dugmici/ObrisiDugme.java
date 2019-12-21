@@ -9,7 +9,7 @@ import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 public class ObrisiDugme extends JButton{
-	public ObrisiDugme()
+	public ObrisiDugme(String tooltip)
 	{
 		super();
 		try {
@@ -18,6 +18,6 @@ public class ObrisiDugme extends JButton{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		this.setToolTipText("Obrisi");
+		this.setToolTipText(tooltip);
 	}
 }
