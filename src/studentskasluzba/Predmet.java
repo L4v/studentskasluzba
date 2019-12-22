@@ -49,6 +49,11 @@ public class Predmet implements Serializable {
 		studenti.remove(i);
 	}
 	
+	public void removeStudent(Student s)
+	{
+		this.studenti.remove(s);
+	}
+	
 	public Student getStudent(int i)
 	{
 		return studenti.get(i);

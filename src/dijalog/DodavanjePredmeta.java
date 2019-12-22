@@ -14,7 +14,9 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import studentskasluzba.BazaPredmet;
 import studentskasluzba.BazaProfesor;
@@ -99,7 +101,6 @@ public class DodavanjePredmeta extends JDialog{
 		
 		
 		dodajButton.addActionListener(new ActionListener() {
-			// TODO(Jovan): Mozda dodati shake? :D
 			// TODO(Jovan): isEmpty() ne radi na nekim sistemima, zasto o Boze zasto
 			
 			@Override
@@ -140,12 +141,14 @@ public class DodavanjePredmeta extends JDialog{
 				
 			}
 		});
+		// NOTE(Jovan): Default opcija za enter
+		JRootPane root = SwingUtilities.getRootPane(dodajButton);
+		root.setDefaultButton(dodajButton);
 		
 		otkaziButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
 				dispose();
 			}
 		});

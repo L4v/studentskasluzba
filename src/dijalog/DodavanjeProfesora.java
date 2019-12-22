@@ -1,7 +1,6 @@
 package dijalog;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -13,11 +12,14 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import studentskasluzba.BazaProfesor;
 import studentskasluzba.FocusListenerObaveznoBroj;
 import studentskasluzba.FocusListenerObaveznoTxt;
+import studentskasluzba.GlavniProzor;
 import studentskasluzba.Profesor;
 
 public class DodavanjeProfesora extends JDialog{
@@ -25,7 +27,6 @@ public class DodavanjeProfesora extends JDialog{
 
 	private JPanel fieldsPanel;
 	private JPanel buttonsPanel;
-	private JLabel warningLabel;
 	private JButton dodajButton, otkaziButton;
 	private JTextField ime, prezime, datum, adrStanovanja,
 	telefon, email, adrKancelarije, brLicneKarte, titula, zvanje;
@@ -40,9 +41,6 @@ public class DodavanjeProfesora extends JDialog{
 		this.setModal(true);
 		this.setTitle("Dodavanje profesora");
 		
-		warningLabel = new JLabel("POPUNITI SVA POLJA");
-		warningLabel.setForeground(Color.RED);
-		warningLabel.setVisible(false);
 		ime = new JTextField();
 		ime.addFocusListener(new FocusListenerObaveznoTxt(0));
 		prezime = new JTextField();
@@ -111,7 +109,7 @@ public class DodavanjeProfesora extends JDialog{
 						titula.getText().isEmpty() ||
 						zvanje.getText().isEmpty())
 				{
-					warningLabel.setVisible(true);
+					JOptionPane.showMessageDialog(null, "Morate popuniti sva obavezna polja, ozna\u010Dena sa (*)!","Warning", JOptionPane.WARNING_MESSAGE);	
 				}
 				else
 				{
@@ -119,17 +117,22 @@ public class DodavanjeProfesora extends JDialog{
 							adrStanovanja.getText(), telefon.getText(), email.getText(), adrKancelarije.getText(),
 							brLicneKarte.getText(), titula.getText(), zvanje.getText());
 					
+					// NOTE(Jovan): Dodavanje profesora u bazu uz proveru da li vec postoji
 					if (!BazaProfesor.getInstance().addProfesor(p)) {
 						JOptionPane.showMessageDialog(null, "Profesor sa tim brojem li\u010D karte ve\u0107 postoji!","Warning", JOptionPane.WARNING_MESSAGE);	
 					}
 					
-					
+					GlavniProzor.getInstance().saveAllDBs();
 					dispose();
 				}
 				
 			}
 		});
-	
+		// NOTE(Jovan): Default enter opcija
+		JRootPane root = SwingUtilities.getRootPane(dodajButton);
+		root.setDefaultButton(dodajButton);
+		
+		
 		otkaziButton.addActionListener(new ActionListener() {
 			
 			@Override

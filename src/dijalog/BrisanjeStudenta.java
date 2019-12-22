@@ -16,8 +16,11 @@ import javax.swing.JPanel;
 import javax.swing.JRootPane;
 import javax.swing.SwingUtilities;
 
+import studentskasluzba.BazaPredmet;
 import studentskasluzba.BazaStudenata;
 import studentskasluzba.GlavniProzor;
+import studentskasluzba.Predmet;
+import studentskasluzba.Student;
 
 public class BrisanjeStudenta extends JDialog{
 
@@ -79,7 +82,17 @@ public class BrisanjeStudenta extends JDialog{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BazaStudenata.getInstance().removeStudent(GlavniProzor.getInstance().getSelektovanuTorku());
+				int row = GlavniProzor.getInstance().getSelektovanuTorku();
+				Student s = BazaStudenata.getInstance().getStudent(row);
+				
+				// NOTE(Jovan): Uklanjanje studenta sa predmeta
+				for(Predmet predmet : BazaPredmet.getInstance().getPredmete())
+				{
+					predmet.removeStudent(s);
+				}
+				
+				// NOTE(Jovan): Uklanjanje studenta iz baze
+				BazaStudenata.getInstance().removeStudent(row);
 				dispose();
 				
 			}
