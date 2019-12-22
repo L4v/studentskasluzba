@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
+import javax.swing.SwingUtilities;
 
 import studentskasluzba.BazaPredmet;
 import studentskasluzba.GlavniProzor;
@@ -82,7 +84,9 @@ public class BrisanjePredmeta extends JDialog{
 				
 			}
 		});
-		
+		// NOTE(Jovan): Default opcija za ENTER
+		JRootPane root = SwingUtilities.getRootPane(potvrda);
+		root.setDefaultButton(potvrda);
 		odustanak.addActionListener(new ActionListener() {
 			
 			@Override

@@ -13,9 +13,14 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
+import javax.swing.SwingUtilities;
 
+import studentskasluzba.BazaPredmet;
 import studentskasluzba.BazaProfesor;
 import studentskasluzba.GlavniProzor;
+import studentskasluzba.Predmet;
+import studentskasluzba.Profesor;
 
 public class BrisanjeProfesora extends JDialog{
 
@@ -77,11 +82,31 @@ public class BrisanjeProfesora extends JDialog{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BazaProfesor.getInstance().removeProfesor(GlavniProzor.getInstance().getSelektovanuTorku());
-				dispose();
+				// NOTE(Jovan): Selektovan profesor
+				int row = GlavniProzor.getInstance().getSelektovanuTorku();
+				Profesor p = BazaProfesor.getInstance().getProfesor(row);
 				
+				// NOTE(Jovan): Uklanjanje profesora sa svih predmeta
+				for(Predmet predmet : BazaPredmet.getInstance().getPredmete())
+				{
+					if(predmet.getProfesor().getBrLicneKarte().equalsIgnoreCase(p.getBrLicneKarte()))
+					{
+						predmet.removeProfesor();
+					}
+				}
+				
+				// TODO(Jovan -> Kris): Uklanjanje profesora iz studenta?
+				
+				// NOTE(Jovan): Uklanjanje profesora iz baze
+				BazaProfesor.getInstance().removeProfesor(row);
+				GlavniProzor.getInstance().azurirajPrikaz();
+				GlavniProzor.getInstance().saveAllDBs();
+				dispose();
 			}
 		});
+		// NOTE(Jovan): Default opcija za enter
+		JRootPane root = SwingUtilities.getRootPane(potvrda);
+		root.setDefaultButton(potvrda);
 		
 		odustanak.addActionListener(new ActionListener() {
 			
