@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import studentskasluzba.BazaPredmet;
 import studentskasluzba.BazaProfesor;
 import studentskasluzba.FocusListenerObaveznoTxt;
+import studentskasluzba.GlavniProzor;
 import studentskasluzba.Predmet;
 import studentskasluzba.Profesor;
 
@@ -120,7 +121,20 @@ public class DodavanjePredmeta extends JDialog{
 					if(!BazaPredmet.getInstance().addPredmet(p)) {
 						JOptionPane.showMessageDialog(null, "Predmet sa tom \u0161ifrom ve\u0107 postoji!","Warning", JOptionPane.WARNING_MESSAGE);
 					}
-					
+					// NOTE(Jovan): Ako nije prazan placeholder
+					if(!profesorPredmeta.getIme().equalsIgnoreCase("NEMA"))
+					{
+						// NOTE(Jovan): Pronalazenje profesora i dodavanje predmeta
+						String lk = profesorPredmeta.getBrLicneKarte();
+						for(Profesor profesor : BazaProfesor.getInstance().getProfesore())
+						{
+							if(profesor.getBrLicneKarte().equalsIgnoreCase(lk))
+							{
+								profesor.addPredmet(p);
+							}
+						}
+					}
+					GlavniProzor.getInstance().saveAllDBs();
 					dispose();
 				}
 				

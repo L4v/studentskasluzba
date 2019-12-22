@@ -99,7 +99,6 @@ public class BrisanjeProfesora extends JDialog{
 				
 				// NOTE(Jovan): Uklanjanje profesora iz baze
 				BazaProfesor.getInstance().removeProfesor(row);
-				GlavniProzor.getInstance().azurirajPrikaz();
 				GlavniProzor.getInstance().saveAllDBs();
 				dispose();
 			}

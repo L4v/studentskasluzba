@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import studentskasluzba.BazaPredmet;
 import studentskasluzba.BazaProfesor;
 import studentskasluzba.GlavniProzor;
+import studentskasluzba.Predmet;
 import studentskasluzba.Profesor;
 
 public class DodavanjeProfesoraNaPredmet extends JDialog{
@@ -75,9 +76,15 @@ public class DodavanjeProfesoraNaPredmet extends JDialog{
 					JOptionPane.showMessageDialog(null, "Profesor ne postoji u bazi podataka!","Warning", JOptionPane.WARNING_MESSAGE);
 					return;
 				}
+				// NOTE(Jovan): Postavljanje profesora na predmet
+				int row = GlavniProzor.getInstance().getSelektovanuTorku();
+				Predmet predmet = BazaPredmet.getInstance().getPredmet(row);
 				BazaPredmet.getInstance().getPredmet(GlavniProzor.getInstance().getSelektovanuTorku()).setProfesor(p);
-				GlavniProzor.getInstance().azurirajPrikaz();
+				
+				// NOTE(Jovan): Dodavanje predmeta kod profesora
+				p.addPredmet(predmet);
 				GlavniProzor.getInstance().saveAllDBs();
+				GlavniProzor.getInstance().azurirajPrikaz();
 				dispose();
 				
 			}

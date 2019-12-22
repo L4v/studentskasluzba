@@ -17,7 +17,12 @@ import javax.swing.JRootPane;
 import javax.swing.SwingUtilities;
 
 import studentskasluzba.BazaPredmet;
+import studentskasluzba.BazaProfesor;
+import studentskasluzba.BazaStudenata;
 import studentskasluzba.GlavniProzor;
+import studentskasluzba.Predmet;
+import studentskasluzba.Profesor;
+import studentskasluzba.Student;
 
 public class BrisanjePredmeta extends JDialog{
 
@@ -79,9 +84,26 @@ public class BrisanjePredmeta extends JDialog{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BazaPredmet.getInstance().removePredmet(GlavniProzor.getInstance().getSelektovanuTorku());
-				dispose();
 				
+				int row = GlavniProzor.getInstance().getSelektovanuTorku();
+				Predmet p = BazaPredmet.getInstance().getPredmet(row);
+				
+				// NOTE(Jovan): Uklanjanje predmeta za svakog studenta
+				for(Student s : BazaStudenata.getInstance().getStudente())
+				{
+					s.removePredmet(p);
+				}
+				
+				// NOTE(Jovan): Uklanjanje predmeta za svakog profesora
+				for(Profesor profesor : BazaProfesor.getInstance().getProfesore())
+				{
+					profesor.removePredmet(p);
+				}
+				
+				// NOTE(Jovan): Brisanje predmeta iz baze podataka
+				BazaPredmet.getInstance().removePredmet(row);
+				GlavniProzor.getInstance().saveAllDBs();
+				dispose();
 			}
 		});
 		// NOTE(Jovan): Default opcija za ENTER

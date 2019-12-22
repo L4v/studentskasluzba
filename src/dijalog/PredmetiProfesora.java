@@ -15,10 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import studentskasluzba.BazaProfesor;
-import studentskasluzba.BazaStudenata;
+import studentskasluzba.GlavniProzor;
 import studentskasluzba.Predmet;
 import studentskasluzba.Profesor;
-import studentskasluzba.Student;
 
 public class PredmetiProfesora extends JDialog{
 
@@ -81,13 +80,14 @@ public class PredmetiProfesora extends JDialog{
 					JOptionPane.showMessageDialog(null, "Niste selektovali predmet!","Warning", JOptionPane.WARNING_MESSAGE);
 					return;
 				}
-				int choise = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da \u017Eelite da obri\u0161ete predmet?","Brisanje predmeta studenta",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+				int choise = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da \u017Eelite da obri\u0161ete predmet?","Brisanje predmeta profesora",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
 				if (choise==JOptionPane.YES_OPTION) {
 					Predmet p = BazaProfesor.getInstance().getProfesor(PredmetiProfesora.this.row).getPredmet(i);
 					Profesor prof = BazaProfesor.getInstance().getProfesor(PredmetiProfesora.this.row);
-					// TODO doraditi da ukloni prof sa tog predmeti u tabeli predmeta
+					p.removeProfesor();
 					prof.removePredmet(p);
-					
+					GlavniProzor.getInstance().azurirajPrikaz();
+					GlavniProzor.getInstance().saveAllDBs();
 					dispose();
 				}
 			}

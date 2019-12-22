@@ -98,5 +98,26 @@ public class Predmet implements Serializable {
 	{
 		this.profesor = new Profesor("NEMA", "", "", "", "", "", "", "", "", "");
 	}
+
+	// NOTE(Jovan): Sluzi za .remove() metodu
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == this)
+		{
+			return true;
+		}
+		if(!(obj instanceof Predmet))
+		{
+			return false;
+		}
+		
+		Predmet p = (Predmet)obj;
+		if(p.getSifra().equalsIgnoreCase(this.sifra))
+		{
+			return true;
+		}
+		return false;
+	}
+	
 	
 }

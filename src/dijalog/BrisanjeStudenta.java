@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
+import javax.swing.SwingUtilities;
 
 import studentskasluzba.BazaStudenata;
 import studentskasluzba.GlavniProzor;
@@ -82,7 +84,9 @@ public class BrisanjeStudenta extends JDialog{
 				
 			}
 		});
-		
+		// NOTE(Jovan->Kris): Default enter opcija
+		JRootPane root = SwingUtilities.getRootPane(potvrda);
+		root.setDefaultButton(potvrda);
 		odustanak.addActionListener(new ActionListener() {
 			
 			@Override

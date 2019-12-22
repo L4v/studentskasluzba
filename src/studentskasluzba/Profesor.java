@@ -53,7 +53,7 @@ public class Profesor implements Serializable {
 	}
 	
 	public void removePredmet(Predmet p) {
-		predmeti.remove(p);
+		this.predmeti.remove(p);
 	}
 	
 	public String getIme() {
