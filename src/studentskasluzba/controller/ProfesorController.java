@@ -50,6 +50,8 @@ public class ProfesorController {
 	
 	public void editProfesor(Profesor p)
 	{
-		
+		BazaProfesor.getInstance().editProfesor(p);
+		GlavniProzor.getInstance().azurirajPrikaz();
+		GlavniProzor.getInstance().saveAllDBs();
 	}
 }
