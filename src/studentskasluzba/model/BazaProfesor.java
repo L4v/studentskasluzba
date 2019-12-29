@@ -164,6 +164,26 @@ public class BazaProfesor {
 		saveDB();
 	}
 	
+	public void editProfesor(Profesor p)
+	{
+		for(Profesor profesor : this.Torke)
+		{
+			if(profesor.getBrLicneKarte().equalsIgnoreCase(p.getBrLicneKarte()))
+			{
+				profesor.setIme(p.getIme());
+				profesor.setPrezime(p.getPrezime());
+				profesor.setDatumRodjenja(p.getDatumRodjenja());
+				profesor.setAdresaStanovanja(p.getAdresaStanovanja());
+				profesor.setKontaktTelefon(p.getKontaktTelefon());
+				profesor.setEmail(p.getEmail());
+				profesor.setAdresaKancelarije(p.getAdresaKancelarije());
+				profesor.setTitula(p.getTitula());
+				profesor.setZvanje(p.getZvanje());
+				return;
+			}
+		}
+	}
+	
 	public ArrayList<Profesor> getProfesore()
 	{
 		return this.Torke;
