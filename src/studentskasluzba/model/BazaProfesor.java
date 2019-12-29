@@ -152,8 +152,6 @@ public class BazaProfesor {
 			}
 		}
 		this.Torke.add(p);
-		GlavniProzor.getInstance().azurirajPrikaz();
-		saveDB();
 		return true;
 	}
 	

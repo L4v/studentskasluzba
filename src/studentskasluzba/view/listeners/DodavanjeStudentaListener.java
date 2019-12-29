@@ -22,10 +22,6 @@ public class DodavanjeStudentaListener implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(!this.dodStud.getPotvrdi().isEnabled())
 		{
-			
-		}
-		else
-		{
 			String ime = dodStud.getImeT().getText();
 			String prezime = dodStud.getPrezimeT().getText();
 			String datRodj = dodStud.getDatRodjT().getText();

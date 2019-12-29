@@ -10,17 +10,12 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRootPane;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 
-import studentskasluzba.model.BazaProfesor;
-import studentskasluzba.model.Profesor;
 import studentskasluzba.view.FocusListenerObaveznoBroj;
 import studentskasluzba.view.FocusListenerObaveznoTxt;
-import studentskasluzba.view.GlavniProzor;
+import studentskasluzba.view.listeners.DodavanjeProfesoraListener;
 
 public class DodavanjeProfesora extends JDialog{
 	private static final long serialVersionUID = -7033252007876580812L;
@@ -93,53 +88,48 @@ public class DodavanjeProfesora extends JDialog{
 		buttonsPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
 		this.add(buttonsPanel, BorderLayout.SOUTH);
 		
-		dodajButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO(Jovan): Custom jtext za proveru da li je prazan
-				if(ime.getText().isEmpty() ||
-						prezime.getText().isEmpty() ||
-						datum.getText().isEmpty() ||
-						adrStanovanja.getText().isEmpty() ||
-						telefon.getText().isEmpty() ||
-						email.getText().isEmpty() ||
-						adrKancelarije.getText().isEmpty() ||
-						brLicneKarte.getText().isEmpty() ||
-						titula.getText().isEmpty() ||
-						zvanje.getText().isEmpty())
-				{
-					JOptionPane.showMessageDialog(null, "Morate popuniti sva obavezna polja, ozna\u010Dena sa (*)!","Warning", JOptionPane.WARNING_MESSAGE);	
-				}
-				else
-				{
-					Profesor p = new Profesor(ime.getText(), prezime.getText(), datum.getText(),
-							adrStanovanja.getText(), telefon.getText(), email.getText(), adrKancelarije.getText(),
-							brLicneKarte.getText(), titula.getText(), zvanje.getText());
-					
-					// NOTE(Jovan): Dodavanje profesora u bazu uz proveru da li vec postoji
-					if (!BazaProfesor.getInstance().addProfesor(p)) {
-						JOptionPane.showMessageDialog(null, "Profesor sa tim brojem li\u010D karte ve\u0107 postoji!","Warning", JOptionPane.WARNING_MESSAGE);	
-					}
-					
-					GlavniProzor.getInstance().saveAllDBs();
-					dispose();
-				}
-				
-			}
-		});
-		// NOTE(Jovan): Default enter opcija
-		JRootPane root = SwingUtilities.getRootPane(dodajButton);
-		root.setDefaultButton(dodajButton);
-		
+		dodajButton.addActionListener(new DodavanjeProfesoraListener(this));
 		
 		otkaziButton.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				
 			}
 		});
+	}
+	
+	public JButton getDodajButton() {
+		return dodajButton;
+	}
+	public JTextField getIme() {
+		return ime;
+	}
+	public JTextField getPrezime() {
+		return prezime;
+	}
+	public JTextField getDatum() {
+		return datum;
+	}
+	public JTextField getAdrStanovanja() {
+		return adrStanovanja;
+	}
+	public JTextField getTelefon() {
+		return telefon;
+	}
+	public JTextField getEmail() {
+		return email;
+	}
+	public JTextField getAdrKancelarije() {
+		return adrKancelarije;
+	}
+
+	public JTextField getBrLicneKarte() {
+		return brLicneKarte;
+	}
+	public JTextField getTitula() {
+		return titula;
+	}
+	public JTextField getZvanje() {
+		return zvanje;
 	}
 }

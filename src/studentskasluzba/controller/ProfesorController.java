@@ -23,11 +23,15 @@ public class ProfesorController {
 		return instance;
 	}
 	
-	public void addProfesor(Profesor p)
+	public boolean addProfesor(Profesor p)
 	{
-		BazaProfesor.getInstance().addProfesor(p);
-		GlavniProzor.getInstance().azurirajPrikaz();
-		GlavniProzor.getInstance().saveAllDBs();
+		if(BazaProfesor.getInstance().addProfesor(p)) {
+			GlavniProzor.getInstance().azurirajPrikaz();
+			GlavniProzor.getInstance().saveAllDBs();
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public void removeProfesor(int row)
