@@ -40,6 +40,10 @@ public class Profesor implements Serializable {
 	
 	public void addPredmet(Predmet p)
 	{
+		if(this.predmeti.contains(p))
+		{
+			return;
+		}
 		predmeti.add(p);
 	}
 	

@@ -14,7 +14,7 @@ public class ProfesorController {
 		
 	}
 	
-	public ProfesorController getInstance()
+	public static ProfesorController getInstance()
 	{
 		if(instance == null)
 		{

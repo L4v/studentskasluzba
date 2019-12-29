@@ -16,7 +16,7 @@ public class PredmetController {
 		
 	}
 	
-	public PredmetController getInstance()
+	public static PredmetController getInstance()
 	{
 		if(instance == null)
 		{
@@ -26,12 +26,34 @@ public class PredmetController {
 		return instance;
 	}
 	
-	public void addPredmet(Predmet p)
+	public boolean addPredmet(Predmet p)
 	{
 		// NOTE(Jovan): Dodajemo predmet i cuvamo podatke
-		BazaPredmet.getInstance().addPredmet(p);
-		GlavniProzor.getInstance().azurirajPrikaz();
-		GlavniProzor.getInstance().saveAllDBs();
+		if(BazaPredmet.getInstance().addPredmet(p))
+		{
+			// NOTE(Jovan): Provera da li je profesor vec postavljen
+			// na predmet
+			if(!p.getProfesor().getIme().equalsIgnoreCase("NEMA"))
+			{
+				for(Profesor prof : BazaProfesor.getInstance().getProfesore())
+				{
+					if(prof.getBrLicneKarte().equalsIgnoreCase(p.getProfesor().getBrLicneKarte()))
+					{
+						prof.addPredmet(p);
+						break;
+					}
+				}
+			}
+			
+			// NOTE(Jovan): Azuriranje prikaza i cuvanje podataka
+			GlavniProzor.getInstance().azurirajPrikaz();
+			GlavniProzor.getInstance().saveAllDBs();
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 	public void removePredmet(int row)
