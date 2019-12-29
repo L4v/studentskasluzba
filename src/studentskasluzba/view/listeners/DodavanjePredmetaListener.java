@@ -22,11 +22,7 @@ public class DodavanjePredmetaListener implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(!this.view.getDodajButton().isEnabled())
-		{
-			
-		}
-		else
+		if(this.view.getDodajButton().isEnabled())
 		{
 			String sifraPredmeta = this.view.getSifra().getText();
 			String nazivPredmeta = this.view.getNaziv().getText();

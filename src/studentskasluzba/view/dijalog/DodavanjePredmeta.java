@@ -16,9 +16,9 @@ import javax.swing.JRootPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-import studentskasluzba.model.BazaProfesor;
+import studentskasluzba.controller.ProfesorController;
 import studentskasluzba.model.Profesor;
-import studentskasluzba.view.FocusListenerObaveznoTxt;
+import studentskasluzba.view.listeners.DodavanjePredmetaFocusTxt;
 import studentskasluzba.view.listeners.DodavanjePredmetaListener;
 
 @SuppressWarnings("serial")
@@ -32,7 +32,6 @@ public class DodavanjePredmeta extends JDialog{
 	private JComboBox<Profesor> profesori;
 	private JComboBox<Integer> godina, semestar;
 
-	private DodavanjePredmetaListener dodavanjeListener;
 	public DodavanjePredmeta()
 	{
 		super();
@@ -43,10 +42,10 @@ public class DodavanjePredmeta extends JDialog{
 		this.setModal(true);
 		this.setTitle("Dodavanje predmeta");
 		sifra = new JTextField();
-		sifra.addFocusListener(new FocusListenerObaveznoTxt(0));
+		sifra.addFocusListener(new DodavanjePredmetaFocusTxt(this, 0));
 		
 		naziv = new JTextField();
-		naziv.addFocusListener(new FocusListenerObaveznoTxt(0));
+		naziv.addFocusListener(new DodavanjePredmetaFocusTxt(this, 0));
 		
 		godina = new JComboBox<Integer>();
 		semestar = new JComboBox<Integer>();
@@ -61,7 +60,7 @@ public class DodavanjePredmeta extends JDialog{
 		
 		
 		profesori = new JComboBox<Profesor>();
-		for (Profesor p : BazaProfesor.getInstance().getProfesore())
+		for (Profesor p : ProfesorController.getInstance().getProfesore())
 		{
 			profesori.addItem(p);
 		}
@@ -71,7 +70,7 @@ public class DodavanjePredmeta extends JDialog{
 		profesori.addItem(nema);
 		
 		fieldsPanel = new JPanel(new GridLayout(5, 2));
-		fieldsPanel.add(new JLabel("Sifra predmeta*"));
+		fieldsPanel.add(new JLabel("\u0161ifra predmeta*"));
 		fieldsPanel.add(sifra);
 		fieldsPanel.add(new JLabel("Naziv predmeta*"));
 		fieldsPanel.add(naziv);
@@ -84,15 +83,14 @@ public class DodavanjePredmeta extends JDialog{
 		this.add(fieldsPanel, BorderLayout.CENTER);
 		buttonsPanel = new JPanel(new GridLayout(1, 2));
 		dodajButton = new JButton("Dodaj");
-		otkaziButton = new JButton("Otkazi");
+		otkaziButton = new JButton("Otka\017ei");
 		buttonsPanel.add(dodajButton);
 		buttonsPanel.add(otkaziButton);
 		buttonsPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
 		this.add(buttonsPanel, BorderLayout.SOUTH);
 		
 		
-		this.dodavanjeListener = new DodavanjePredmetaListener(this);
-		dodajButton.addActionListener(this.dodavanjeListener);
+		dodajButton.addActionListener(new DodavanjePredmetaListener(this));
 		// NOTE(Jovan): Default opcija za enter
 		JRootPane root = SwingUtilities.getRootPane(dodajButton);
 		root.setDefaultButton(dodajButton);
