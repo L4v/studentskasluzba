@@ -62,6 +62,9 @@ public class Student implements Serializable{
 		this.predmeti.remove(p);
 	}
 	
+	public void removePredmet(int i) {
+		this.predmeti.remove(i);
+	}
 	
 	public String getIme() {
 		return ime;

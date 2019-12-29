@@ -9,15 +9,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import studentskasluzba.model.BazaPredmet;
-import studentskasluzba.model.BazaStudenata;
-import studentskasluzba.model.Predmet;
-import studentskasluzba.model.Student;
-import studentskasluzba.view.GlavniProzor;
+import studentskasluzba.view.listeners.DodavanjeStudentaNaPredmetListener;
 
 public class DodavanjeStudentaNaPredmet extends JDialog{
 
@@ -26,6 +21,8 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 	 */
 	private static final long serialVersionUID = 1L;
 
+	JTextField unos;
+	
 	public DodavanjeStudentaNaPredmet() {
 	
 		setTitle("Predmet - dodavanje studenta");
@@ -36,7 +33,7 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 		getContentPane().setLayout(new GridBagLayout());
 		
 		JLabel message = new JLabel("Indeks studenta*");
-		JTextField text = new JTextField();
+		unos = new JTextField();
 		JButton potvrda = new JButton("Potvrda");
 		JButton odustanak = new JButton("Odustanak");
 		
@@ -58,7 +55,7 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 		c1.fill = GridBagConstraints.HORIZONTAL;
 		c1.insets = new Insets(15, 2, 2, 30);
 		c1.anchor = GridBagConstraints.WEST;
-		getContentPane().add(text, c1);
+		getContentPane().add(unos, c1);
 		
 		GridBagConstraints c2 = new GridBagConstraints();
 		c2.gridx = 1;
@@ -76,38 +73,14 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 			}
 		});
 		
-		// NOTE(Jovan): Action listener za dodavanje	
-		ActionListener dodavanje = new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String brIndeksa=text.getText();
-				Student s = BazaStudenata.getInstance().getStudent(brIndeksa);
-				if (s==null) {
-					JOptionPane.showMessageDialog(null, "Student ne postoji u bazi podataka!","Warning", JOptionPane.WARNING_MESSAGE);
-					return;
-				}
-				Predmet p = BazaPredmet.getInstance().getPredmet(GlavniProzor.getInstance().getSelektovanuTorku());
-				if (!s.getTrenutnaGodina().equalsIgnoreCase(Integer.toString(p.getGodina()))) {
-					JOptionPane.showMessageDialog(null, "Trenutna godina studija studenta nije ista sa predmetom!","Warning", JOptionPane.WARNING_MESSAGE);
-					dispose();
-					return;
-				}
-				// NOTE(Jovan): U slucaju da ne uspe dodavanje
-				if(!p.addStudent(s))
-				{
-					JOptionPane.showMessageDialog(null, "Student ve\u0107 poha\u0111a ovaj predmet.");
-					dispose();
-				}
-				BazaStudenata.getInstance().getStudent(s.getIndeks()).addPredmet(p);
-				GlavniProzor.getInstance().saveAllDBs();
-				dispose();
-				
-			}
-		};
-		potvrda.addActionListener(dodavanje);
-		text.addActionListener(dodavanje);
+		potvrda.addActionListener(new DodavanjeStudentaNaPredmetListener(this));
+		//unos.addActionListener(new DodavanjeStudentaNaPredmetListener(this));
 		
 	}
-	
+
+	public JTextField getUnos() {
+		return unos;
+	}
+
 	
 }

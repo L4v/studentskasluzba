@@ -3,21 +3,20 @@ package studentskasluzba.view.dijalog;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import studentskasluzba.model.BazaPredmet;
-import studentskasluzba.model.BazaStudenata;
-import studentskasluzba.model.Predmet;
 import studentskasluzba.model.Student;
+import studentskasluzba.view.listeners.BrisanjeStudentaSaPredmetaListener;
 
 public class StudentiNaPredmetu extends JDialog{
 	private static final long serialVersionUID = -4775434477795635244L;
@@ -27,7 +26,7 @@ public class StudentiNaPredmetu extends JDialog{
 	private JButton ukloniButton, otkaziButton;
 	private JScrollPane studenti;
 	private JList<String> list;
-	// NOTE(Jovan): Sluzi za odredjivanje kog studenta treba prikazati
+	
 	private int row;
 	public StudentiNaPredmetu(int row)
 	{
@@ -64,95 +63,28 @@ public class StudentiNaPredmetu extends JDialog{
 		this.buttonsPanel.add(ukloniButton);
 		this.buttonsPanel.add(otkaziButton);
 		
-		ukloniButton.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				int i = list.getSelectedIndex();
-				if (i==-1) {
-					JOptionPane.showMessageDialog(null, "Niste selektovali studenta!","Warning", JOptionPane.WARNING_MESSAGE);
-					return;
-				}
-				int choise = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da \u017Eelite da obri\u0161ete studenta?","Brisanje studenta sa predmeta",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-				if (choise==JOptionPane.YES_OPTION) {
-					Student s = BazaPredmet.getInstance().getPredmet(StudentiNaPredmetu.this.row).getStudent(i);
-					Predmet p = BazaPredmet.getInstance().getPredmet(StudentiNaPredmetu.this.row);
-					s.removePredmet(p);
-					p.removeStudent(i); //da ukloni studenta sa predmeta
-					
-					for(Predmet pr : BazaStudenata.getInstance().getStudent(i).getPredmeti())
-					{
-						System.out.println(pr.getSifra());
-					}
-					dispose();
-				}
-				
-			}
-		});
+		ukloniButton.addActionListener(new BrisanjeStudentaSaPredmetaListener(this));
 		
-		
-		otkaziButton.addMouseListener(new MouseListener() {
-			
+		otkaziButton.addActionListener(new ActionListener() {
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				dispose();
-				
 			}
 		});
-		
-		
-		
-		
 		
 		this.add(studentsPanel, BorderLayout.CENTER);
 		this.add(buttonsPanel, BorderLayout.SOUTH);
 	}
+	
+	
+	public JList<String> getList() {
+		return list;
+	}
+
+	public int getRow() {
+		return row;
+	}
+
+	
+	
 }

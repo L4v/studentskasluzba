@@ -84,8 +84,8 @@ public class PredmetiStudenta extends JDialog{
 				if (choise==JOptionPane.YES_OPTION) {
 					Predmet p = BazaStudenata.getInstance().getStudent(PredmetiStudenta.this.row).getPredmet(i);
 					Student s = BazaStudenata.getInstance().getStudent(PredmetiStudenta.this.row);
-					p.removeStudent(i); //da ukloni studenta sa predmeta
-					s.removePredmet(p);
+					s.removePredmet(i);
+					p.removeStudent(s);
 					
 					dispose();
 				}

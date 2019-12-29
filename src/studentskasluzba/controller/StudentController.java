@@ -68,27 +68,35 @@ private static StudentController instance = null;
 		
 	}
 	
-	public void addStudentNaPredmet(String brIndeksa, int selectedRow) {
+	public int addStudentNaPredmet(String brIndeksa, int selectedRow) {
 		
 		Student s = BazaStudenata.getInstance().getStudent(brIndeksa);
+		if(s == null) {  // ako student ne postoji u bazi
+			return 1;
+		}
 		Predmet p = BazaPredmet.getInstance().getPredmet(selectedRow);
 		
-		p.addStudent(s);
+		if (!s.getTrenutnaGodina().equalsIgnoreCase(Integer.toString(p.getGodina()))) {
+			return 2;   //ako tren god studenta nije ista sa predmetom
+		}
+		if(!p.addStudent(s)) {
+			return 3;   //ako student vec postoji
+		}
 		BazaStudenata.getInstance().getStudent(brIndeksa).addPredmet(p);
+		GlavniProzor.getInstance().azurirajPrikaz();
 		GlavniProzor.getInstance().saveAllDBs();
 		
-		
-		
+		return 0;
 	}
 	
 	public void removeStudentSaPredmeta(int selectedRowPredmet, int selectedRowStudent) {
 		
 		Student s = BazaPredmet.getInstance().getPredmet(selectedRowPredmet).getStudent(selectedRowStudent);
 		Predmet p = BazaPredmet.getInstance().getPredmet(selectedRowPredmet);
-		s.removePredmet(p);
 		p.removeStudent(selectedRowStudent);
-		
-		
+		s.removePredmet(p);
+		GlavniProzor.getInstance().azurirajPrikaz();
+		GlavniProzor.getInstance().saveAllDBs();
 		
 	}
 
