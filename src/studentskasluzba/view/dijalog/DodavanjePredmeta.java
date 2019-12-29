@@ -18,7 +18,7 @@ import javax.swing.SwingUtilities;
 
 import studentskasluzba.model.BazaProfesor;
 import studentskasluzba.model.Profesor;
-import studentskasluzba.view.FocusListenerObaveznoTxt;
+import studentskasluzba.view.listeners.DodavanjePredmetaFocusTxt;
 import studentskasluzba.view.listeners.DodavanjePredmetaListener;
 
 @SuppressWarnings("serial")
@@ -32,7 +32,6 @@ public class DodavanjePredmeta extends JDialog{
 	private JComboBox<Profesor> profesori;
 	private JComboBox<Integer> godina, semestar;
 
-	private DodavanjePredmetaListener dodavanjeListener;
 	public DodavanjePredmeta()
 	{
 		super();
@@ -43,10 +42,10 @@ public class DodavanjePredmeta extends JDialog{
 		this.setModal(true);
 		this.setTitle("Dodavanje predmeta");
 		sifra = new JTextField();
-		sifra.addFocusListener(new FocusListenerObaveznoTxt(0));
+		sifra.addFocusListener(new DodavanjePredmetaFocusTxt(this, 0));
 		
 		naziv = new JTextField();
-		naziv.addFocusListener(new FocusListenerObaveznoTxt(0));
+		naziv.addFocusListener(new DodavanjePredmetaFocusTxt(this, 0));
 		
 		godina = new JComboBox<Integer>();
 		semestar = new JComboBox<Integer>();
@@ -91,8 +90,7 @@ public class DodavanjePredmeta extends JDialog{
 		this.add(buttonsPanel, BorderLayout.SOUTH);
 		
 		
-		this.dodavanjeListener = new DodavanjePredmetaListener(this);
-		dodajButton.addActionListener(this.dodavanjeListener);
+		dodajButton.addActionListener(new DodavanjePredmetaListener(this));
 		// NOTE(Jovan): Default opcija za enter
 		JRootPane root = SwingUtilities.getRootPane(dodajButton);
 		root.setDefaultButton(dodajButton);
