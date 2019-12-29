@@ -54,4 +54,9 @@ public class ProfesorController {
 		GlavniProzor.getInstance().azurirajPrikaz();
 		GlavniProzor.getInstance().saveAllDBs();
 	}
+	
+	public Iterable<Profesor> getProfesore()
+	{
+		return BazaProfesor.getInstance().getProfesore();
+	}
 }

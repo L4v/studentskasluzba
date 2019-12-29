@@ -16,7 +16,7 @@ import javax.swing.JRootPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-import studentskasluzba.model.BazaProfesor;
+import studentskasluzba.controller.ProfesorController;
 import studentskasluzba.model.Profesor;
 import studentskasluzba.view.listeners.DodavanjePredmetaFocusTxt;
 import studentskasluzba.view.listeners.DodavanjePredmetaListener;
@@ -60,7 +60,7 @@ public class DodavanjePredmeta extends JDialog{
 		
 		
 		profesori = new JComboBox<Profesor>();
-		for (Profesor p : BazaProfesor.getInstance().getProfesore())
+		for (Profesor p : ProfesorController.getInstance().getProfesore())
 		{
 			profesori.addItem(p);
 		}
@@ -70,7 +70,7 @@ public class DodavanjePredmeta extends JDialog{
 		profesori.addItem(nema);
 		
 		fieldsPanel = new JPanel(new GridLayout(5, 2));
-		fieldsPanel.add(new JLabel("Sifra predmeta*"));
+		fieldsPanel.add(new JLabel("\u0161ifra predmeta*"));
 		fieldsPanel.add(sifra);
 		fieldsPanel.add(new JLabel("Naziv predmeta*"));
 		fieldsPanel.add(naziv);
@@ -83,7 +83,7 @@ public class DodavanjePredmeta extends JDialog{
 		this.add(fieldsPanel, BorderLayout.CENTER);
 		buttonsPanel = new JPanel(new GridLayout(1, 2));
 		dodajButton = new JButton("Dodaj");
-		otkaziButton = new JButton("Otkazi");
+		otkaziButton = new JButton("Otka\017ei");
 		buttonsPanel.add(dodajButton);
 		buttonsPanel.add(otkaziButton);
 		buttonsPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
