@@ -20,7 +20,7 @@ public class DodavanjeProfesoraListener implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(dodProf.getDodajButton().isEnabled())
+		if(this.dodProf.getDodajButton().isEnabled())
 		{
 			Profesor p = new Profesor(dodProf.getIme().getText(), dodProf.getPrezime().getText(), dodProf.getDatum().getText(),
 					dodProf.getAdrStanovanja().getText(), dodProf.getTelefon().getText(), dodProf.getEmail().getText(), dodProf.getAdrKancelarije().getText(),
@@ -29,7 +29,7 @@ public class DodavanjeProfesoraListener implements ActionListener{
 			if (!ProfesorController.getInstance().addProfesor(p)) {
 				JOptionPane.showMessageDialog(null, "Profesor sa tim brojem li\u010Dne karte ve\u0107 postoji!","Warning", JOptionPane.WARNING_MESSAGE);	
 			}
-			dodProf.dispose();
+			this.dodProf.dispose();
 		}
 
 	}

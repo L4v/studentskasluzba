@@ -20,7 +20,7 @@ public class DodavanjeStudentaListener implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(!this.dodStud.getPotvrdi().isEnabled())
+		if(this.dodStud.getPotvrdi().isEnabled())
 		{
 			String ime = dodStud.getImeT().getText();
 			String prezime = dodStud.getPrezimeT().getText();

@@ -13,8 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import studentskasluzba.view.FocusListenerObaveznoBroj;
-import studentskasluzba.view.FocusListenerObaveznoTxt;
+import studentskasluzba.view.listeners.DodavanjeProfesoraFocusTxt;
 import studentskasluzba.view.listeners.DodavanjeProfesoraListener;
 
 public class DodavanjeProfesora extends JDialog{
@@ -37,25 +36,25 @@ public class DodavanjeProfesora extends JDialog{
 		this.setTitle("Dodavanje profesora");
 		
 		ime = new JTextField();
-		ime.addFocusListener(new FocusListenerObaveznoTxt(0));
+		ime.addFocusListener(new DodavanjeProfesoraFocusTxt(this,0));
 		prezime = new JTextField();
-		prezime.addFocusListener(new FocusListenerObaveznoTxt(0));
+		prezime.addFocusListener(new DodavanjeProfesoraFocusTxt(this,0));
 		datum = new JTextField();
-		datum.addFocusListener(new FocusListenerObaveznoTxt(-2));
+		datum.addFocusListener(new DodavanjeProfesoraFocusTxt(this,-2));
 		adrStanovanja = new JTextField();
-		adrStanovanja.addFocusListener(new FocusListenerObaveznoTxt(0));
+		adrStanovanja.addFocusListener(new DodavanjeProfesoraFocusTxt(this,0));
 		telefon = new JTextField();
-		telefon.addFocusListener(new FocusListenerObaveznoBroj(-1));
+		telefon.addFocusListener(new DodavanjeProfesoraFocusTxt(this,-4));
 		email = new JTextField();
-		email.addFocusListener(new FocusListenerObaveznoTxt(-3));
+		email.addFocusListener(new DodavanjeProfesoraFocusTxt(this,-3));
 		adrKancelarije = new JTextField();
-		adrKancelarije.addFocusListener(new FocusListenerObaveznoTxt(0));
+		adrKancelarije.addFocusListener(new DodavanjeProfesoraFocusTxt(this,0));
 		brLicneKarte = new JTextField();
-		brLicneKarte.addFocusListener(new FocusListenerObaveznoBroj(9));
+		brLicneKarte.addFocusListener(new DodavanjeProfesoraFocusTxt(this,9));
 		titula = new JTextField();
-		titula.addFocusListener(new FocusListenerObaveznoTxt(0));
+		titula.addFocusListener(new DodavanjeProfesoraFocusTxt(this,0));
 		zvanje = new JTextField();
-		zvanje.addFocusListener(new FocusListenerObaveznoTxt(0));
+		zvanje.addFocusListener(new DodavanjeProfesoraFocusTxt(this,0));
 		
 		fieldsPanel = new JPanel(new GridLayout(10, 2));
 		fieldsPanel.add(new JLabel("Ime*"));

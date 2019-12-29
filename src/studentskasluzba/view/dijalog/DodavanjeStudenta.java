@@ -15,8 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import studentskasluzba.view.FocusListenerObaveznoBroj;
-import studentskasluzba.view.FocusListenerObaveznoTxt;
+import studentskasluzba.view.listeners.DodavanjeStudentaFocusTxt;
 import studentskasluzba.view.listeners.DodavanjeStudentaListener;
 
 public class DodavanjeStudenta extends JDialog{
@@ -104,15 +103,15 @@ public class DodavanjeStudenta extends JDialog{
 		warningLabel.setForeground(Color.RED);
 		warningLabel.setVisible(false);*/
 		
-		imeT.addFocusListener(new FocusListenerObaveznoTxt(0));      
-		prezimeT.addFocusListener(new FocusListenerObaveznoTxt(0));
-		datRodjT.addFocusListener(new FocusListenerObaveznoTxt(-2));
-		adresaT.addFocusListener(new FocusListenerObaveznoTxt(0));
-		brTelefonaT.addFocusListener(new FocusListenerObaveznoBroj(-1));
-		brIndeksaT.addFocusListener(new FocusListenerObaveznoTxt(-1));
-		emailT.addFocusListener(new FocusListenerObaveznoTxt(-3));
-		datumUpisaT.addFocusListener(new FocusListenerObaveznoTxt(-2));
-		prosekT.addFocusListener(new FocusListenerObaveznoBroj(-2));
+		imeT.addFocusListener(new DodavanjeStudentaFocusTxt(this,0));      
+		prezimeT.addFocusListener(new DodavanjeStudentaFocusTxt(this,0));
+		datRodjT.addFocusListener(new DodavanjeStudentaFocusTxt(this,-2));
+		adresaT.addFocusListener(new DodavanjeStudentaFocusTxt(this,0));
+		brTelefonaT.addFocusListener(new DodavanjeStudentaFocusTxt(this,-5));
+		brIndeksaT.addFocusListener(new DodavanjeStudentaFocusTxt(this,-1));
+		emailT.addFocusListener(new DodavanjeStudentaFocusTxt(this,-3));
+		datumUpisaT.addFocusListener(new DodavanjeStudentaFocusTxt(this,-2));
+		prosekT.addFocusListener(new DodavanjeStudentaFocusTxt(this,-4));
 		
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridx = 0;
