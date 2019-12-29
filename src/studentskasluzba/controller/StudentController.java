@@ -35,12 +35,16 @@ private static StudentController instance = null;
 		
 		BazaStudenata.getInstance().izmeniStudenta(s.getIme(), s.getPrezime(), s.getDatumRodjenja(), s.getAdresaStanovanja(), s.getKontaktTelefon(), s.getEmail(), s.getIndeks(), s.getDatumUpisa(), s.getTrenutnaGodina(), s.getStatusStudenta(), s.getProsecnaOcena());
 		
-		/*for(Predmet p : BazaStudenata.getInstance().getStudent(s.getIndeks()).getPredmeti()) {
+		for(Predmet p : BazaStudenata.getInstance().getStudent(s.getIndeks()).getPredmeti()) {
 			if(p.getGodina() != Integer.parseInt(s.getTrenutnaGodina())) {
-				BazaStudenata.getInstance().getStudent(s.getIndeks()).removePredmet(p);
 				p.removeStudent(s);
+				BazaStudenata.getInstance().getStudent(s.getIndeks()).removePredmet(p);
+				
+				//proveri da li ima jos predmeta
+				if(BazaStudenata.getInstance().getStudent(s.getIndeks()).getPredmeti().size()==0)
+					break;
 			}
-		}*/
+		}
 		
 		GlavniProzor.getInstance().azurirajPrikaz();
 		GlavniProzor.getInstance().saveAllDBs();
