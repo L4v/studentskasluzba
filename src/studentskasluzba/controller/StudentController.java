@@ -1,9 +1,8 @@
 package studentskasluzba.controller;
 
-import javax.swing.JOptionPane;
-
 import studentskasluzba.model.BazaPredmet;
 import studentskasluzba.model.BazaStudenata;
+import studentskasluzba.model.Predmet;
 import studentskasluzba.model.Student;
 import studentskasluzba.view.GlavniProzor;
 
@@ -46,17 +45,42 @@ private static StudentController instance = null;
 			return;
 		}
 		
+		Student s = BazaStudenata.getInstance().getStudent(selectedRow);
+		
+		// treba da uklonimo studenta i sa predmeta
+		for(Predmet p : BazaPredmet.getInstance().getPredmete()) {
+			if(p.getStudenti().contains(s)) {
+				p.removeStudent(s);
+			}
+		}
+		
 		BazaStudenata.getInstance().removeStudent(selectedRow);
 		GlavniProzor.getInstance().azurirajPrikaz();
 		GlavniProzor.getInstance().saveAllDBs();
 		
 	}
 	
-	public void addStudentNaPredmet(String brIndeksa) {
+	public void addStudentNaPredmet(String brIndeksa, int selectedRow) {
 		
+		Student s = BazaStudenata.getInstance().getStudent(brIndeksa);
+		Predmet p = BazaPredmet.getInstance().getPredmet(selectedRow);
+		
+		p.addStudent(s);
+		BazaStudenata.getInstance().getStudent(brIndeksa).addPredmet(p);
+		GlavniProzor.getInstance().saveAllDBs();
 		
 		
 		
 	}
 	
+	public void removeStudentSaPredmeta(int selectedRowPredmet, int selectedRowStudent) {
+		
+		Student s = BazaPredmet.getInstance().getPredmet(selectedRowPredmet).getStudent(selectedRowStudent);
+		Predmet p = BazaPredmet.getInstance().getPredmet(selectedRowPredmet);
+		s.removePredmet(p);
+		p.removeStudent(selectedRowStudent);
+		
+		
+		
+	}
 }

@@ -2,6 +2,7 @@ package studentskasluzba.controller;
 
 import studentskasluzba.model.BazaProfesor;
 import studentskasluzba.model.Profesor;
+import studentskasluzba.view.GlavniProzor;
 
 public class ProfesorController {
 	private static ProfesorController instance = null;
@@ -22,6 +23,9 @@ public class ProfesorController {
 	
 	public void addProfesor(Profesor p)
 	{
+		BazaProfesor.getInstance().addProfesor(p);
+		GlavniProzor.getInstance().azurirajPrikaz();
+		GlavniProzor.getInstance().saveAllDBs();
 	}
 	
 	public void removeProfesor(int row)
