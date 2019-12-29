@@ -16,8 +16,8 @@ public class BazaPredmet {
 	private static BazaPredmet instance = null;
 	private static final String NAME_DB = "PredmetiDB.sdb";
 	
-	private ArrayList<String> Obelezja;
-	private ArrayList<Predmet> Torke;
+	private ArrayList<String> obelezja;
+	private ArrayList<Predmet> torke;
 	
 	public static BazaPredmet getInstance()
 	{
@@ -30,19 +30,19 @@ public class BazaPredmet {
 	
 	private BazaPredmet()
 	{
-		this.Obelezja = new ArrayList<String>();
-		this.Torke = new ArrayList<Predmet>();
+		this.obelezja = new ArrayList<String>();
+		this.torke = new ArrayList<Predmet>();
 		
-		Obelezja.add("\u0160ifra");
-		Obelezja.add("Naziv");
-		Obelezja.add("Semestar");
-		Obelezja.add("Godina");
-		Obelezja.add("Profesor");
+		obelezja.add("\u0160ifra");
+		obelezja.add("Naziv");
+		obelezja.add("Semestar");
+		obelezja.add("Godina");
+		obelezja.add("Profesor");
 		Profesor savo = new Profesor("Savo", "Oroz", "01.01.1901", "Balzakova 69", "0607671370",
 				"savo.oroz@savoandco.com", "Savin Trg 5", "123456789", "Nzm", "Nempojma");
 		Predmet tmp = new Predmet("OOP-1", "Objektno", 2, 1, savo);
 		
-		Torke.add(tmp);
+		torke.add(tmp);
 	}
 	public void loadDB()
 	{
@@ -72,7 +72,7 @@ public class BazaPredmet {
 			{
 				try {
 					p = (Predmet)oi.readObject();
-					this.Torke.add(p);
+					this.torke.add(p);
 				}
 				catch(EOFException e)
 				{
@@ -104,7 +104,7 @@ public class BazaPredmet {
 				FileOutputStream f = new FileOutputStream(new File(NAME_DB));
 				ObjectOutputStream o = new ObjectOutputStream(f);
 
-				for (Predmet p : this.Torke)
+				for (Predmet p : this.torke)
 				{
 					o.writeObject(p);
 				}
@@ -121,53 +121,70 @@ public class BazaPredmet {
 	// NOTE(Jovan): Prilikom loadovanja da dropuje celu bazu
 	private void dropDB()
 	{
-		this.Torke.clear();
-		GlavniProzor.getInstance().azurirajPrikaz();
+		this.torke.clear();
 	}
 	
 	public boolean addPredmet(Predmet p)
 	{
-		for(Predmet predmet : Torke) {
+		for(Predmet predmet : torke) {
 			if (predmet.getSifra().equals(p.getSifra())) {
 				return false;
 			}
 		}
-		this.Torke.add(p);
-		this.saveDB();
-		GlavniProzor.getInstance().azurirajPrikaz();
+		this.torke.add(p);
 		return true;
 	}
 	
 	public void removePredmet(int row)
 	{
-		this.Torke.remove(row);
-		this.saveDB();
-		GlavniProzor.getInstance().azurirajPrikaz();
+		this.torke.remove(row);
 	}
 	
 	public ArrayList<Predmet> getPredmete()
 	{
-		return this.Torke;
+		return this.torke;
+	}
+	
+	public void editPredmet(Predmet p)
+	{
+		// NOTE(Jovan): Trazi predmet, ako postoji, azurira ga
+		for(Predmet predmet : this.torke)
+		{
+			if(predmet.getSifra().equalsIgnoreCase(p.getSifra()))
+			{
+				predmet.setNaziv(p.getNaziv());
+				predmet.setSemestar(p.getSemestar());
+				predmet.setGodina(p.getGodina());
+				predmet.setProfesor(p.getProfesor());
+				
+				return;
+			}
+		}
 	}
 	
 	public Predmet getPredmet(int row)
 	{
-		return this.Torke.get(row);
+		Predmet Result = null;
+		if(row < this.torke.size())
+		{
+			Result = this.torke.get(row);
+		}
+		return Result;
 	}
 	
 	public int getBrojObelezja()
 	{
-		return this.Obelezja.size();
+		return this.obelezja.size();
 	}
 	
 	public int getBrojTorki()
 	{
-		return this.Torke.size();
+		return this.torke.size();
 	}
 	
 	public String getValueAt(int row, int column)
 	{
-		Predmet Result = Torke.get(row);
+		Predmet Result = torke.get(row);
 		
 		switch(column)
 		{
@@ -200,7 +217,7 @@ public class BazaPredmet {
 	
 	public String getColumnName(int col)
 	{
-		return Obelezja.get(col);
+		return obelezja.get(col);
 	}
 	
 }
