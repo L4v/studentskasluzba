@@ -43,11 +43,25 @@ public class Profesor implements Serializable {
 		predmeti.add(p);
 	}
 	
-	public Predmet getPredmet(int i)
+	public Predmet getPredmet(String sifra)
 	{
-		return predmeti.get(i);
+		Predmet Result = null;
+		for(Predmet p : this.predmeti)
+		{
+			if(p.getSifra().equalsIgnoreCase(sifra))
+			{
+				Result = p;
+				break;
+			}
+		}
+		return Result;
 	}
 
+	public Predmet getPredmet(int i)
+	{
+		return this.predmeti.get(i);
+	}
+	
 	public ArrayList<Predmet> getPredmeti(){
 		return this.predmeti;
 	}

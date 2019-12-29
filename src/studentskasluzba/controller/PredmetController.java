@@ -1,8 +1,10 @@
 package studentskasluzba.controller;
 
 import studentskasluzba.model.BazaPredmet;
+import studentskasluzba.model.BazaProfesor;
 import studentskasluzba.model.BazaStudenata;
 import studentskasluzba.model.Predmet;
+import studentskasluzba.model.Profesor;
 import studentskasluzba.model.Student;
 import studentskasluzba.view.GlavniProzor;
 
@@ -40,7 +42,19 @@ public class PredmetController {
 		// NOTE(Jovan): Uklanjamo predmet kod svakog studenta
 		for(Student s : BazaStudenata.getInstance().getStudente())
 		{
-			
+			if(s.getPredmeti().contains(p))
+			{
+				s.removePredmet(p);
+			}
+		}
+		
+		// NOTE(Jovan): Uklanjamo predmet kod svakog profesora
+		for(Profesor prof : BazaProfesor.getInstance().getProfesore())
+		{
+			if(prof.getPredmet(p.getSifra())!= null)
+			{
+				prof.removePredmet(p);
+			}
 		}
 		
 		// NOTE(Jovan): Konacno uklanjamo predmet
