@@ -156,5 +156,24 @@ public class Profesor implements Serializable {
 		String Result = this.brLicneKarte + " " + this.ime + " " + this.prezime;
 		return Result;
 	}
+
+	// NOTE(Jovan): Posto je broj licne karte unikatan, dovoljna je provera
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == this)
+		{
+			return true;
+		}
+		if(!(obj instanceof Profesor))
+		{
+			return false;
+		}
+		Profesor p = (Profesor)obj;
+		if(p.getBrLicneKarte().equalsIgnoreCase(this.brLicneKarte))
+		{
+			return true;
+		}
+		return false;
+	}
 	
 }

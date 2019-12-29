@@ -28,6 +28,7 @@ public class PredmetController {
 	
 	public void addPredmet(Predmet p)
 	{
+		// NOTE(Jovan): Dodajemo predmet i cuvamo podatke
 		BazaPredmet.getInstance().addPredmet(p);
 		GlavniProzor.getInstance().azurirajPrikaz();
 		GlavniProzor.getInstance().saveAllDBs();
@@ -57,7 +58,7 @@ public class PredmetController {
 			}
 		}
 		
-		// NOTE(Jovan): Konacno uklanjamo predmet
+		// NOTE(Jovan): Konacno uklanjamo predmet i cuvamo podatke
 		BazaPredmet.getInstance().removePredmet(row);
 		GlavniProzor.getInstance().azurirajPrikaz();
 		GlavniProzor.getInstance().saveAllDBs();
@@ -66,6 +67,21 @@ public class PredmetController {
 	public void editPredmet(Predmet p)
 	{
 		BazaPredmet.getInstance().editPredmet(p);
+		GlavniProzor.getInstance().azurirajPrikaz();
+		GlavniProzor.getInstance().saveAllDBs();
+	}
+	
+	// NOTE(Jovan): Uklanjanje profesora sa predmeta
+	public void removeProfesor(int row)
+	{
+		// NOTE(Jovan): Uklanjamo predmet kod profesora
+		Predmet p = BazaPredmet.getInstance().getPredmet(row);
+		Profesor prof = p.getProfesor();
+		prof.removePredmet(p);
+		
+		// NOTE(Jovan): Konacno uklanjamo profesora sa predmeta
+		// i cuvamo podatke
+		BazaPredmet.getInstance().getPredmet(row).removeProfesor();
 		GlavniProzor.getInstance().azurirajPrikaz();
 		GlavniProzor.getInstance().saveAllDBs();
 	}
