@@ -1,6 +1,8 @@
 package studentskasluzba.view;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -8,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
 
+import studentskasluzba.model.BazaPredmet;
 import studentskasluzba.view.dijalog.BrisanjePredmeta;
 import studentskasluzba.view.dijalog.BrisanjeProfesora;
 import studentskasluzba.view.dijalog.BrisanjeStudenta;
@@ -30,6 +33,7 @@ public class Toolbar extends JToolBar{
 	ObrisiDugme obrisi;
 	private DodajDugme profNaPredmet;
 	private DodajDugme studentNaPredmet;
+	private ObrisiDugme profSaPredmeta;
 	// NOTE(Jovan): Sluzi za odredjivanje dugmica koji
 	// ce se prikazati
 	
@@ -42,14 +46,17 @@ public class Toolbar extends JToolBar{
 		// NOTE(Jovan): Default dugmici za Add, Edit, Delete
 		dodaj = new DodajDugme("Dodaj");
 		izmeni = new IzmeniDugme();
-		obrisi = new ObrisiDugme();
+		obrisi = new ObrisiDugme("Obrisi");
 		this.add(dodaj);
 		this.add(izmeni);
 		this.add(obrisi);
 		profNaPredmet = new DodajDugme("Dodaj profesora na predmet");
 		profNaPredmet.setIcon(new ImageIcon(getClass().getResource("/icons/add-prof.png")));
+		profSaPredmeta = new ObrisiDugme("Ukloni profesora sa predmeta");
+		profSaPredmeta.setIcon(new ImageIcon(getClass().getResource("/icons/remove-prof.png")));
 		studentNaPredmet = new DodajDugme("Dodaj studenta na predmet");
 		this.add(profNaPredmet);
+		this.add(profSaPredmeta);
 		this.add(studentNaPredmet);
 		
 		// NOTE(Jovan): Dodavanje studenta/predmeta/profesora u zavisnosti
@@ -114,40 +121,41 @@ public class Toolbar extends JToolBar{
 		
 		
 		// NOTE(Jovan): Dodavanje profesora na predmet
-		profNaPredmet.addMouseListener(new MouseListener() {
-			
+		profNaPredmet.addActionListener(new ActionListener() {
+
 			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO(Jovan): Dialog za profNaPredmet
+			public void actionPerformed(ActionEvent arg0) {
+				int row = GlavniProzor.getInstance().getSelektovanuTorku();
+				if (row == -1)
+				{
+					JOptionPane.showMessageDialog(null, "Potrebno je selektovati predmet!", "Warning", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
 				DodavanjeProfesoraNaPredmet dodaj = 
 						new DodavanjeProfesoraNaPredmet();
 				dodaj.setVisible(true);
 			}
 			
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
 		});
+		
+		// NOTE(Jovan): Uklanjanje profesora sa predmeta
+		profSaPredmeta.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int row = GlavniProzor.getInstance().getSelektovanuTorku();
+				if(row == -1)
+				{
+					JOptionPane.showMessageDialog(null, "Odaberite predmet!","Warning", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+				BazaPredmet.getInstance().getPredmet(row).removeProfesor();
+				GlavniProzor.getInstance().azurirajPrikaz();
+			}
+			
+		});
+		
+		// NOTE(Jovan): Dodavanje studenta na predmet
 		studentNaPredmet.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -159,6 +167,10 @@ public class Toolbar extends JToolBar{
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				
+				if (GlavniProzor.getInstance().getSelektovanuTorku()==-1) {
+					JOptionPane.showMessageDialog(null, "Niste selektovali predmet!");
+					return;
+				}
 				DodavanjeStudentaNaPredmet dodaj = new DodavanjeStudentaNaPredmet();
 				dodaj.setVisible(true);
 			}
@@ -331,7 +343,9 @@ public class Toolbar extends JToolBar{
 			{
 				dodaj.updateIcon(s);
 				dodaj.setToolTipText("Dodaj studenta");
+				obrisi.setToolTipText("Obrisi studenta");
 				profNaPredmet.setVisible(false);
+				profSaPredmeta.setVisible(false);
 				studentNaPredmet.setVisible(false);
 				break;
 			}
@@ -339,7 +353,9 @@ public class Toolbar extends JToolBar{
 			{
 				dodaj.updateIcon(s);
 				dodaj.setToolTipText("Dodaj profesora");
+				obrisi.setToolTipText("Obrisi profesora");
 				profNaPredmet.setVisible(false);
+				profSaPredmeta.setVisible(false);
 				studentNaPredmet.setVisible(false);
 				break;
 			}
@@ -347,7 +363,9 @@ public class Toolbar extends JToolBar{
 			{
 				dodaj.updateIcon(s);
 				dodaj.setToolTipText("Dodaj predmet");
+				obrisi.setToolTipText("Obrisi predmet");
 				profNaPredmet.setVisible(true);
+				profSaPredmeta.setVisible(true);
 				studentNaPredmet.setVisible(true);
 				break;
 			}

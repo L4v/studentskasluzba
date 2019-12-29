@@ -19,6 +19,7 @@ public class ProfesorTable extends JTable{
 		this.setModel(new AbstractTableModelProfesor());
 		// TODO(Jovan): Da li je ovo dovoljno?
 		this.setAutoCreateRowSorter(true);
+		new ButtonColumnPredmetiProfesora(this,10);
 	}
 	
 	// NOTE(Jovan): Menja boju selektovane torke	

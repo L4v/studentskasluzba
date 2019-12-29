@@ -3,8 +3,8 @@ package studentskasluzba.view.dijalog;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -13,8 +13,13 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
+import javax.swing.SwingUtilities;
 
+import studentskasluzba.model.BazaPredmet;
 import studentskasluzba.model.BazaProfesor;
+import studentskasluzba.model.Predmet;
+import studentskasluzba.model.Profesor;
 import studentskasluzba.view.GlavniProzor;
 
 public class BrisanjeProfesora extends JDialog{
@@ -73,69 +78,39 @@ public class BrisanjeProfesora extends JDialog{
 		c2.anchor = GridBagConstraints.EAST;
 		getContentPane().add(p, c2);
 		
-		potvrda.addMouseListener(new MouseListener() {
+		potvrda.addActionListener(new ActionListener() {
 			
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
+			public void actionPerformed(ActionEvent e) {
+				// NOTE(Jovan): Selektovan profesor
+				int row = GlavniProzor.getInstance().getSelektovanuTorku();
+				Profesor p = BazaProfesor.getInstance().getProfesor(row);
 				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
+				// NOTE(Jovan): Uklanjanje profesora sa svih predmeta
+				for(Predmet predmet : BazaPredmet.getInstance().getPredmete())
+				{
+					if(predmet.getProfesor().getBrLicneKarte().equalsIgnoreCase(p.getBrLicneKarte()))
+					{
+						predmet.removeProfesor();
+					}
+				}
 				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
+				// TODO(Jovan -> Kris): Uklanjanje profesora iz studenta?
 				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				BazaProfesor.getInstance().removeProfesor(GlavniProzor.getInstance().getSelektovanuTorku());
+				// NOTE(Jovan): Uklanjanje profesora iz baze
+				BazaProfesor.getInstance().removeProfesor(row);
+				GlavniProzor.getInstance().saveAllDBs();
 				dispose();
-				
 			}
 		});
+		// NOTE(Jovan): Default opcija za enter
+		JRootPane root = SwingUtilities.getRootPane(potvrda);
+		root.setDefaultButton(potvrda);
 		
-		odustanak.addMouseListener(new MouseListener() {
+		odustanak.addActionListener(new ActionListener() {
 			
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				dispose();
 				
 			}

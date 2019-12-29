@@ -12,18 +12,22 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
-import studentskasluzba.view.dijalog.StudentiNaPredmetu;
+import studentskasluzba.view.dijalog.PredmetiProfesora;
 
-public class ButtonColumnStudenti extends AbstractCellEditor 
-	implements TableCellRenderer, TableCellEditor, MouseListener
-{
-	private static final long serialVersionUID = -5505740600574406111L;
+public class ButtonColumnPredmetiProfesora extends AbstractCellEditor implements TableCellRenderer, TableCellEditor, MouseListener{
+
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JButton renderButton;
 	private JButton editorButton;
 	private JTable table;
 	private boolean isEditorActive = false;
 	
-	public ButtonColumnStudenti(JTable table, int column)
+	public ButtonColumnPredmetiProfesora(JTable table, int column)
 	{
 		this.table = table;
 		this.table.getColumnModel().getColumn(column).setCellRenderer(this);
@@ -37,30 +41,20 @@ public class ButtonColumnStudenti extends AbstractCellEditor
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				int row = ButtonColumnPredmetiProfesora.this.table.convertRowIndexToModel(table.getEditingRow());
 				fireEditingStopped();
-				StudentiNaPredmetu dialog = new StudentiNaPredmetu(table.getSelectedRow());
+				PredmetiProfesora dialog = new PredmetiProfesora(row);
 				dialog.setVisible(true);
 			}
 		});
 		this.isEditorActive = false;
 	}
 	
+
 	@Override
 	public Object getCellEditorValue() {
-		
+		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public Component getTableCellEditorComponent(JTable arg0, Object arg1, boolean arg2, int arg3, int arg4) {
-		return this.editorButton;
-	}
-
-	@Override
-	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
-			int row, int column) {
-		
-		return this.renderButton;
 	}
 
 	@Override
@@ -71,7 +65,7 @@ public class ButtonColumnStudenti extends AbstractCellEditor
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		
+		// TODO Auto-generated method stub
 		
 	}
 
@@ -99,5 +93,16 @@ public class ButtonColumnStudenti extends AbstractCellEditor
 		isEditorActive = false;
 		
 	}
-	
+
+	@Override
+	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+		return this.editorButton;
+	}
+
+	@Override
+	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+			int row, int column) {
+		return this.renderButton;
+	}
+
 }

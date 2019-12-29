@@ -31,13 +31,27 @@ public class Predmet implements Serializable {
 		return this.studenti;
 	}
 	
-	public void addStudent(Student s)
+	public boolean addStudent(Student s)
 	{
+		// NOTE(Jovan->Kris): Dodao proveru za postojanje
+		for(Student st : this.studenti)
+		{
+			if(st.getIndeks().equalsIgnoreCase(s.getIndeks()))
+			{
+				return false;
+			}
+		}
 		studenti.add(s);
+		return true;
 	}
 	
 	public void removeStudent(int i) {
 		studenti.remove(i);
+	}
+	
+	public void removeStudent(Student s)
+	{
+		this.studenti.remove(s);
 	}
 	
 	public Student getStudent(int i)
@@ -83,6 +97,31 @@ public class Predmet implements Serializable {
 
 	public void setProfesor(Profesor profesor) {
 		this.profesor = profesor;
+	}
+	
+	public void removeProfesor()
+	{
+		this.profesor = new Profesor("NEMA", "", "", "", "", "", "", "", "", "");
+	}
+
+	// NOTE(Jovan): Sluzi za .remove() metodu
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == this)
+		{
+			return true;
+		}
+		if(!(obj instanceof Predmet))
+		{
+			return false;
+		}
+		
+		Predmet p = (Predmet)obj;
+		if(p.getSifra().equalsIgnoreCase(this.sifra))
+		{
+			return true;
+		}
+		return false;
 	}
 	
 	

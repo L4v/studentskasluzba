@@ -114,7 +114,7 @@ public class BazaStudenata {
 	public void saveDB()
 	{
 			try {
-				FileOutputStream f = new FileOutputStream(new File("PredmetiDB.sdb"));
+				FileOutputStream f = new FileOutputStream(new File(NAME_DB));
 				ObjectOutputStream o = new ObjectOutputStream(f);
 
 				for (Student s : this.studenti)
@@ -170,7 +170,7 @@ public class BazaStudenata {
 	
 	public Student getStudent(String brIndeksa) {
 		for(Student s : studenti) {
-			if(s.getIndeks().equals(brIndeksa)) {
+			if(s.getIndeks().equalsIgnoreCase(brIndeksa)) {
 				return s;
 			}
 		}

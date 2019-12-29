@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import studentskasluzba.view.StatusStudent;
 
 public class Student implements Serializable{
+
 	private static final long serialVersionUID = 237914519209480301L;
 	private String ime;
 	private String prezime;
@@ -52,7 +53,16 @@ public class Student implements Serializable{
 	{
 		return predmeti.get(i);
 	}
+	
+	public ArrayList<Predmet> getPredmeti(){
+		return this.predmeti;
+	}
 
+	public void removePredmet(Predmet p) {
+		this.predmeti.remove(p);
+	}
+	
+	
 	public String getIme() {
 		return ime;
 	}
@@ -141,6 +151,23 @@ public class Student implements Serializable{
 		this.prosecnaOcena = prosecnaOcena;
 	}
 
-
+	// NOTE(Jovan -> Kris): Sluzi za uklanjanje pomocu .remove()
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == this)
+		{
+			return true;
+		}
+		if(!(obj instanceof Student))
+		{
+			return false;
+		}
+		Student s = (Student)obj;
+		if(s.getIndeks().equalsIgnoreCase(this.brojIndeksa))
+		{
+			return true;
+		}
+		return false;
+	}
 	
 }

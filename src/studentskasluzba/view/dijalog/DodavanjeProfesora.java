@@ -1,11 +1,10 @@
 package studentskasluzba.view.dijalog;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -13,19 +12,21 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import studentskasluzba.model.BazaProfesor;
 import studentskasluzba.model.Profesor;
 import studentskasluzba.view.FocusListenerObaveznoBroj;
 import studentskasluzba.view.FocusListenerObaveznoTxt;
+import studentskasluzba.view.GlavniProzor;
 
 public class DodavanjeProfesora extends JDialog{
 	private static final long serialVersionUID = -7033252007876580812L;
 
 	private JPanel fieldsPanel;
 	private JPanel buttonsPanel;
-	private JLabel warningLabel;
 	private JButton dodajButton, otkaziButton;
 	private JTextField ime, prezime, datum, adrStanovanja,
 	telefon, email, adrKancelarije, brLicneKarte, titula, zvanje;
@@ -40,29 +41,26 @@ public class DodavanjeProfesora extends JDialog{
 		this.setModal(true);
 		this.setTitle("Dodavanje profesora");
 		
-		warningLabel = new JLabel("POPUNITI SVA POLJA");
-		warningLabel.setForeground(Color.RED);
-		warningLabel.setVisible(false);
 		ime = new JTextField();
-		ime.addFocusListener(new FocusListenerObaveznoTxt());
+		ime.addFocusListener(new FocusListenerObaveznoTxt(0));
 		prezime = new JTextField();
-		prezime.addFocusListener(new FocusListenerObaveznoTxt());
+		prezime.addFocusListener(new FocusListenerObaveznoTxt(0));
 		datum = new JTextField();
-		datum.addFocusListener(new FocusListenerObaveznoTxt());
+		datum.addFocusListener(new FocusListenerObaveznoTxt(-2));
 		adrStanovanja = new JTextField();
-		adrStanovanja.addFocusListener(new FocusListenerObaveznoTxt());
+		adrStanovanja.addFocusListener(new FocusListenerObaveznoTxt(0));
 		telefon = new JTextField();
 		telefon.addFocusListener(new FocusListenerObaveznoBroj(-1));
 		email = new JTextField();
-		email.addFocusListener(new FocusListenerObaveznoTxt());
+		email.addFocusListener(new FocusListenerObaveznoTxt(-3));
 		adrKancelarije = new JTextField();
-		adrKancelarije.addFocusListener(new FocusListenerObaveznoTxt());
+		adrKancelarije.addFocusListener(new FocusListenerObaveznoTxt(0));
 		brLicneKarte = new JTextField();
 		brLicneKarte.addFocusListener(new FocusListenerObaveznoBroj(9));
 		titula = new JTextField();
-		titula.addFocusListener(new FocusListenerObaveznoTxt());
+		titula.addFocusListener(new FocusListenerObaveznoTxt(0));
 		zvanje = new JTextField();
-		zvanje.addFocusListener(new FocusListenerObaveznoTxt());
+		zvanje.addFocusListener(new FocusListenerObaveznoTxt(0));
 		
 		fieldsPanel = new JPanel(new GridLayout(10, 2));
 		fieldsPanel.add(new JLabel("Ime*"));
@@ -95,16 +93,10 @@ public class DodavanjeProfesora extends JDialog{
 		buttonsPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
 		this.add(buttonsPanel, BorderLayout.SOUTH);
 		
-		dodajButton.addMouseListener(new MouseListener() {
+		dodajButton.addActionListener(new ActionListener() {
 			
 			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				// TODO(Jovan): Custom jtext za proveru da li je prazan
 				if(ime.getText().isEmpty() ||
 						prezime.getText().isEmpty() ||
@@ -117,7 +109,7 @@ public class DodavanjeProfesora extends JDialog{
 						titula.getText().isEmpty() ||
 						zvanje.getText().isEmpty())
 				{
-					warningLabel.setVisible(true);
+					JOptionPane.showMessageDialog(null, "Morate popuniti sva obavezna polja, ozna\u010Dena sa (*)!","Warning", JOptionPane.WARNING_MESSAGE);	
 				}
 				else
 				{
@@ -125,61 +117,27 @@ public class DodavanjeProfesora extends JDialog{
 							adrStanovanja.getText(), telefon.getText(), email.getText(), adrKancelarije.getText(),
 							brLicneKarte.getText(), titula.getText(), zvanje.getText());
 					
+					// NOTE(Jovan): Dodavanje profesora u bazu uz proveru da li vec postoji
 					if (!BazaProfesor.getInstance().addProfesor(p)) {
 						JOptionPane.showMessageDialog(null, "Profesor sa tim brojem li\u010D karte ve\u0107 postoji!","Warning", JOptionPane.WARNING_MESSAGE);	
 					}
 					
-					
+					GlavniProzor.getInstance().saveAllDBs();
 					dispose();
 				}
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 		});
-		otkaziButton.addMouseListener(new MouseListener() {
+		// NOTE(Jovan): Default enter opcija
+		JRootPane root = SwingUtilities.getRootPane(dodajButton);
+		root.setDefaultButton(dodajButton);
+		
+		
+		otkaziButton.addActionListener(new ActionListener() {
 			
 			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				dispose();
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 		});

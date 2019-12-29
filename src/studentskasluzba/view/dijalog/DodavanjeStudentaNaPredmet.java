@@ -3,8 +3,8 @@ package studentskasluzba.view.dijalog;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -67,83 +67,45 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 		c2.anchor = GridBagConstraints.EAST;
 		getContentPane().add(p, c2);
 	
-		odustanak.addMouseListener(new MouseListener() {
+		odustanak.addActionListener(new ActionListener() {
 			
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				dispose();
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 				
 			}
 		});
 		
-		potvrda.addMouseListener(new MouseListener() {
-			
+		// NOTE(Jovan): Action listener za dodavanje	
+		ActionListener dodavanje = new ActionListener() {
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				String brIndeksa=text.getText();
 				Student s = BazaStudenata.getInstance().getStudent(brIndeksa);
 				if (s==null) {
 					JOptionPane.showMessageDialog(null, "Student ne postoji u bazi podataka!","Warning", JOptionPane.WARNING_MESSAGE);
+					return;
 				}
 				Predmet p = BazaPredmet.getInstance().getPredmet(GlavniProzor.getInstance().getSelektovanuTorku());
-				if (!s.getTrenutnaGodina().equals(Integer.toString(p.getGodina()))) {
+				if (!s.getTrenutnaGodina().equalsIgnoreCase(Integer.toString(p.getGodina()))) {
 					JOptionPane.showMessageDialog(null, "Trenutna godina studija studenta nije ista sa predmetom!","Warning", JOptionPane.WARNING_MESSAGE);
 					dispose();
 					return;
 				}
-				p.addStudent(s);
-				//BazaPredmet.getInstance().saveDB();
+				// NOTE(Jovan): U slucaju da ne uspe dodavanje
+				if(!p.addStudent(s))
+				{
+					JOptionPane.showMessageDialog(null, "Student ve\u0107 poha\u0111a ovaj predmet.");
+					dispose();
+				}
+				BazaStudenata.getInstance().getStudent(s.getIndeks()).addPredmet(p);
+				GlavniProzor.getInstance().saveAllDBs();
 				dispose();
+				
 			}
-		});
+		};
+		potvrda.addActionListener(dodavanje);
+		text.addActionListener(dodavanje);
 		
 	}
 	

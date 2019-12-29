@@ -11,12 +11,14 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
+import studentskasluzba.view.dijalog.AboutDialog;
 import studentskasluzba.view.dijalog.BrisanjePredmeta;
 import studentskasluzba.view.dijalog.BrisanjeProfesora;
 import studentskasluzba.view.dijalog.BrisanjeStudenta;
 import studentskasluzba.view.dijalog.DodavanjePredmeta;
 import studentskasluzba.view.dijalog.DodavanjeProfesora;
 import studentskasluzba.view.dijalog.DodavanjeStudenta;
+import studentskasluzba.view.dijalog.HelpDialog;
 import studentskasluzba.view.dijalog.IzmenaProfesora;
 import studentskasluzba.view.dijalog.IzmenaStudenta;
 
@@ -80,6 +82,7 @@ public class MojMenuBar extends JMenuBar{
 			public void actionPerformed(ActionEvent e) {
 				int choise = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da \u017Eelite da zatvorite aplikaciju?","Zatvaranje aplikacije",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
 				if (choise==JOptionPane.YES_OPTION) {
+					GlavniProzor.getInstance().saveAllDBs();
 					System.exit(0);
 				}
 			}
@@ -201,6 +204,29 @@ public class MojMenuBar extends JMenuBar{
 		miAbout.setIcon(new ImageIcon("res/icons/about.png"));
 		miAbout.setMnemonic(KeyEvent.VK_A);
 		miAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
+		
+		//dodavanje funkcionalnosti help
+		miHelp.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				HelpDialog miHelp = new HelpDialog();
+				miHelp.setVisible(true);
+			}
+		});
+		
+		//dodavanje funkcionalnosti about
+		miAbout.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AboutDialog miAbout = new AboutDialog();
+				miAbout.setVisible(true);
+				
+			}
+		});
+		
+		
 		
 		help.add(miHelp);
 		help.add(miAbout);

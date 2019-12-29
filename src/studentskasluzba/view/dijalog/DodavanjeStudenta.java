@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -85,14 +85,14 @@ public class DodavanjeStudenta extends JDialog{
 		warningLabel.setForeground(Color.RED);
 		warningLabel.setVisible(false);
 		
-		imeT.addFocusListener(new FocusListenerObaveznoTxt());      
-		prezimeT.addFocusListener(new FocusListenerObaveznoTxt());
-		datRodjT.addFocusListener(new FocusListenerObaveznoTxt());
-		adresaT.addFocusListener(new FocusListenerObaveznoTxt());
+		imeT.addFocusListener(new FocusListenerObaveznoTxt(0));      
+		prezimeT.addFocusListener(new FocusListenerObaveznoTxt(0));
+		datRodjT.addFocusListener(new FocusListenerObaveznoTxt(-2));
+		adresaT.addFocusListener(new FocusListenerObaveznoTxt(0));
 		brTelefonaT.addFocusListener(new FocusListenerObaveznoBroj(-1));
-		brIndeksaT.addFocusListener(new FocusListenerObaveznoTxt());
-		emailT.addFocusListener(new FocusListenerObaveznoTxt());
-		datumUpisaT.addFocusListener(new FocusListenerObaveznoTxt());
+		brIndeksaT.addFocusListener(new FocusListenerObaveznoTxt(-1));
+		emailT.addFocusListener(new FocusListenerObaveznoTxt(-3));
+		datumUpisaT.addFocusListener(new FocusListenerObaveznoTxt(-2));
 		prosekT.addFocusListener(new FocusListenerObaveznoBroj(-2));
 		
 		GridBagConstraints c = new GridBagConstraints();
@@ -263,34 +263,10 @@ public class DodavanjeStudenta extends JDialog{
 		c23.anchor = GridBagConstraints.EAST;
 		getContentPane().add(panel, c23);
 		
-		potvrdi.addMouseListener(new MouseListener() {
+		potvrdi.addActionListener(new ActionListener() {
 			
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				if(imeT.getText().isEmpty() || prezimeT.getText().isEmpty() || datRodjT.getText().isEmpty() || adresaT.getText().isEmpty() || brTelefonaT.getText().isEmpty() || brIndeksaT.getText().isEmpty() || emailT.getText().isEmpty() || datumUpisaT.getText().isEmpty() || prosekT.getText().isEmpty())
 				{
 					warningLabel.setVisible(true);
@@ -327,34 +303,11 @@ public class DodavanjeStudenta extends JDialog{
 			}
 		});
 		
-		otkazi.addMouseListener(new MouseListener() {
+		
+		otkazi.addActionListener(new ActionListener() {
 			
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				dispose();
 				
 			}

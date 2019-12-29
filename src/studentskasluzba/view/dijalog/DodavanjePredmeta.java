@@ -4,8 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -14,13 +14,16 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import studentskasluzba.model.BazaPredmet;
 import studentskasluzba.model.BazaProfesor;
 import studentskasluzba.model.Predmet;
 import studentskasluzba.model.Profesor;
 import studentskasluzba.view.FocusListenerObaveznoTxt;
+import studentskasluzba.view.GlavniProzor;
 
 @SuppressWarnings("serial")
 public class DodavanjePredmeta extends JDialog{
@@ -47,10 +50,10 @@ public class DodavanjePredmeta extends JDialog{
 		warningLabel.setForeground(Color.RED);
 		warningLabel.setVisible(false);
 		sifra = new JTextField();
-		sifra.addFocusListener(new FocusListenerObaveznoTxt());
+		sifra.addFocusListener(new FocusListenerObaveznoTxt(0));
 		
 		naziv = new JTextField();
-		naziv.addFocusListener(new FocusListenerObaveznoTxt());
+		naziv.addFocusListener(new FocusListenerObaveznoTxt(0));
 		
 		godina = new JComboBox<Integer>();
 		semestar = new JComboBox<Integer>();
@@ -69,6 +72,10 @@ public class DodavanjePredmeta extends JDialog{
 		{
 			profesori.addItem(p);
 		}
+		// NOTE(Jovan): Dodajemo "nema" kako bi imali mogucnost
+		// da ne odaberemo jos profesora za predmet
+		Profesor nema = new Profesor("NEMA", "", "", "", "", "", "", "", "", "");
+		profesori.addItem(nema);
 		
 		this.add(warningLabel, BorderLayout.NORTH);
 		fieldsPanel = new JPanel(new GridLayout(5, 2));
@@ -91,12 +98,13 @@ public class DodavanjePredmeta extends JDialog{
 		buttonsPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
 		this.add(buttonsPanel, BorderLayout.SOUTH);
 		
-		dodajButton.addMouseListener(new MouseListener() {
-
-			// TODO(Jovan): Mozda dodati shake? :D
+		
+		
+		dodajButton.addActionListener(new ActionListener() {
 			// TODO(Jovan): isEmpty() ne radi na nekim sistemima, zasto o Boze zasto
+			
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				if(sifra.getText().isEmpty() || naziv.getText().isEmpty())
 				{
 					warningLabel.setVisible(true);
@@ -114,67 +122,35 @@ public class DodavanjePredmeta extends JDialog{
 					if(!BazaPredmet.getInstance().addPredmet(p)) {
 						JOptionPane.showMessageDialog(null, "Predmet sa tom \u0161ifrom ve\u0107 postoji!","Warning", JOptionPane.WARNING_MESSAGE);
 					}
-					
+					// NOTE(Jovan): Ako nije prazan placeholder
+					if(!profesorPredmeta.getIme().equalsIgnoreCase("NEMA"))
+					{
+						// NOTE(Jovan): Pronalazenje profesora i dodavanje predmeta
+						String lk = profesorPredmeta.getBrLicneKarte();
+						for(Profesor profesor : BazaProfesor.getInstance().getProfesore())
+						{
+							if(profesor.getBrLicneKarte().equalsIgnoreCase(lk))
+							{
+								profesor.addPredmet(p);
+							}
+						}
+					}
+					GlavniProzor.getInstance().saveAllDBs();
 					dispose();
 				}
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				
 			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
 		});
-		otkaziButton.addMouseListener(new MouseListener() {
-
+		// NOTE(Jovan): Default opcija za enter
+		JRootPane root = SwingUtilities.getRootPane(dodajButton);
+		root.setDefaultButton(dodajButton);
+		
+		otkaziButton.addActionListener(new ActionListener() {
+			
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 			}
-
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
 		});
 	}
 	

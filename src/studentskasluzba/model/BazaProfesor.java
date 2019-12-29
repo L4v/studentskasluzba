@@ -14,7 +14,7 @@ import studentskasluzba.view.GlavniProzor;
 
 public class BazaProfesor {
 	private static BazaProfesor instance = null;
-	private static final String NAZIV_DB = "ProfesoriDB.sdb";
+	private static final String NAME_DB = "ProfesoriDB.sdb";
 	
 	private ArrayList<String> Obelezja;
 	private ArrayList<Profesor> Torke;
@@ -34,16 +34,16 @@ public class BazaProfesor {
 		Torke = new ArrayList<Profesor>();
 		
 		
-		Obelezja.add("BR_LICNE_KARTE");
-		Obelezja.add("IME");
-		Obelezja.add("PREZIME");
-		Obelezja.add("TITULA");
-		Obelezja.add("ZVANJE");
-		Obelezja.add("DATUM_RODJENJA");
-		Obelezja.add("ADRESA_ST.");
-		Obelezja.add("TELEFON");
-		Obelezja.add("EMAIL");
-		Obelezja.add("ADRESA_K");
+		Obelezja.add("Broj li\u010dne karte");
+		Obelezja.add("Ime");
+		Obelezja.add("Prezime");
+		Obelezja.add("Titula");
+		Obelezja.add("Zvanje");
+		Obelezja.add("Datum ro\u0111enja");
+		Obelezja.add("Adresa stanovanja");
+		Obelezja.add("Telefon");
+		Obelezja.add("Email");
+		Obelezja.add("Adresa kancelarije");
 		
 		Profesor tmp = new Profesor("Savo", "Oroz", "01.01.1901", "Balzakova 69", "0607671370",
 				"savo.oroz@savoandco.com", "Savin Trg 5", "123456789", "Nzm", "Nempojma");
@@ -59,9 +59,9 @@ public class BazaProfesor {
 		FileInputStream fi;
 			try {
 				// NOTE(Jovan): Ako ne postoji datoteka, napravice je
-				File dbFile = new File(NAZIV_DB);
+				File dbFile = new File(NAME_DB);
 				dbFile.createNewFile();
-				fi = new FileInputStream(new File(NAZIV_DB));
+				fi = new FileInputStream(new File(NAME_DB));
 				ObjectInputStream oi = null;
 				try 
 				{
@@ -114,7 +114,7 @@ public class BazaProfesor {
 		FileOutputStream f = null;
 		ObjectOutputStream o = null;
 			try {
-				f = new FileOutputStream(new File("ProfesoriDB.sdb"));
+				f = new FileOutputStream(new File(NAME_DB));
 				o = new ObjectOutputStream(f);
 				
 				for (Profesor p : this.Torke)
@@ -171,6 +171,21 @@ public class BazaProfesor {
 	
 	public Profesor getProfesor(int row) {
 		return this.Torke.get(row);
+	}
+	
+	public Profesor getProfesor(String lk)
+	{
+		Profesor Result = null;
+		for(Profesor p : this.Torke)
+		{
+			if(p.getBrLicneKarte().equalsIgnoreCase(lk))
+			{
+				Result = p;
+				// NOTE(Jovan): Nema duplikata
+				break;
+			}
+		}
+		return Result;
 	}
 	
 	public int getBrojObelezja()

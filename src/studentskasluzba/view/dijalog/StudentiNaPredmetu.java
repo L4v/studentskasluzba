@@ -15,8 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import studentskasluzba.model.BazaPredmet;
+import studentskasluzba.model.BazaStudenata;
+import studentskasluzba.model.Predmet;
 import studentskasluzba.model.Student;
-import studentskasluzba.view.GlavniProzor;
 
 public class StudentiNaPredmetu extends JDialog{
 	private static final long serialVersionUID = -4775434477795635244L;
@@ -94,10 +95,19 @@ public class StudentiNaPredmetu extends JDialog{
 				int i = list.getSelectedIndex();
 				if (i==-1) {
 					JOptionPane.showMessageDialog(null, "Niste selektovali studenta!","Warning", JOptionPane.WARNING_MESSAGE);
+					return;
 				}
 				int choise = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da \u017Eelite da obri\u0161ete studenta?","Brisanje studenta sa predmeta",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
 				if (choise==JOptionPane.YES_OPTION) {
-					BazaPredmet.getInstance().getPredmet(GlavniProzor.getInstance().getSelektovanuTorku()).removeStudent(i);
+					Student s = BazaPredmet.getInstance().getPredmet(StudentiNaPredmetu.this.row).getStudent(i);
+					Predmet p = BazaPredmet.getInstance().getPredmet(StudentiNaPredmetu.this.row);
+					s.removePredmet(p);
+					p.removeStudent(i); //da ukloni studenta sa predmeta
+					
+					for(Predmet pr : BazaStudenata.getInstance().getStudent(i).getPredmeti())
+					{
+						System.out.println(pr.getSifra());
+					}
 					dispose();
 				}
 				

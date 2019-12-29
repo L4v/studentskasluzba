@@ -3,11 +3,17 @@ package studentskasluzba.view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import studentskasluzba.model.BazaPredmet;
+import studentskasluzba.model.BazaProfesor;
+import studentskasluzba.model.BazaStudenata;
 
 @SuppressWarnings("serial")
 public class GlavniProzor extends JFrame implements ChangeListener{
@@ -43,6 +49,52 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 		this.setLocationRelativeTo(null);
 		this.setTitle("Studentska slu\u017eba");
 		
+		this.addWindowListener(new WindowListener() {
+
+			@Override
+			public void windowActivated(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowClosed(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			// NOTE(Jovan): Prilikom gasenja aplikacije sacuvaj baze
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				saveAllDBs();
+			}
+
+			@Override
+			public void windowDeactivated(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowDeiconified(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowIconified(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowOpened(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
 		
 		// NOTE(Jovan): Inicijalizacija ostalih komponenti
 		glavniToolbar = new Toolbar(); 
@@ -66,6 +118,14 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 		tabbedPane.addTab("Predmeti", predmetTab);
 		this.add(tabbedPane, BorderLayout.CENTER);
 		this.selektovanTab = SelektovanTab.STUDENT;
+	}
+	
+	// NOTE(Jovan): Sacuva stanje svih baze podataka
+	public void saveAllDBs()
+	{
+		BazaStudenata.getInstance().saveDB();
+		BazaProfesor.getInstance().saveDB();
+		BazaPredmet.getInstance().saveDB();
 	}
 	
 	public int getSelektovanuTorku()
