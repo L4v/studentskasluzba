@@ -147,8 +147,6 @@ public class BazaStudenata {
 			}
 		}
 		this.studenti.add(s);
-		GlavniProzor.getInstance().azurirajPrikaz();
-		saveDB();
 		return true;
 	}
 	

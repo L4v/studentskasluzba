@@ -19,15 +19,15 @@ private static StudentController instance = null;
 	
 	private StudentController() {}
 	
-	public void addStudent(Student s) {
+	public boolean addStudent(Student s) {
 		
-		/*if (!BazaStudenata.getInstance().addStudent(s)) {
-			JOptionPane.showMessageDialog(null, "Student sa tim brojem indeksa ve\u0107 postoji!","Warning", JOptionPane.WARNING_MESSAGE);	
-		}*/
-		
-		BazaStudenata.getInstance().addStudent(s);
-		GlavniProzor.getInstance().azurirajPrikaz();
-		GlavniProzor.getInstance().saveAllDBs();
+		if(BazaStudenata.getInstance().addStudent(s)) {
+			GlavniProzor.getInstance().azurirajPrikaz();
+			GlavniProzor.getInstance().saveAllDBs();
+			return true;
+		} else {
+			return false;
+		}
 		
 	}
 	

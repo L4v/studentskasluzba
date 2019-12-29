@@ -1,6 +1,5 @@
 package studentskasluzba.view.dijalog;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -12,16 +11,13 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import studentskasluzba.model.BazaStudenata;
-import studentskasluzba.model.Student;
 import studentskasluzba.view.FocusListenerObaveznoBroj;
 import studentskasluzba.view.FocusListenerObaveznoTxt;
-import studentskasluzba.view.StatusStudent;
+import studentskasluzba.view.listeners.DodavanjeStudentaListener;
 
 public class DodavanjeStudenta extends JDialog{
 
@@ -29,6 +25,28 @@ public class DodavanjeStudenta extends JDialog{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	JLabel ime, prezime, datRodj, adresa, brTelefona, brIndeksa, trenutnaGod, email, datumUpisa, prosek;
+	JButton potvrdi, otkazi;
+	
+	JTextField imeT;
+	JTextField prezimeT;
+	JTextField datRodjT;
+	JTextField adresaT;
+	JTextField brTelefonaT;
+	JTextField brIndeksaT;
+	
+	//dodatno
+	JTextField emailT;
+	JTextField datumUpisaT;
+	JTextField prosekT;
+	
+	JComboBox<String> trenGod;
+	
+	JRadioButton radBtnB;
+	JRadioButton radBtnS;
+	
+	private DodavanjeStudentaListener dodavanjeStudListener;
 
 	public DodavanjeStudenta() {
 		
@@ -40,50 +58,51 @@ public class DodavanjeStudenta extends JDialog{
 		GridBagLayout layout = new GridBagLayout();
 		getContentPane().setLayout(layout);
 		
-		JLabel ime = new JLabel("Ime*");
-		JLabel prezime = new JLabel("Prezime*");
-		JLabel datRodj = new JLabel("Datum ro\u0111enja*");
-		JLabel adresa = new JLabel("Adresa stanovanja*");
-		JLabel brTelefona = new JLabel("Broj telefona*");
-		JLabel brIndeksa = new JLabel("Broj Indeksa*");
-		JLabel trenutnaGod = new JLabel("Trenutna godina*");
+		ime = new JLabel("Ime*");
+		prezime = new JLabel("Prezime*");
+		datRodj = new JLabel("Datum ro\u0111enja*");
+		adresa = new JLabel("Adresa stanovanja*");
+		brTelefona = new JLabel("Broj telefona*");
+		brIndeksa = new JLabel("Broj Indeksa*");
+		trenutnaGod = new JLabel("Trenutna godina*");
 		
 		//dodatno
-		JLabel email = new JLabel("Email*");
-		JLabel datumUpisa = new JLabel("Datum upisa*");
-		JLabel prosek = new JLabel("Prosek*");
+		email = new JLabel("Email*");
+		datumUpisa = new JLabel("Datum upisa*");
+		prosek = new JLabel("Prosek*");
 		
-		JButton potvrdi = new JButton("Potvrdi");
-		JButton otkazi = new JButton("Otka\u017ei");
+		potvrdi = new JButton("Potvrdi");
+		otkazi = new JButton("Otka\u017ei");
 		
 		JPanel panel = new JPanel();
 		panel.add(otkazi);
 		panel.add(potvrdi);
 		
-		JComboBox<String> trenGod = new JComboBox<String>(new String[] { "I (prva)", "II (druga)", "III (tre\u0107a)", "IV (\u010Detvrta)"});
+		trenGod = new JComboBox<String>(new String[] { "I (prva)", "II (druga)", "III (tre\u0107a)", "IV (\u010Detvrta)"});
 			
-		JRadioButton radBtnB = new JRadioButton("Bud\u017Eet");
-		JRadioButton radBtnS = new JRadioButton("Samofinansiranje");
+		radBtnB = new JRadioButton("Bud\u017Eet");
+		radBtnS = new JRadioButton("Samofinansiranje");
 		
 		ButtonGroup btnGroup = new ButtonGroup();
 		btnGroup.add(radBtnB);
 		btnGroup.add(radBtnS);
 		
-		JTextField imeT = new JTextField();
-		JTextField prezimeT = new JTextField();
-		JTextField datRodjT = new JTextField();
-		JTextField adresaT = new JTextField();
-		JTextField brTelefonaT = new JTextField();
-		JTextField brIndeksaT = new JTextField();
+		imeT = new JTextField();
+		prezimeT = new JTextField();
+		datRodjT = new JTextField();
+		adresaT = new JTextField();
+		brTelefonaT = new JTextField();
+		brIndeksaT = new JTextField();
 		
 		//dodatno
-		JTextField emailT = new JTextField();
-		JTextField datumUpisaT = new JTextField();
-		JTextField prosekT = new JTextField();
+		emailT = new JTextField();
+		datumUpisaT = new JTextField();
+		prosekT = new JTextField();
 		
-		JLabel warningLabel = new JLabel("Niste popunili sva polja"); 
+		
+		/*JLabel warningLabel = new JLabel("Niste popunili sva polja"); 
 		warningLabel.setForeground(Color.RED);
-		warningLabel.setVisible(false);
+		warningLabel.setVisible(false);*/
 		
 		imeT.addFocusListener(new FocusListenerObaveznoTxt(0));      
 		prezimeT.addFocusListener(new FocusListenerObaveznoTxt(0));
@@ -250,12 +269,6 @@ public class DodavanjeStudenta extends JDialog{
 		c21.anchor = GridBagConstraints.WEST;
 		getContentPane().add(radBtnS, c21);
 		
-		GridBagConstraints c22 = new GridBagConstraints();
-		c22.gridx = 0;
-		c22.gridy = 12;
-		c22.insets = new Insets(15, 2, 2, 2);
-		getContentPane().add(warningLabel, c22);
-		
 		GridBagConstraints c23 = new GridBagConstraints();
 		c23.gridx = 1;
 		c23.gridy = 13;
@@ -263,56 +276,68 @@ public class DodavanjeStudenta extends JDialog{
 		c23.anchor = GridBagConstraints.EAST;
 		getContentPane().add(panel, c23);
 		
-		potvrdi.addActionListener(new ActionListener() {
-			
+		dodavanjeStudListener = new DodavanjeStudentaListener(this);
+		potvrdi.addActionListener(dodavanjeStudListener);		
+		
+		otkazi.addActionListener(new ActionListener() {		
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(imeT.getText().isEmpty() || prezimeT.getText().isEmpty() || datRodjT.getText().isEmpty() || adresaT.getText().isEmpty() || brTelefonaT.getText().isEmpty() || brIndeksaT.getText().isEmpty() || emailT.getText().isEmpty() || datumUpisaT.getText().isEmpty() || prosekT.getText().isEmpty())
-				{
-					warningLabel.setVisible(true);
-				}
-				else
-				{
-					String ime = imeT.getText();
-					String prezime = prezimeT.getText();
-					String datRodj = datRodjT.getText();
-					String adresa = adresaT.getText();
-					String brTelefona = brTelefonaT.getText();
-					String brIndeksa = brIndeksaT.getText();
-					String email = emailT.getText();
-					String datumUpisa = datumUpisaT.getText();
-					double prosek = Double.parseDouble(prosekT.getText());
-					String trenutnaGod  = String.valueOf(trenGod.getSelectedIndex()+1);
-					
-					StatusStudent statusStud;
-					
-					if (radBtnS.isSelected()) {
-						 statusStud = StatusStudent.S;
-					} else {
-						 statusStud = StatusStudent.B;
-					}
-					
-					Student s = new Student(ime, prezime, datRodj, adresa, brTelefona, email, brIndeksa, datumUpisa, trenutnaGod, statusStud, prosek);
-					
-					if (!BazaStudenata.getInstance().addStudent(s)) {
-						JOptionPane.showMessageDialog(null, "Student sa tim brojem indeksa ve\u0107 postoji!","Warning", JOptionPane.WARNING_MESSAGE);	
-					}
-					dispose();
-				}
-				
+				dispose();	
 			}
 		});
 		
-		
-		otkazi.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				
-			}
-		});
-		
+	}
+	
+	public JTextField getImeT() {
+		return imeT;
+	}
+	public JTextField getPrezimeT() {
+		return prezimeT;
+	}
+	public JTextField getDatRodjT() {
+		return datRodjT;
+	}
+
+	public JTextField getAdresaT() {
+		return adresaT;
+	}
+	public JTextField getBrTelefonaT() {
+		return brTelefonaT;
+	}
+	public JTextField getBrIndeksaT() {
+		return brIndeksaT;
+	}
+
+	public JTextField getEmailT() {
+		return emailT;
+	}
+
+	public JTextField getDatumUpisaT() {
+		return datumUpisaT;
+	}
+
+	public JTextField getProsekT() {
+		return prosekT;
+	}
+
+	public JRadioButton getRadBtnB() {
+		return radBtnB;
+	}
+
+	public JRadioButton getRadBtnS() {
+		return radBtnS;
+	}
+	
+	public JButton getPotvrdi() {
+		return potvrdi;
+	}
+
+	public JButton getOtkazi() {
+		return otkazi;
+	}
+
+	public JComboBox<String> getTrenGod() {
+		return trenGod;
 	}
 	
 }
