@@ -261,8 +261,6 @@ public class BazaStudenata {
 				s.setProsecnaOcena(prosecnaOcena);
 			}
 		}
-		GlavniProzor.getInstance().azurirajPrikaz();
-		saveDB();
 	}
 	
 }

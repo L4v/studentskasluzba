@@ -8,7 +8,7 @@ import javax.swing.JTextField;
 
 import studentskasluzba.view.dijalog.DodavanjeProfesora;
 
-public class DodavanjeProfesoraFocusTxt implements FocusListener{
+public class DodavanjeProfesoraFocus implements FocusListener{
 
 	/* 
 	 * 0     - Ne proverava se duzina
@@ -21,7 +21,7 @@ public class DodavanjeProfesoraFocusTxt implements FocusListener{
 	
 	private int duzina;
 	private DodavanjeProfesora dodajProf;
-	public DodavanjeProfesoraFocusTxt(DodavanjeProfesora dodajProf, int duzina)
+	public DodavanjeProfesoraFocus(DodavanjeProfesora dodajProf, int duzina)
 	{
 		this.dodajProf = dodajProf;
 		this.duzina = duzina;

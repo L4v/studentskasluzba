@@ -63,4 +63,8 @@ public class ProfesorController {
 	{
 		return BazaProfesor.getInstance().getProfesore();
 	}
+	
+	public Profesor getProfesor(int selectedRow) {
+		return BazaProfesor.getInstance().getProfesor(selectedRow);
+	}
 }

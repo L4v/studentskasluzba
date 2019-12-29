@@ -10,17 +10,14 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRootPane;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 
-import studentskasluzba.model.BazaProfesor;
+import studentskasluzba.controller.ProfesorController;
 import studentskasluzba.model.Profesor;
-import studentskasluzba.view.FocusListenerObaveznoBroj;
-import studentskasluzba.view.FocusListenerObaveznoTxt;
 import studentskasluzba.view.GlavniProzor;
+import studentskasluzba.view.listeners.IzmenaProfesoraFocus;
+import studentskasluzba.view.listeners.IzmenaProfesoraListener;
 
 public class IzmenaProfesora extends JDialog{
 
@@ -45,25 +42,25 @@ public class IzmenaProfesora extends JDialog{
 		this.setModal(true);
 		this.setTitle("Izmena profesora");
 		ime = new JTextField();
-		ime.addFocusListener(new FocusListenerObaveznoTxt(0));
+		ime.addFocusListener(new IzmenaProfesoraFocus(this, 0));
 		prezime = new JTextField();
-		prezime.addFocusListener(new FocusListenerObaveznoTxt(0));
+		prezime.addFocusListener(new IzmenaProfesoraFocus(this, 0));
 		datum = new JTextField();
-		datum.addFocusListener(new FocusListenerObaveznoTxt(-2));
+		datum.addFocusListener(new IzmenaProfesoraFocus(this, -2));
 		adrStanovanja = new JTextField();
-		adrStanovanja.addFocusListener(new FocusListenerObaveznoTxt(0));
+		adrStanovanja.addFocusListener(new IzmenaProfesoraFocus(this, 0));
 		telefon = new JTextField();
-		telefon.addFocusListener(new FocusListenerObaveznoBroj(-1));
+		telefon.addFocusListener(new IzmenaProfesoraFocus(this, -4));
 		email = new JTextField();
-		email.addFocusListener(new FocusListenerObaveznoTxt(-3));
+		email.addFocusListener(new IzmenaProfesoraFocus(this, -3));
 		adrKancelarije = new JTextField();
-		adrKancelarije.addFocusListener(new FocusListenerObaveznoTxt(0));
+		adrKancelarije.addFocusListener(new IzmenaProfesoraFocus(this, 0));
 		brLicneKarte = new JTextField();
-		brLicneKarte.addFocusListener(new FocusListenerObaveznoBroj(9));
+		brLicneKarte.addFocusListener(new IzmenaProfesoraFocus(this, 9));
 		titula = new JTextField();
-		titula.addFocusListener(new FocusListenerObaveznoTxt(0));
+		titula.addFocusListener(new IzmenaProfesoraFocus(this, 0));
 		zvanje = new JTextField();
-		zvanje.addFocusListener(new FocusListenerObaveznoTxt(0));
+		zvanje.addFocusListener(new IzmenaProfesoraFocus(this, 0));
 		
 		fieldsPanel = new JPanel(new GridLayout(10, 2));
 		fieldsPanel.add(new JLabel("Ime*"));
@@ -96,7 +93,7 @@ public class IzmenaProfesora extends JDialog{
 		buttonsPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
 		this.add(buttonsPanel, BorderLayout.SOUTH);
 		
-		Profesor p = BazaProfesor.getInstance().getProfesor(GlavniProzor.getInstance().getSelektovanuTorku());
+		Profesor p = ProfesorController.getInstance().getProfesor(GlavniProzor.getInstance().getSelektovanuTorku());
 		
 		ime.setText(p.getIme());
 		prezime.setText(p.getPrezime());
@@ -109,44 +106,59 @@ public class IzmenaProfesora extends JDialog{
 		titula.setText(p.getTitula());
 		zvanje.setText(p.getZvanje());
 		
-		
-		dodajButton.addActionListener(new ActionListener() {
+		dodajButton.addActionListener(new IzmenaProfesoraListener(this));
 
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				if(ime.getText().isEmpty() ||
-						prezime.getText().isEmpty() ||
-						datum.getText().isEmpty() ||
-						adrStanovanja.getText().isEmpty() ||
-						telefon.getText().isEmpty() ||
-						email.getText().isEmpty() ||
-						adrKancelarije.getText().isEmpty() ||
-						brLicneKarte.getText().isEmpty() ||
-						titula.getText().isEmpty() ||
-						zvanje.getText().isEmpty())
-				{
-					JOptionPane.showMessageDialog(null, "Morate popuniti sva obavezna polja, ozna\u010Dena sa (*)!","Warning", JOptionPane.WARNING_MESSAGE);	
-				}
-				else
-				{
-					BazaProfesor.getInstance().izmeniProfesora(ime.getText(), prezime.getText(), datum.getText(),
-							adrStanovanja.getText(), telefon.getText(), email.getText(), adrKancelarije.getText(),
-							brLicneKarte.getText(), titula.getText(), zvanje.getText());
-					
-					
-					dispose();
-				}
-			}
-		});
-		JRootPane root = SwingUtilities.getRootPane(dodajButton);
-		root.setDefaultButton(dodajButton);
-		
 		otkaziButton.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 			}
 		});
 	}
+	
+	public JButton getDodajButton() {
+		return dodajButton;
+	}
+
+	public JTextField getIme() {
+		return ime;
+	}
+
+	public JTextField getPrezime() {
+		return prezime;
+	}
+
+	public JTextField getDatum() {
+		return datum;
+	}
+
+	public JTextField getAdrStanovanja() {
+		return adrStanovanja;
+	}
+
+	public JTextField getTelefon() {
+		return telefon;
+	}
+
+	public JTextField getEmail() {
+		return email;
+	}
+
+	public JTextField getAdrKancelarije() {
+		return adrKancelarije;
+	}
+
+	public JTextField getBrLicneKarte() {
+		return brLicneKarte;
+	}
+
+	public JTextField getTitula() {
+		return titula;
+	}
+
+	public JTextField getZvanje() {
+		return zvanje;
+	}
+
+
 }
