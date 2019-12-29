@@ -154,6 +154,7 @@ public class BazaStudenata {
 	
 	public void removeStudent(int row)
 	{
+			
 		this.studenti.remove(row);
 		GlavniProzor.getInstance().azurirajPrikaz();
 		saveDB();
