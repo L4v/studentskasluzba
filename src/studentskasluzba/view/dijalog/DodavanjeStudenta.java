@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import studentskasluzba.view.listeners.DodavanjeStudentaFocusTxt;
+import studentskasluzba.view.listeners.DodavanjeStudentaFocus;
 import studentskasluzba.view.listeners.DodavanjeStudentaListener;
 
 public class DodavanjeStudenta extends JDialog{
@@ -103,15 +103,15 @@ public class DodavanjeStudenta extends JDialog{
 		warningLabel.setForeground(Color.RED);
 		warningLabel.setVisible(false);*/
 		
-		imeT.addFocusListener(new DodavanjeStudentaFocusTxt(this,0));      
-		prezimeT.addFocusListener(new DodavanjeStudentaFocusTxt(this,0));
-		datRodjT.addFocusListener(new DodavanjeStudentaFocusTxt(this,-2));
-		adresaT.addFocusListener(new DodavanjeStudentaFocusTxt(this,0));
-		brTelefonaT.addFocusListener(new DodavanjeStudentaFocusTxt(this,-5));
-		brIndeksaT.addFocusListener(new DodavanjeStudentaFocusTxt(this,-1));
-		emailT.addFocusListener(new DodavanjeStudentaFocusTxt(this,-3));
-		datumUpisaT.addFocusListener(new DodavanjeStudentaFocusTxt(this,-2));
-		prosekT.addFocusListener(new DodavanjeStudentaFocusTxt(this,-4));
+		imeT.addFocusListener(new DodavanjeStudentaFocus(this,0));      
+		prezimeT.addFocusListener(new DodavanjeStudentaFocus(this,0));
+		datRodjT.addFocusListener(new DodavanjeStudentaFocus(this,-2));
+		adresaT.addFocusListener(new DodavanjeStudentaFocus(this,0));
+		brTelefonaT.addFocusListener(new DodavanjeStudentaFocus(this,-5));
+		brIndeksaT.addFocusListener(new DodavanjeStudentaFocus(this,-1));
+		emailT.addFocusListener(new DodavanjeStudentaFocus(this,-3));
+		datumUpisaT.addFocusListener(new DodavanjeStudentaFocus(this,-2));
+		prosekT.addFocusListener(new DodavanjeStudentaFocus(this,-4));
 		
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridx = 0;
@@ -268,12 +268,12 @@ public class DodavanjeStudenta extends JDialog{
 		c21.anchor = GridBagConstraints.WEST;
 		getContentPane().add(radBtnS, c21);
 		
-		GridBagConstraints c23 = new GridBagConstraints();
-		c23.gridx = 1;
-		c23.gridy = 13;
-		c23.insets = new Insets(15, 2, 2, 2);
-		c23.anchor = GridBagConstraints.EAST;
-		getContentPane().add(panel, c23);
+		GridBagConstraints c22 = new GridBagConstraints();
+		c22.gridx = 1;
+		c22.gridy = 13;
+		c22.insets = new Insets(15, 2, 2, 2);
+		c22.anchor = GridBagConstraints.EAST;
+		getContentPane().add(panel, c22);
 		
 		dodavanjeStudListener = new DodavanjeStudentaListener(this);
 		potvrdi.addActionListener(dodavanjeStudListener);		

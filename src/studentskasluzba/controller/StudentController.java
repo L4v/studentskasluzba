@@ -34,6 +34,14 @@ private static StudentController instance = null;
 	public void editStudent(Student s) {
 		
 		BazaStudenata.getInstance().izmeniStudenta(s.getIme(), s.getPrezime(), s.getDatumRodjenja(), s.getAdresaStanovanja(), s.getKontaktTelefon(), s.getEmail(), s.getIndeks(), s.getDatumUpisa(), s.getTrenutnaGodina(), s.getStatusStudenta(), s.getProsecnaOcena());
+		
+		/*for(Predmet p : BazaStudenata.getInstance().getStudent(s.getIndeks()).getPredmeti()) {
+			if(p.getGodina() != Integer.parseInt(s.getTrenutnaGodina())) {
+				BazaStudenata.getInstance().getStudent(s.getIndeks()).removePredmet(p);
+				p.removeStudent(s);
+			}
+		}*/
+		
 		GlavniProzor.getInstance().azurirajPrikaz();
 		GlavniProzor.getInstance().saveAllDBs();
 		
@@ -82,5 +90,11 @@ private static StudentController instance = null;
 		
 		
 		
+	}
+
+	
+	public Student getStudent(int selectedRow) {
+		
+		return BazaStudenata.getInstance().getStudent(selectedRow);
 	}
 }

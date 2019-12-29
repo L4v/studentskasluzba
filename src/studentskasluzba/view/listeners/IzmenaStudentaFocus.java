@@ -5,10 +5,11 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
 import javax.swing.JTextField;
-import studentskasluzba.view.dijalog.DodavanjeStudenta;
 
-public class DodavanjeStudentaFocusTxt implements FocusListener{
+import studentskasluzba.view.dijalog.IzmenaStudenta;
 
+public class IzmenaStudentaFocus implements FocusListener {
+	
 	/* 
 	 * 0     - Ne proverava se duzina
 	 * n > 0 - Proverava se duzina za n
@@ -20,10 +21,10 @@ public class DodavanjeStudentaFocusTxt implements FocusListener{
 	 */
 	
 	private int duzina;
-	private DodavanjeStudenta dodStud;
-	public DodavanjeStudentaFocusTxt(DodavanjeStudenta dodStud, int duzina)
+	private IzmenaStudenta izmenaStud;
+	public IzmenaStudentaFocus(IzmenaStudenta izmenaStud, int duzina)
 	{
-		this.dodStud = dodStud;
+		this.izmenaStud = izmenaStud;
 		this.duzina = duzina;
 	}
 	@Override
@@ -44,12 +45,11 @@ public class DodavanjeStudentaFocusTxt implements FocusListener{
 				((duzina > 0) && (text.getText().length() != duzina)))
 		{
 			text.setBackground(new Color(231, 76, 60));
-			this.dodStud.getPotvrdi().setEnabled(false);
+			this.izmenaStud.getPotvrdi().setEnabled(false);
 		}
 		else
 		{
-			this.dodStud.getPotvrdi().setEnabled(true);
+			this.izmenaStud.getPotvrdi().setEnabled(true);
 		}
 	}
-
 }
