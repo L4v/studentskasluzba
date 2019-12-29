@@ -13,14 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRootPane;
-import javax.swing.SwingUtilities;
 
-import studentskasluzba.model.BazaPredmet;
-import studentskasluzba.model.BazaStudenata;
-import studentskasluzba.model.Predmet;
-import studentskasluzba.model.Student;
-import studentskasluzba.view.GlavniProzor;
+import studentskasluzba.view.listeners.BrisanjeStudentaListener;
 
 public class BrisanjeStudenta extends JDialog{
 
@@ -78,38 +72,14 @@ public class BrisanjeStudenta extends JDialog{
 		c2.anchor = GridBagConstraints.EAST;
 		getContentPane().add(p, c2);
 		
-		potvrda.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int row = GlavniProzor.getInstance().getSelektovanuTorku();
-				Student s = BazaStudenata.getInstance().getStudent(row);
-				
-				// NOTE(Jovan): Uklanjanje studenta sa predmeta
-				for(Predmet predmet : BazaPredmet.getInstance().getPredmete())
-				{
-					predmet.removeStudent(s);
-				}
-				
-				// NOTE(Jovan): Uklanjanje studenta iz baze
-				BazaStudenata.getInstance().removeStudent(row);
-				dispose();
-				
-			}
-		});
-		// NOTE(Jovan->Kris): Default enter opcija
-		JRootPane root = SwingUtilities.getRootPane(potvrda);
-		root.setDefaultButton(potvrda);
+		potvrda.addActionListener(new BrisanjeStudentaListener(this));
+		
 		odustanak.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				
 			}
 		});
-		
-		
 		
 	}
 }

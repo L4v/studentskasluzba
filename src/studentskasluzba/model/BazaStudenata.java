@@ -154,8 +154,8 @@ public class BazaStudenata {
 	{
 			
 		this.studenti.remove(row);
-		GlavniProzor.getInstance().azurirajPrikaz();
-		saveDB();
+		/*GlavniProzor.getInstance().azurirajPrikaz();
+		saveDB();*/
 	}
 	
 	public ArrayList<Student> getStudente()
