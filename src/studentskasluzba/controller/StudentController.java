@@ -24,7 +24,7 @@ private static StudentController instance = null;
 		if(BazaStudenata.getInstance().addStudent(s)) {
 			GlavniProzor.getInstance().azurirajPrikaz();
 			GlavniProzor.getInstance().saveAllDBs();
-			return true;
+			return true; // uspesno dodavanje
 		} else {
 			return false;
 		}
@@ -35,7 +35,7 @@ private static StudentController instance = null;
 		
 		BazaStudenata.getInstance().izmeniStudenta(s.getIme(), s.getPrezime(), s.getDatumRodjenja(), s.getAdresaStanovanja(), s.getKontaktTelefon(), s.getEmail(), s.getIndeks(), s.getDatumUpisa(), s.getTrenutnaGodina(), s.getStatusStudenta(), s.getProsecnaOcena());
 		
-		for(Predmet p : BazaStudenata.getInstance().getStudent(s.getIndeks()).getPredmeti()) {
+		for(Predmet p : BazaStudenata.getInstance().getStudent(s.getIndeks()).getPredmeti()) { //ukoliko se promeni godina studija proveri predmete i ukloni one koji ne ispunjavaju uslov da je ista godina u pitanju
 			if(p.getGodina() != Integer.parseInt(s.getTrenutnaGodina())) {
 				p.removeStudent(s);
 				BazaStudenata.getInstance().getStudent(s.getIndeks()).removePredmet(p);
