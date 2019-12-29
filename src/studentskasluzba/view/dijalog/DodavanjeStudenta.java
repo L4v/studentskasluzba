@@ -25,25 +25,25 @@ public class DodavanjeStudenta extends JDialog{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	JLabel ime, prezime, datRodj, adresa, brTelefona, brIndeksa, trenutnaGod, email, datumUpisa, prosek;
-	JButton potvrdi, otkazi;
+	private JLabel ime, prezime, datRodj, adresa, brTelefona, brIndeksa, trenutnaGod, email, datumUpisa, prosek;
+	private JButton potvrdi, otkazi;
 	
-	JTextField imeT;
-	JTextField prezimeT;
-	JTextField datRodjT;
-	JTextField adresaT;
-	JTextField brTelefonaT;
-	JTextField brIndeksaT;
+	private JTextField imeT;
+	private JTextField prezimeT;
+	private JTextField datRodjT;
+	private JTextField adresaT;
+	private JTextField brTelefonaT;
+	private JTextField brIndeksaT;
 	
 	//dodatno
-	JTextField emailT;
-	JTextField datumUpisaT;
-	JTextField prosekT;
+	private JTextField emailT;
+	private JTextField datumUpisaT;
+	private JTextField prosekT;
 	
-	JComboBox<String> trenGod;
+	private JComboBox<String> trenGod;
 	
-	JRadioButton radBtnB;
-	JRadioButton radBtnS;
+	private JRadioButton radBtnB;
+	private JRadioButton radBtnS;
 	
 	private DodavanjeStudentaListener dodavanjeStudListener;
 
@@ -97,11 +97,6 @@ public class DodavanjeStudenta extends JDialog{
 		emailT = new JTextField();
 		datumUpisaT = new JTextField();
 		prosekT = new JTextField();
-		
-		
-		/*JLabel warningLabel = new JLabel("Niste popunili sva polja"); 
-		warningLabel.setForeground(Color.RED);
-		warningLabel.setVisible(false);*/
 		
 		imeT.addFocusListener(new DodavanjeStudentaFocus(this,0));      
 		prezimeT.addFocusListener(new DodavanjeStudentaFocus(this,0));
