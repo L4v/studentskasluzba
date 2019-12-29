@@ -2,6 +2,7 @@ package studentskasluzba.controller;
 
 import javax.swing.JOptionPane;
 
+import studentskasluzba.model.BazaPredmet;
 import studentskasluzba.model.BazaStudenata;
 import studentskasluzba.model.Student;
 import studentskasluzba.view.GlavniProzor;
@@ -21,9 +22,9 @@ private static StudentController instance = null;
 	
 	public void addStudent(Student s) {
 		
-		if (!BazaStudenata.getInstance().addStudent(s)) {
+		/*if (!BazaStudenata.getInstance().addStudent(s)) {
 			JOptionPane.showMessageDialog(null, "Student sa tim brojem indeksa ve\u0107 postoji!","Warning", JOptionPane.WARNING_MESSAGE);	
-		}
+		}*/
 		
 		BazaStudenata.getInstance().addStudent(s);
 		GlavniProzor.getInstance().azurirajPrikaz();
@@ -50,4 +51,12 @@ private static StudentController instance = null;
 		GlavniProzor.getInstance().saveAllDBs();
 		
 	}
+	
+	public void addStudentNaPredmet(String brIndeksa) {
+		
+		
+		
+		
+	}
+	
 }
