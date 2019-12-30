@@ -154,7 +154,6 @@ public class Student implements Serializable{
 		this.prosecnaOcena = prosecnaOcena;
 	}
 
-	// NOTE(Jovan -> Kris): Sluzi za uklanjanje pomocu .remove()
 	@Override
 	public boolean equals(Object obj) {
 		if(obj == this)
