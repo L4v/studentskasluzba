@@ -16,20 +16,20 @@ public class MenuBarNewListener implements ActionListener{
 		{
 		 case STUDENT:
 		 {
-			DodavanjeStudenta miNew = new DodavanjeStudenta();
-			miNew.setVisible(true);
+			DodavanjeStudenta dodStud = new DodavanjeStudenta();
+			dodStud.setVisible(true);
 			break;
 		 }
 		 case PROFESOR:
 		 {
-			 DodavanjeProfesora miNew = new DodavanjeProfesora();
-			 miNew.setVisible(true);
+			 DodavanjeProfesora dodProf = new DodavanjeProfesora();
+			 dodProf.setVisible(true);
 			 break;
 		 }
 		 case PREDMET:
 		 {
-			DodavanjePredmeta miNew = new DodavanjePredmeta();
-			miNew.setVisible(true);
+			DodavanjePredmeta dodPred = new DodavanjePredmeta();
+			dodPred.setVisible(true);
 			break;
 		 }
 		 default:

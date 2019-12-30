@@ -271,8 +271,10 @@ public class DodavanjeStudenta extends JDialog{
 		c22.anchor = GridBagConstraints.EAST;
 		getContentPane().add(panel, c22);
 		
+
+		potvrdi.setEnabled(false);
 		dodavanjeStudListener = new DodavanjeStudentaListener(this);
-		potvrdi.addActionListener(dodavanjeStudListener);		
+		potvrdi.addActionListener(dodavanjeStudListener);	
 		
 		otkazi.addActionListener(new ActionListener() {		
 			@Override

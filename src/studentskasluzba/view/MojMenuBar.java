@@ -12,15 +12,9 @@ import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 import studentskasluzba.view.dijalog.AboutDialog;
-import studentskasluzba.view.dijalog.BrisanjePredmeta;
-import studentskasluzba.view.dijalog.BrisanjeProfesora;
-import studentskasluzba.view.dijalog.BrisanjeStudenta;
-import studentskasluzba.view.dijalog.DodavanjePredmeta;
-import studentskasluzba.view.dijalog.DodavanjeProfesora;
-import studentskasluzba.view.dijalog.DodavanjeStudenta;
 import studentskasluzba.view.dijalog.HelpDialog;
-import studentskasluzba.view.dijalog.IzmenaProfesora;
-import studentskasluzba.view.dijalog.IzmenaStudenta;
+import studentskasluzba.view.listeners.MenuBarDeleteListener;
+import studentskasluzba.view.listeners.MenuBarEditListener;
 import studentskasluzba.view.listeners.MenuBarNewListener;
 
 @SuppressWarnings("serial")
@@ -43,44 +37,10 @@ public class MojMenuBar extends JMenuBar{
 		miClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
 		
 		//dodavanje funkcionalnosti new
-		/*miNew.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				switch(GlavniProzor.getInstance().getSelektovanTab())
-				{
-				 case STUDENT:
-				 {
-					DodavanjeStudenta miNew = new DodavanjeStudenta();
-					miNew.setVisible(true);
-					break;
-				 }
-				 case PROFESOR:
-				 {
-					 DodavanjeProfesora miNew = new DodavanjeProfesora();
-					 miNew.setVisible(true);
-					 break;
-				 }
-				 case PREDMET:
-				 {
-					DodavanjePredmeta miNew = new DodavanjePredmeta();
-					miNew.setVisible(true);
-					break;
-				 }
-				 default:
-				 {
-					 return;
-				 }
-				}
-				
-			}
-		});*/
-		
 		miNew.addActionListener(new MenuBarNewListener());
 		
 		//dodavanje funkcionalnosti close
 		miClose.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int choise = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da \u017Eelite da zatvorite aplikaciju?","Zatvaranje aplikacije",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
@@ -93,7 +53,6 @@ public class MojMenuBar extends JMenuBar{
 		
 		file.add(miNew);
 		file.add(miClose);
-		
 		
 		
 		//EDIT
@@ -110,89 +69,15 @@ public class MojMenuBar extends JMenuBar{
 		miDelete.setMnemonic(KeyEvent.VK_D);
 		miDelete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		
-		//dodavanje funkcionalnosti edit
-		miEdit.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				switch(GlavniProzor.getInstance().getSelektovanTab())
-				{
-					case STUDENT:
-					{
-						if (GlavniProzor.getInstance().getSelektovanuTorku()==-1) {
-							JOptionPane.showMessageDialog(null, "Niste selektovali studenta!");
-							return;
-						}
-						IzmenaStudenta miEdit = new IzmenaStudenta();
-						miEdit.setVisible(true);
-						break;
-					}
-					case PROFESOR:
-					{
-						if (GlavniProzor.getInstance().getSelektovanuTorku()==-1) {
-							JOptionPane.showMessageDialog(null, "Niste selektovali profesora!");
-							return;
-						}
-						IzmenaProfesora miEdit = new IzmenaProfesora();
-						miEdit.setVisible(true);
-						break;
-					}
-					case PREDMET:
-					{
-						// dodati!!
-						break;
-					}
-				}
-				
-			}
-		});
+		//dodavanje funkcionalnosti edit		
+		miEdit.addActionListener(new MenuBarEditListener());
 		
 		//dodavanje funkcionalnosti delete
-		miDelete.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				switch(GlavniProzor.getInstance().getSelektovanTab())
-				{
-					case STUDENT:
-					{
-						if (GlavniProzor.getInstance().getSelektovanuTorku()==-1) {
-							JOptionPane.showMessageDialog(null, "Niste selektovali studenta!");
-							return;
-						}
-						BrisanjeStudenta miDelete = new BrisanjeStudenta();
-						miDelete.setVisible(true);
-						break;
-					}
-					case PROFESOR:
-					{
-						if (GlavniProzor.getInstance().getSelektovanuTorku()==-1) {
-							JOptionPane.showMessageDialog(null, "Niste selektovali profesora!");
-							return;
-						}
-						BrisanjeProfesora miDelete = new BrisanjeProfesora();
-						miDelete.setVisible(true);
-						break;
-					}
-					case PREDMET:
-					{
-						if (GlavniProzor.getInstance().getSelektovanuTorku()==-1) {
-							JOptionPane.showMessageDialog(null, "Niste selektovali predmet!");
-							return;
-						}
-						BrisanjePredmeta miDelete = new BrisanjePredmeta();
-						miDelete.setVisible(true);
-						break;
-					}
-				}
-				
-			}
-		});
+		miDelete.addActionListener(new MenuBarDeleteListener());
 		
 		edit.add(miEdit);
 		edit.add(miDelete);
-		
-	
+
 		
 		//HELP
 		JMenu help=new JMenu("Help");
@@ -228,8 +113,7 @@ public class MojMenuBar extends JMenuBar{
 				
 			}
 		});
-		
-		
+	
 		
 		help.add(miHelp);
 		help.add(miAbout);
@@ -237,10 +121,5 @@ public class MojMenuBar extends JMenuBar{
 		add(file);
 		add(edit);
 		add(help);
-		
-		
-		
-		
-		
 	}
 }
