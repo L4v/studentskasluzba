@@ -81,6 +81,7 @@ public class DodavanjeStudenta extends JDialog{
 			
 		radBtnB = new JRadioButton("Bud\u017Eet");
 		radBtnS = new JRadioButton("Samofinansiranje");
+		radBtnB.setSelected(true);
 		
 		ButtonGroup btnGroup = new ButtonGroup();
 		btnGroup.add(radBtnB);

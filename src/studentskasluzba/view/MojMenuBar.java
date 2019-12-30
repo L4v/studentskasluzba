@@ -21,6 +21,7 @@ import studentskasluzba.view.dijalog.DodavanjeStudenta;
 import studentskasluzba.view.dijalog.HelpDialog;
 import studentskasluzba.view.dijalog.IzmenaProfesora;
 import studentskasluzba.view.dijalog.IzmenaStudenta;
+import studentskasluzba.view.listeners.MenuBarNewListener;
 
 @SuppressWarnings("serial")
 public class MojMenuBar extends JMenuBar{
@@ -42,7 +43,7 @@ public class MojMenuBar extends JMenuBar{
 		miClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
 		
 		//dodavanje funkcionalnosti new
-		miNew.addActionListener(new ActionListener() {
+		/*miNew.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -73,7 +74,9 @@ public class MojMenuBar extends JMenuBar{
 				}
 				
 			}
-		});
+		});*/
+		
+		miNew.addActionListener(new MenuBarNewListener());
 		
 		//dodavanje funkcionalnosti close
 		miClose.addActionListener(new ActionListener() {
