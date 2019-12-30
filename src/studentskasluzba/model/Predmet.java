@@ -33,7 +33,6 @@ public class Predmet implements Serializable {
 	
 	public boolean addStudent(Student s)
 	{
-		// NOTE(Jovan->Kris): Dodao proveru za postojanje
 		for(Student st : this.studenti)
 		{
 			if(st.getIndeks().equalsIgnoreCase(s.getIndeks()))
