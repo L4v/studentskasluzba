@@ -10,30 +10,30 @@ import studentskasluzba.view.dijalog.IzmenaStudenta;
 
 public class IzmenaStudentaListener implements ActionListener{
 
-	private IzmenaStudenta izmStud;
+	private IzmenaStudenta view;
 	
-	public IzmenaStudentaListener(IzmenaStudenta izmStud) {
-		this.izmStud = izmStud;
+	public IzmenaStudentaListener(IzmenaStudenta view) {
+		this.view = view;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(this.izmStud.getPotvrdi().isEnabled())
+		if(this.view.getPotvrdi().isEnabled())
 		{
-			String ime = izmStud.getImeT().getText();
-			String prezime = izmStud.getPrezimeT().getText();
-			String datRodj = izmStud.getDatRodjT().getText();
-			String adresa = izmStud.getAdresaT().getText();
-			String brTelefona = izmStud.getBrTelefonaT().getText();
-			String brIndeksa = izmStud.getBrIndeksaT().getText();
-			String email = izmStud.getEmailT().getText();
-			String datumUpisa = izmStud.getDatumUpisaT().getText();
-			double prosek = Double.parseDouble(izmStud.getProsekT().getText());
-			String trenutnaGod  = String.valueOf(izmStud.getTrenGod().getSelectedIndex()+1);
+			String ime = view.getImeT().getText();
+			String prezime = view.getPrezimeT().getText();
+			String datRodj = view.getDatRodjT().getText();
+			String adresa = view.getAdresaT().getText();
+			String brTelefona = view.getBrTelefonaT().getText();
+			String brIndeksa = view.getBrIndeksaT().getText();
+			String email = view.getEmailT().getText();
+			String datumUpisa = view.getDatumUpisaT().getText();
+			double prosek = Double.parseDouble(view.getProsekT().getText());
+			String trenutnaGod  = String.valueOf(view.getTrenGod().getSelectedIndex()+1);
 			
 			StatusStudent statusStud;
 			
-			if (izmStud.getRadBtnS().isSelected()) {
+			if (view.getRadBtnS().isSelected()) {
 				 statusStud = StatusStudent.S;
 			} else {
 				 statusStud = StatusStudent.B;
@@ -43,7 +43,7 @@ public class IzmenaStudentaListener implements ActionListener{
 			StudentController.getInstance().editStudent(s);
 			
 			
-			izmStud.dispose();
+			view.dispose();
 		}
 		
 	}

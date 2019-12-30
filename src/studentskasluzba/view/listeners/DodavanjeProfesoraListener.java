@@ -11,25 +11,25 @@ import studentskasluzba.view.dijalog.DodavanjeProfesora;
 
 public class DodavanjeProfesoraListener implements ActionListener{
 
-	private DodavanjeProfesora dodProf;
+	private DodavanjeProfesora view;
 	
-	public DodavanjeProfesoraListener(DodavanjeProfesora dodProf) {
-		this.dodProf = dodProf;
+	public DodavanjeProfesoraListener(DodavanjeProfesora view) {
+		this.view = view;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(this.dodProf.getDodajButton().isEnabled())
+		if(this.view.getDodajButton().isEnabled())
 		{
-			Profesor p = new Profesor(dodProf.getIme().getText(), dodProf.getPrezime().getText(), dodProf.getDatum().getText(),
-					dodProf.getAdrStanovanja().getText(), dodProf.getTelefon().getText(), dodProf.getEmail().getText(), dodProf.getAdrKancelarije().getText(),
-					dodProf.getBrLicneKarte().getText(), dodProf.getTitula().getText(), dodProf.getZvanje().getText());
+			Profesor p = new Profesor(view.getIme().getText(), view.getPrezime().getText(), view.getDatum().getText(),
+					view.getAdrStanovanja().getText(), view.getTelefon().getText(), view.getEmail().getText(), view.getAdrKancelarije().getText(),
+					view.getBrLicneKarte().getText(), view.getTitula().getText(), view.getZvanje().getText());
 			
 			if (!ProfesorController.getInstance().addProfesor(p)) {
 				JOptionPane.showMessageDialog(null, "Profesor sa tim brojem li\u010Dne karte ve\u0107 postoji!","Warning", JOptionPane.WARNING_MESSAGE);	
 			}
-			this.dodProf.dispose();
+			this.view.dispose();
 		}
 
 	}

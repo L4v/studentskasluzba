@@ -20,10 +20,10 @@ public class IzmenaProfesoraFocus implements FocusListener{
 	 */
 	
 	private int duzina;
-	private IzmenaProfesora izmenaProf;
-	public IzmenaProfesoraFocus(IzmenaProfesora izmenaProf, int duzina)
+	private IzmenaProfesora view;
+	public IzmenaProfesoraFocus(IzmenaProfesora view, int duzina)
 	{
-		this.izmenaProf = izmenaProf;
+		this.view = view;
 		this.duzina = duzina;
 	}
 	@Override
@@ -43,11 +43,11 @@ public class IzmenaProfesoraFocus implements FocusListener{
 				((duzina > 0) && (text.getText().length() != duzina)))
 		{
 			text.setBackground(new Color(231, 76, 60));
-			this.izmenaProf.getDodajButton().setEnabled(false);
+			this.view.getDodajButton().setEnabled(false);
 		}
 		else
 		{
-			this.izmenaProf.getDodajButton().setEnabled(true);
+			this.view.getDodajButton().setEnabled(true);
 		}
 	}
 }

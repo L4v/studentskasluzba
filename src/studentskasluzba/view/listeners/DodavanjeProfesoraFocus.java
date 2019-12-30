@@ -20,10 +20,10 @@ public class DodavanjeProfesoraFocus implements FocusListener{
 	 */
 	
 	private int duzina;
-	private DodavanjeProfesora dodajProf;
-	public DodavanjeProfesoraFocus(DodavanjeProfesora dodajProf, int duzina)
+	private DodavanjeProfesora view;
+	public DodavanjeProfesoraFocus(DodavanjeProfesora view, int duzina)
 	{
-		this.dodajProf = dodajProf;
+		this.view = view;
 		this.duzina = duzina;
 	}
 	@Override
@@ -43,11 +43,11 @@ public class DodavanjeProfesoraFocus implements FocusListener{
 				((duzina > 0) && (text.getText().length() != duzina)))
 		{
 			text.setBackground(new Color(231, 76, 60));
-			this.dodajProf.getDodajButton().setEnabled(false);
+			this.view.getDodajButton().setEnabled(false);
 		}
 		else
 		{
-			this.dodajProf.getDodajButton().setEnabled(true);
+			this.view.getDodajButton().setEnabled(true);
 		}
 	}
 }

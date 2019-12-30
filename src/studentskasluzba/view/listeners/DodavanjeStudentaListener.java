@@ -12,30 +12,30 @@ import studentskasluzba.view.dijalog.DodavanjeStudenta;
 
 public class DodavanjeStudentaListener implements ActionListener{
 
-	private DodavanjeStudenta dodStud;
+	private DodavanjeStudenta view;
 	
-	public DodavanjeStudentaListener(DodavanjeStudenta dodStud) {
-		this.dodStud = dodStud;
+	public DodavanjeStudentaListener(DodavanjeStudenta view) {
+		this.view = view;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(this.dodStud.getPotvrdi().isEnabled())
+		if(this.view.getPotvrdi().isEnabled())
 		{
-			String ime = dodStud.getImeT().getText();
-			String prezime = dodStud.getPrezimeT().getText();
-			String datRodj = dodStud.getDatRodjT().getText();
-			String adresa = dodStud.getAdresaT().getText();
-			String brTelefona = dodStud.getBrTelefonaT().getText();
-			String brIndeksa = dodStud.getBrIndeksaT().getText();
-			String email = dodStud.getEmailT().getText();
-			String datumUpisa = dodStud.getDatumUpisaT().getText();
-			double prosek = Double.parseDouble(dodStud.getProsekT().getText());
-			String trenutnaGod  = String.valueOf(dodStud.getTrenGod().getSelectedIndex()+1);
+			String ime = view.getImeT().getText();
+			String prezime = view.getPrezimeT().getText();
+			String datRodj = view.getDatRodjT().getText();
+			String adresa = view.getAdresaT().getText();
+			String brTelefona = view.getBrTelefonaT().getText();
+			String brIndeksa = view.getBrIndeksaT().getText();
+			String email = view.getEmailT().getText();
+			String datumUpisa = view.getDatumUpisaT().getText();
+			double prosek = Double.parseDouble(view.getProsekT().getText());
+			String trenutnaGod  = String.valueOf(view.getTrenGod().getSelectedIndex()+1);
 			
 			StatusStudent statusStud;
 			
-			if (dodStud.getRadBtnS().isSelected()) {
+			if (view.getRadBtnS().isSelected()) {
 				 statusStud = StatusStudent.S;
 			} else {
 				 statusStud = StatusStudent.B;
@@ -47,7 +47,7 @@ public class DodavanjeStudentaListener implements ActionListener{
 				JOptionPane.showMessageDialog(null, "Student sa tim brojem indeksa ve\u0107 postoji!","Warning", JOptionPane.WARNING_MESSAGE);	
 			}
 			
-			dodStud.dispose();
+			view.dispose();
 		}
 	}
 		

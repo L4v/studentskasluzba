@@ -11,28 +11,28 @@ import studentskasluzba.view.dijalog.DodavanjeStudentaNaPredmet;
 
 public class DodavanjeStudentaNaPredmetListener implements ActionListener{
 
-	private DodavanjeStudentaNaPredmet dodStudPred;
+	private DodavanjeStudentaNaPredmet view;
 	
-	public DodavanjeStudentaNaPredmetListener(DodavanjeStudentaNaPredmet dodStudPred) {
-		this.dodStudPred = dodStudPred;
+	public DodavanjeStudentaNaPredmetListener(DodavanjeStudentaNaPredmet view) {
+		this.view = view;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		int ret = StudentController.getInstance().addStudentNaPredmet(dodStudPred.getUnos().getText(), GlavniProzor.getInstance().getSelektovanuTorku());
+		int ret = StudentController.getInstance().addStudentNaPredmet(view.getUnos().getText(), GlavniProzor.getInstance().getSelektovanuTorku());
 		
 		if(ret == 1) {
 			JOptionPane.showMessageDialog(null, "Student ne postoji u bazi podataka!","Warning", JOptionPane.WARNING_MESSAGE);
-			this.dodStudPred.dispose();
+			this.view.dispose();
 		} else if(ret == 2) {
 			JOptionPane.showMessageDialog(null, "Trenutna godina studija studenta nije ista sa predmetom!","Warning", JOptionPane.WARNING_MESSAGE);
-			this.dodStudPred.dispose();
+			this.view.dispose();
 		} else if(ret == 3){
 			JOptionPane.showMessageDialog(null, "Student ve\u0107 poha\u0111a ovaj predmet.");
-			this.dodStudPred.dispose();
+			this.view.dispose();
 		} else {
-			this.dodStudPred.dispose();
+			this.view.dispose();
 		}
 	}
 	

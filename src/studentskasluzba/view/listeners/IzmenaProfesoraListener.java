@@ -9,24 +9,24 @@ import studentskasluzba.view.dijalog.IzmenaProfesora;
 
 public class IzmenaProfesoraListener implements ActionListener{
 
-	private IzmenaProfesora izmProf;
+	private IzmenaProfesora view;
 	
-	public IzmenaProfesoraListener(IzmenaProfesora izmProf) {
-		this.izmProf = izmProf;
+	public IzmenaProfesoraListener(IzmenaProfesora view) {
+		this.view = view;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(this.izmProf.getDodajButton().isEnabled())
+		if(this.view.getDodajButton().isEnabled())
 		{
-			Profesor p = new Profesor(izmProf.getIme().getText(), izmProf.getPrezime().getText(), izmProf.getDatum().getText(),
-					izmProf.getAdrStanovanja().getText(), izmProf.getTelefon().getText(), izmProf.getEmail().getText(), izmProf.getAdrKancelarije().getText(),
-					izmProf.getBrLicneKarte().getText(), izmProf.getTitula().getText(), izmProf.getZvanje().getText());
+			Profesor p = new Profesor(view.getIme().getText(), view.getPrezime().getText(), view.getDatum().getText(),
+					view.getAdrStanovanja().getText(), view.getTelefon().getText(), view.getEmail().getText(), view.getAdrKancelarije().getText(),
+					view.getBrLicneKarte().getText(), view.getTitula().getText(), view.getZvanje().getText());
 
 			ProfesorController.getInstance().editProfesor(p);
 			
-			this.izmProf.dispose();
+			this.view.dispose();
 		}
 
 	}

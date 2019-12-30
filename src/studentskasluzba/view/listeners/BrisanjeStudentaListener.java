@@ -9,10 +9,10 @@ import studentskasluzba.view.dijalog.BrisanjeStudenta;
 
 public class BrisanjeStudentaListener implements ActionListener{
 
-	private BrisanjeStudenta bs;
+	private BrisanjeStudenta view;
 	
-	public BrisanjeStudentaListener(BrisanjeStudenta bs) {
-		this.bs = bs;
+	public BrisanjeStudentaListener(BrisanjeStudenta view) {
+		this.view = view;
 	}
 	
 	@Override
@@ -21,7 +21,7 @@ public class BrisanjeStudentaListener implements ActionListener{
 		int row = GlavniProzor.getInstance().getSelektovanuTorku();
 		StudentController.getInstance().removeStudent(row);
 		
-		this.bs.dispose();
+		this.view.dispose();
 		
 	}
 
