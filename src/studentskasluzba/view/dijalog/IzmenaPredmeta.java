@@ -16,7 +16,9 @@ import javax.swing.JRootPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import studentskasluzba.controller.PredmetController;
 import studentskasluzba.controller.ProfesorController;
+import studentskasluzba.model.Predmet;
 import studentskasluzba.model.Profesor;
 import studentskasluzba.view.listeners.IzmenaPredmetaFocusTxt;
 import studentskasluzba.view.listeners.IzmenaPredmetaListener;
@@ -41,9 +43,13 @@ public class IzmenaPredmeta extends JDialog{
 		this.setResizable(true);
 		this.setModal(true);
 		this.setTitle("Izmena predmeta");
+		Predmet selektovanPredmet = PredmetController.getInstance().getSelektovan();
 		sifra = new JTextField();
+		sifra.setText(selektovanPredmet.getSifra());
+		sifra.setEnabled(false);
 		sifra.addFocusListener(new IzmenaPredmetaFocusTxt(this));
 		naziv = new JTextField();
+		naziv.setText(selektovanPredmet.getNaziv());
 		naziv.addFocusListener(new IzmenaPredmetaFocusTxt(this));
 		
 		profesori = new JComboBox<Profesor>();
@@ -53,7 +59,9 @@ public class IzmenaPredmeta extends JDialog{
 		}
 		// NOTE(Jovan): Placeholder
 		profesori.addItem(new Profesor("NEMA", "", "", "", "", "", "", "", "", ""));
+		profesori.setSelectedItem(selektovanPredmet.getProfesor());
 		
+		// TODO(Jovan): Ograniciti semestar na osnovu godine
 		godina = new JComboBox<Integer>();
 		semestar = new JComboBox<Integer>();
 		for(int i = 1; i <= 8; ++i)
@@ -64,7 +72,7 @@ public class IzmenaPredmeta extends JDialog{
 				godina.addItem(i);
 			}
 		}
-		
+		godina.setSelectedItem(selektovanPredmet.getGodina());
 		fieldsPanel = new JPanel(new GridLayout(5, 2));
 		fieldsPanel.add(new JLabel("\u0160ifra*"));
 		fieldsPanel.add(sifra);

@@ -95,7 +95,7 @@ public class PredmetController {
 			// NOTE(Jovan): Ako je izmena primljena azuriraj profesore i studente
 			for(Profesor prof : BazaProfesor.getInstance().getProfesore())
 			{
-				if(prof.getPredmet(p.getSifra()).equals(p))
+				if(prof.getPredmeti().contains(p))
 				{
 					// NOTE(Jovan): Ako profesor vise nije na predmetu, 
 					// azuriraj profesora
@@ -109,15 +109,28 @@ public class PredmetController {
 			// NOTE(Jovan): Provera ogranicenja sa studentima i azuriranje
 			for(Student s : BazaStudenata.getInstance().getStudente())
 			{
-				if(s.getTrenutnaGodina() != p.getGodina())
+				for(Predmet tmp : s.getPredmeti())
 				{
-					
+					if(tmp.getSifra().equalsIgnoreCase(p.getSifra()))
+					{
+						if(s.getTrenutnaGodina() != p.getGodina())
+						{
+							s.removePredmet(p);
+							p.removeStudent(s);
+						}
+					}
 				}
 			}
 			// NOTE(Jovan): I konacno azuriraj prikaz i sacuvaj sve podatke
 			GlavniProzor.getInstance().azurirajPrikaz();
 			GlavniProzor.getInstance().saveAllDBs();
 		}
+		return Result;
+	}
+	
+	public Predmet getSelektovan()
+	{
+		Predmet Result = BazaPredmet.getInstance().getPredmet(GlavniProzor.getInstance().getSelektovanuTorku());
 		return Result;
 	}
 	
