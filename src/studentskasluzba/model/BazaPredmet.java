@@ -145,8 +145,9 @@ public class BazaPredmet {
 		return this.torke;
 	}
 	
-	public void editPredmet(Predmet p)
+	public boolean editPredmet(Predmet p)
 	{
+		boolean Result = false;
 		// NOTE(Jovan): Trazi predmet, ako postoji, azurira ga
 		for(Predmet predmet : this.torke)
 		{
@@ -157,9 +158,11 @@ public class BazaPredmet {
 				predmet.setGodina(p.getGodina());
 				predmet.setProfesor(p.getProfesor());
 				
-				return;
+				Result = true;
+				break;
 			}
 		}
+		return Result;
 	}
 	
 	public Predmet getPredmet(int row)

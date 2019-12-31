@@ -29,6 +29,11 @@ public class IzmenaPredmetaFocusTxt implements FocusListener{
 		if(text.getText().isEmpty())
 		{
 			text.setBackground(new Color(231, 76, 60));
+			view.getPotvrdiButton().setEnabled(false);
+		}
+		else
+		{
+			view.getPotvrdiButton().setEnabled(true);
 		}
 	}
 

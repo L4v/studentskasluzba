@@ -1,18 +1,25 @@
 package studentskasluzba.view.dijalog;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import studentskasluzba.controller.ProfesorController;
 import studentskasluzba.model.Profesor;
 import studentskasluzba.view.listeners.IzmenaPredmetaFocusTxt;
+import studentskasluzba.view.listeners.IzmenaPredmetaListener;
 
 
 public class IzmenaPredmeta extends JDialog{
@@ -61,8 +68,77 @@ public class IzmenaPredmeta extends JDialog{
 		fieldsPanel = new JPanel(new GridLayout(5, 2));
 		fieldsPanel.add(new JLabel("\u0160ifra*"));
 		fieldsPanel.add(sifra);
-		fieldsPanel.add(new JLabel("Naziv"));
+		fieldsPanel.add(new JLabel("Naziv predmeta*"));
 		fieldsPanel.add(naziv);
-		// TODO(Jovan): Zavrsiti
+		fieldsPanel.add(new JLabel("Godina*"));
+		fieldsPanel.add(godina);
+		fieldsPanel.add(new JLabel("Semestar*"));
+		fieldsPanel.add(semestar);
+		fieldsPanel.add(new JLabel("Profesor*"));
+		fieldsPanel.add(profesori);
+		this.add(fieldsPanel, BorderLayout.CENTER);
+		
+		buttonsPanel = new JPanel(new GridLayout(1, 2));
+		potvrdiButton = new JButton("Potvrdi");
+		potvrdiButton.setEnabled(false);
+		otkaziButton = new JButton("Otka\u017ei");
+		buttonsPanel.add(potvrdiButton);
+		buttonsPanel.add(otkaziButton);
+		buttonsPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+		this.add(buttonsPanel, BorderLayout.SOUTH);
+		
+		potvrdiButton.addActionListener(new IzmenaPredmetaListener(this));
+		JRootPane root = SwingUtilities.getRootPane(potvrdiButton);
+		root.setDefaultButton(potvrdiButton);
+		
+		otkaziButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+			
+		});
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public JPanel getFieldsPanel() {
+		return fieldsPanel;
+	}
+
+	public JPanel getButtonsPanel() {
+		return buttonsPanel;
+	}
+
+	public JButton getPotvrdiButton() {
+		return potvrdiButton;
+	}
+
+	public JButton getOtkaziButton() {
+		return otkaziButton;
+	}
+
+	public JTextField getSifra() {
+		return sifra;
+	}
+
+	public JTextField getNaziv() {
+		return naziv;
+	}
+
+	public JComboBox<Profesor> getProfesori() {
+		return profesori;
+	}
+
+	public JComboBox<Integer> getGodina() {
+		return godina;
+	}
+
+	public JComboBox<Integer> getSemestar() {
+		return semestar;
+	}
+	
 }

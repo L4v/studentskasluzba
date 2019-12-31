@@ -86,11 +86,39 @@ public class PredmetController {
 		GlavniProzor.getInstance().saveAllDBs();
 	}
 	
-	public void editPredmet(Predmet p)
+	public boolean editPredmet(Predmet p)
 	{
-		BazaPredmet.getInstance().editPredmet(p);
-		GlavniProzor.getInstance().azurirajPrikaz();
-		GlavniProzor.getInstance().saveAllDBs();
+		boolean Result = false;
+		Result = BazaPredmet.getInstance().editPredmet(p);
+		if(Result)
+		{
+			// NOTE(Jovan): Ako je izmena primljena azuriraj profesore i studente
+			for(Profesor prof : BazaProfesor.getInstance().getProfesore())
+			{
+				if(prof.getPredmet(p.getSifra()).equals(p))
+				{
+					// NOTE(Jovan): Ako profesor vise nije na predmetu, 
+					// azuriraj profesora
+					if(!p.getProfesor().equals(prof))
+					{
+						prof.removePredmet(p);
+					}
+				}
+			}
+			
+			// NOTE(Jovan): Provera ogranicenja sa studentima i azuriranje
+			for(Student s : BazaStudenata.getInstance().getStudente())
+			{
+				if(s.getTrenutnaGodina() != p.getGodina())
+				{
+					
+				}
+			}
+			// NOTE(Jovan): I konacno azuriraj prikaz i sacuvaj sve podatke
+			GlavniProzor.getInstance().azurirajPrikaz();
+			GlavniProzor.getInstance().saveAllDBs();
+		}
+		return Result;
 	}
 	
 	// NOTE(Jovan): Uklanjanje profesora sa predmeta

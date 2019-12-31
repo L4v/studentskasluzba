@@ -19,6 +19,7 @@ import studentskasluzba.view.dijalog.DodavanjeProfesora;
 import studentskasluzba.view.dijalog.DodavanjeProfesoraNaPredmet;
 import studentskasluzba.view.dijalog.DodavanjeStudenta;
 import studentskasluzba.view.dijalog.DodavanjeStudentaNaPredmet;
+import studentskasluzba.view.dijalog.IzmenaPredmeta;
 import studentskasluzba.view.dijalog.IzmenaProfesora;
 import studentskasluzba.view.dijalog.IzmenaStudenta;
 import studentskasluzba.view.dugmici.DodajDugme;
@@ -61,6 +62,7 @@ public class Toolbar extends JToolBar{
 		
 		// NOTE(Jovan): Dodavanje studenta/predmeta/profesora u zavisnosti
 		// od selektovanog taba
+		// TODO(Jovan): Action listener
 		dodaj.addMouseListener(new MouseListener() {
 
 			@Override
@@ -229,7 +231,13 @@ public class Toolbar extends JToolBar{
 					}
 					case PREDMET:
 					{
-						// TODO(Jovan): Dodati
+						if(GlavniProzor.getInstance().getSelektovanuTorku()==-1)
+						{
+							JOptionPane.showMessageDialog(null, "Niste selektovali predmet!");
+							return;
+						}
+						IzmenaPredmeta izmeni = new IzmenaPredmeta();
+						izmeni.setVisible(true);
 						break;
 					}
 				}
