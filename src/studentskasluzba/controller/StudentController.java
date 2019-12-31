@@ -36,7 +36,7 @@ private static StudentController instance = null;
 		BazaStudenata.getInstance().izmeniStudenta(s.getIme(), s.getPrezime(), s.getDatumRodjenja(), s.getAdresaStanovanja(), s.getKontaktTelefon(), s.getEmail(), s.getIndeks(), s.getDatumUpisa(), s.getTrenutnaGodina(), s.getStatusStudenta(), s.getProsecnaOcena());
 		
 		for(Predmet p : BazaStudenata.getInstance().getStudent(s.getIndeks()).getPredmeti()) { //ukoliko se promeni godina studija proveri predmete i ukloni one koji ne ispunjavaju uslov da je ista godina u pitanju
-			if(p.getGodina() != Integer.parseInt(s.getTrenutnaGodina())) {
+			if(p.getGodina() != s.getTrenutnaGodina()) {
 				p.removeStudent(s);
 				BazaStudenata.getInstance().getStudent(s.getIndeks()).removePredmet(p);
 				
@@ -80,7 +80,7 @@ private static StudentController instance = null;
 		}
 		Predmet p = BazaPredmet.getInstance().getPredmet(selectedRow);
 		
-		if (!s.getTrenutnaGodina().equalsIgnoreCase(Integer.toString(p.getGodina()))) {
+		if (s.getTrenutnaGodina()!=p.getGodina()) {
 			return 2;   //ako tren god studenta nije ista sa predmetom
 		}
 		if(!p.addStudent(s)) {

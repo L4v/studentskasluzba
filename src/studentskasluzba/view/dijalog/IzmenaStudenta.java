@@ -286,7 +286,7 @@ public class IzmenaStudenta extends JDialog{
 		emailT.setText(s.getEmail());
 		datumUpisaT.setText(s.getDatumUpisa());
 		prosekT.setText(Double.toString(s.getProsecnaOcena()));
-		trenGod.setSelectedIndex(Integer.parseInt(s.getTrenutnaGodina())-1);
+		trenGod.setSelectedIndex(s.getTrenutnaGodina()-1);
 		
 		if (s.getStatusStudenta()==StatusStudent.S) {   
 			radBtnS.setSelected(true);
