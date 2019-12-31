@@ -29,7 +29,7 @@ public class IzmenaStudentaListener implements ActionListener{
 			String email = view.getEmailT().getText();
 			String datumUpisa = view.getDatumUpisaT().getText();
 			double prosek = Double.parseDouble(view.getProsekT().getText());
-			String trenutnaGod  = String.valueOf(view.getTrenGod().getSelectedIndex()+1);
+			int trenutnaGod  = Integer.parseInt(String.valueOf(view.getTrenGod().getSelectedIndex()+1));
 			
 			StatusStudent statusStud;
 			

@@ -16,13 +16,13 @@ public class Student implements Serializable{
 	private String email;
 	private String brojIndeksa;
 	private String datumUpisa;
-	private String trenutnaGodStudija;
+	private int trenutnaGodStudija;
 	private StatusStudent statusStudenta;
 	private double prosecnaOcena;
 	private ArrayList<Predmet> predmeti;
 	
 	public Student(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon,
-			String email, String brojIndeksa, String datumUpisa, String trenutnaGodStudija, StatusStudent statusStudenta,
+			String email, String brojIndeksa, String datumUpisa, int trenutnaGodStudija, StatusStudent statusStudenta,
 			double prosecnaOcena) {
 		super();
 		this.ime = ime;
@@ -130,11 +130,11 @@ public class Student implements Serializable{
 		this.datumUpisa = datumUpisa;
 	}
 
-	public String getTrenutnaGodina() {
+	public int getTrenutnaGodina() {
 		return trenutnaGodStudija;
 	}
 
-	public void setTrenutnaGodina(String trenutnaGodStudija) {
+	public void setTrenutnaGodina(int trenutnaGodStudija) {
 		this.trenutnaGodStudija = trenutnaGodStudija;
 	}
 
