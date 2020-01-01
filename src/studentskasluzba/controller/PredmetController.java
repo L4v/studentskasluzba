@@ -152,4 +152,20 @@ public class PredmetController {
 		GlavniProzor.getInstance().azurirajPrikaz();
 		GlavniProzor.getInstance().saveAllDBs();
 	}
+	
+	public boolean addProfesor(int row, String lk)
+	{
+		boolean Result = false;
+		for(Profesor p : BazaProfesor.getInstance().getProfesore())
+		{
+			if(p.getBrLicneKarte().equalsIgnoreCase(lk))
+			{
+				BazaPredmet.getInstance().getPredmet(row).setProfesor(p);
+				GlavniProzor.getInstance().azurirajPrikaz();
+				GlavniProzor.getInstance().saveAllDBs();
+				break;
+			}
+		}
+		return Result;
+	}
 }

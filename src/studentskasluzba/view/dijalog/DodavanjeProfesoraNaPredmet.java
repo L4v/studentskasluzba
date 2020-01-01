@@ -11,17 +11,20 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
+import studentskasluzba.controller.PredmetController;
 import studentskasluzba.model.BazaPredmet;
-import studentskasluzba.model.BazaProfesor;
-import studentskasluzba.model.Predmet;
-import studentskasluzba.model.Profesor;
 import studentskasluzba.view.GlavniProzor;
+import studentskasluzba.view.listeners.ProfesorNaPredmetFocusTxt;
 public class DodavanjeProfesoraNaPredmet extends JDialog{
 	private static final long serialVersionUID = -8256272619031522397L;
 
-	JTextField text;
+	private JTextField text;
+	private JButton potvrda;
+	private JButton odustanak;
 	public DodavanjeProfesoraNaPredmet()
 	{
 		int row = GlavniProzor.getInstance().getSelektovanuTorku();
@@ -35,12 +38,13 @@ public class DodavanjeProfesoraNaPredmet extends JDialog{
 		
 		JLabel message = new JLabel("Broj li\u010Dne karte profesora*");
 		text = new JTextField();
-		JButton potvrda = new JButton("Potvrda");
-		JButton odustanak = new JButton("Odustanak");
+		text.addFocusListener(new ProfesorNaPredmetFocusTxt(this));
+		this.potvrda = new JButton("Potvrda");
+		this.odustanak = new JButton("Odustanak");
 		
 		JPanel p = new JPanel();
-		p.add(odustanak);
-		p.add(potvrda);
+		p.add(this.odustanak);
+		p.add(this.potvrda);
 		
 		
 		GridBagConstraints c = new GridBagConstraints();
@@ -69,27 +73,33 @@ public class DodavanjeProfesoraNaPredmet extends JDialog{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Profesor p = BazaProfesor.getInstance().getProfesor(text.getText());
-				if(p == null)
+				if(!PredmetController.getInstance().addProfesor(GlavniProzor.getInstance().getSelektovanuTorku(), text.getText()) &&
+						DodavanjeProfesoraNaPredmet.this.potvrda.isEnabled())
 				{
-					JOptionPane.showMessageDialog(null, "Profesor ne postoji u bazi podataka!","Warning", JOptionPane.WARNING_MESSAGE);
-					return;
+					JOptionPane.showMessageDialog(null, "Profesor ne postoji!","Warning", JOptionPane.WARNING_MESSAGE);
 				}
-				// NOTE(Jovan): Postavljanje profesora na predmet
-				int row = GlavniProzor.getInstance().getSelektovanuTorku();
-				Predmet predmet = BazaPredmet.getInstance().getPredmet(row);
-				BazaPredmet.getInstance().getPredmet(GlavniProzor.getInstance().getSelektovanuTorku()).setProfesor(p);
-				
-				// NOTE(Jovan): Dodavanje predmeta kod profesora
-				p.addPredmet(predmet);
-				GlavniProzor.getInstance().saveAllDBs();
-				GlavniProzor.getInstance().azurirajPrikaz();
-				dispose();
-				
+				else
+				{
+					dispose();
+				}
 			}
 			
 		};
-		potvrda.addActionListener(dodavanje);
-		text.addActionListener(dodavanje);
+		this.potvrda.addActionListener(dodavanje);
+		this.text.addActionListener(dodavanje);
+		JRootPane root = SwingUtilities.getRootPane(this.potvrda);
+		root.setDefaultButton(this.potvrda);
+		
+		this.odustanak.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
+	}
+	
+	public JButton getPotvrda() {
+		return potvrda;
 	}
 }

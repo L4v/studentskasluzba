@@ -16,20 +16,11 @@ import javax.swing.JPanel;
 import javax.swing.JRootPane;
 import javax.swing.SwingUtilities;
 
-import studentskasluzba.model.BazaPredmet;
-import studentskasluzba.model.BazaProfesor;
-import studentskasluzba.model.BazaStudenata;
-import studentskasluzba.model.Predmet;
-import studentskasluzba.model.Profesor;
-import studentskasluzba.model.Student;
+import studentskasluzba.controller.PredmetController;
 import studentskasluzba.view.GlavniProzor;
 
 public class BrisanjePredmeta extends JDialog{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -8179947724495923688L;
 
 	public BrisanjePredmeta() {
 		
@@ -48,7 +39,6 @@ public class BrisanjePredmeta extends JDialog{
 		try {
 			icon = new ImageIcon(ImageIO.read(getClass().getResource("/icons/delete.png")));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		JLabel tmp = new JLabel();
@@ -80,29 +70,10 @@ public class BrisanjePredmeta extends JDialog{
 		c2.anchor = GridBagConstraints.EAST;
 		getContentPane().add(p, c2);
 		
-		potvrda.addActionListener(new ActionListener() {
-			
+		potvrda.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				int row = GlavniProzor.getInstance().getSelektovanuTorku();
-				Predmet p = BazaPredmet.getInstance().getPredmet(row);
-				
-				// NOTE(Jovan): Uklanjanje predmeta za svakog studenta
-				for(Student s : BazaStudenata.getInstance().getStudente())
-				{
-					s.removePredmet(p);
-				}
-				
-				// NOTE(Jovan): Uklanjanje predmeta za svakog profesora
-				for(Profesor profesor : BazaProfesor.getInstance().getProfesore())
-				{
-					profesor.removePredmet(p);
-				}
-				
-				// NOTE(Jovan): Brisanje predmeta iz baze podataka
-				BazaPredmet.getInstance().removePredmet(row);
-				GlavniProzor.getInstance().saveAllDBs();
+				PredmetController.getInstance().removePredmet(GlavniProzor.getInstance().getSelektovanuTorku());
 				dispose();
 			}
 		});
@@ -110,11 +81,9 @@ public class BrisanjePredmeta extends JDialog{
 		JRootPane root = SwingUtilities.getRootPane(potvrda);
 		root.setDefaultButton(potvrda);
 		odustanak.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				
 			}
 		});
 	}

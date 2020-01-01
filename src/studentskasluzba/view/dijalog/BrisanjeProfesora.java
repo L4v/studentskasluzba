@@ -16,10 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JRootPane;
 import javax.swing.SwingUtilities;
 
-import studentskasluzba.model.BazaPredmet;
-import studentskasluzba.model.BazaProfesor;
-import studentskasluzba.model.Predmet;
-import studentskasluzba.model.Profesor;
+import studentskasluzba.controller.ProfesorController;
 import studentskasluzba.view.GlavniProzor;
 
 public class BrisanjeProfesora extends JDialog{
@@ -46,7 +43,6 @@ public class BrisanjeProfesora extends JDialog{
 		try {
 			icon = new ImageIcon(ImageIO.read(getClass().getResource("/icons/delete.png")));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		JLabel tmp = new JLabel();
@@ -82,37 +78,18 @@ public class BrisanjeProfesora extends JDialog{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// NOTE(Jovan): Selektovan profesor
-				int row = GlavniProzor.getInstance().getSelektovanuTorku();
-				Profesor p = BazaProfesor.getInstance().getProfesor(row);
-				
-				// NOTE(Jovan): Uklanjanje profesora sa svih predmeta
-				for(Predmet predmet : BazaPredmet.getInstance().getPredmete())
-				{
-					if(predmet.getProfesor().getBrLicneKarte().equalsIgnoreCase(p.getBrLicneKarte()))
-					{
-						predmet.removeProfesor();
-					}
-				}
-				
-				// TODO(Jovan -> Kris): Uklanjanje profesora iz studenta?
-				
-				// NOTE(Jovan): Uklanjanje profesora iz baze
-				BazaProfesor.getInstance().removeProfesor(row);
-				GlavniProzor.getInstance().saveAllDBs();
+				ProfesorController.getInstance().removeProfesor(GlavniProzor.getInstance().getSelektovanuTorku());
 				dispose();
 			}
 		});
 		// NOTE(Jovan): Default opcija za enter
 		JRootPane root = SwingUtilities.getRootPane(potvrda);
 		root.setDefaultButton(potvrda);
-		
 		odustanak.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				
 			}
 		});
 		
