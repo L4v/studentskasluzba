@@ -1,10 +1,8 @@
 package studentskasluzba.view;
 
-import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -16,7 +14,6 @@ import studentskasluzba.view.dijalog.BrisanjeProfesora;
 import studentskasluzba.view.dijalog.BrisanjeStudenta;
 import studentskasluzba.view.dijalog.DodavanjePredmeta;
 import studentskasluzba.view.dijalog.DodavanjeProfesora;
-import studentskasluzba.view.dijalog.DodavanjeProfesoraNaPredmet;
 import studentskasluzba.view.dijalog.DodavanjeStudenta;
 import studentskasluzba.view.dijalog.DodavanjeStudentaNaPredmet;
 import studentskasluzba.view.dijalog.IzmenaPredmeta;
@@ -43,7 +40,7 @@ public class Toolbar extends JToolBar{
 		super();
 		// NOTE(Jovan): Onesposobljava pomeranje
 		this.setFloatable(false);
-		
+		this.setLayout(new FlowLayout(FlowLayout.LEFT));
 		// NOTE(Jovan): Default dugmici za Add, Edit, Delete
 		dodaj = new DodajDugme("Dodaj");
 		izmeni = new IzmeniDugme();
@@ -62,11 +59,11 @@ public class Toolbar extends JToolBar{
 		
 		// NOTE(Jovan): Dodavanje studenta/predmeta/profesora u zavisnosti
 		// od selektovanog taba
-		// TODO(Jovan): Action listener
-		dodaj.addMouseListener(new MouseListener() {
+		
+		dodaj.addActionListener(new ActionListener() {
 
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) {
 				switch(GlavniProzor.getInstance().getSelektovanTab())
 				{
 				 case STUDENT:
@@ -91,53 +88,9 @@ public class Toolbar extends JToolBar{
 				 {
 					 return;
 				 }
-				}
-				
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
 			}
 			
-		});
-		
-		
-		// NOTE(Jovan): Dodavanje profesora na predmet
-		profNaPredmet.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				int row = GlavniProzor.getInstance().getSelektovanuTorku();
-				if (row == -1)
-				{
-					JOptionPane.showMessageDialog(null, "Potrebno je selektovati predmet!", "Warning", JOptionPane.WARNING_MESSAGE);
-					return;
-				}
-				DodavanjeProfesoraNaPredmet dodaj = 
-						new DodavanjeProfesoraNaPredmet();
-				dodaj.setVisible(true);
 			}
-			
 		});
 		
 		// NOTE(Jovan): Uklanjanje profesora sa predmeta
@@ -158,16 +111,10 @@ public class Toolbar extends JToolBar{
 		});
 		
 		// NOTE(Jovan): Dodavanje studenta na predmet
-		studentNaPredmet.addMouseListener(new MouseListener() {
-			
+		studentNaPredmet.addActionListener(new ActionListener() {
+
 			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) {
 				
 				if (GlavniProzor.getInstance().getSelektovanuTorku()==-1) {
 					JOptionPane.showMessageDialog(null, "Niste selektovali predmet!");
@@ -177,36 +124,13 @@ public class Toolbar extends JToolBar{
 				dodaj.setVisible(true);
 			}
 			
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
 		});
 		
 		//NOTE(Kristian) : izmena studenta,profesora,predmeta
-		izmeni.addMouseListener(new MouseListener() {
-			
+		izmeni.addActionListener(new ActionListener() {
+
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
+			public void actionPerformed(ActionEvent arg0) {
 				switch(GlavniProzor.getInstance().getSelektovanTab())
 				{
 					case STUDENT:
@@ -241,42 +165,18 @@ public class Toolbar extends JToolBar{
 						break;
 					}
 				}
-				
 			}
 			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
 		});
 		
 		
 		
 		// NOTE(Kristian): izmena studenta,profesora,predmeta
 		// od selektovanog taba
-		obrisi.addMouseListener(new MouseListener() {
-			
+		obrisi.addActionListener(new ActionListener() {
+
 			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) {
 				switch(GlavniProzor.getInstance().getSelektovanTab())
 				{
 					case STUDENT:
@@ -310,34 +210,16 @@ public class Toolbar extends JToolBar{
 						break;
 					}
 				}
-				
 			}
 			
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
 		});
 		
 		// NOTE(Jovan): Search polje i dugme
 		PretragaPolje pretraga = new PretragaPolje();
 		PretragaDugme pretrazi = new PretragaDugme();
-		this.add(pretraga, BorderLayout.EAST);
-		this.add(pretrazi);		
 		
+		this.add(pretraga);
+		this.add(pretrazi);		
 	}
 
 	
