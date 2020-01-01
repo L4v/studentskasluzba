@@ -83,7 +83,7 @@ public class DodavanjePredmeta extends JDialog{
 		this.add(fieldsPanel, BorderLayout.CENTER);
 		buttonsPanel = new JPanel(new GridLayout(1, 2));
 		dodajButton = new JButton("Dodaj");
-		otkaziButton = new JButton("Otka\017ei");
+		otkaziButton = new JButton("Otka\u017ei");
 		buttonsPanel.add(dodajButton);
 		buttonsPanel.add(otkaziButton);
 		buttonsPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));

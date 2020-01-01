@@ -175,6 +175,20 @@ public class BazaPredmet {
 		return Result;
 	}
 	
+	public Predmet getPredmet(Predmet p)
+	{
+		Predmet Result = null;
+		for(Predmet pr : this.torke)
+		{
+			if(pr.equals(p))
+			{
+				Result = pr;
+				break;
+			}
+		}
+		return Result;
+	}
+	
 	public int getBrojObelezja()
 	{
 		return this.obelezja.size();

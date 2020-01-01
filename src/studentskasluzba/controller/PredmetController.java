@@ -95,29 +95,33 @@ public class PredmetController {
 			// NOTE(Jovan): Ako je izmena primljena azuriraj profesore i studente
 			for(Profesor prof : BazaProfesor.getInstance().getProfesore())
 			{
+				// Uklanjanje ako treba
 				if(prof.getPredmeti().contains(p))
 				{
-					// NOTE(Jovan): Ako profesor vise nije na predmetu, 
-					// azuriraj profesora
-					if(!p.getProfesor().equals(prof))
+					if(!p.getProfesor().getBrLicneKarte().equalsIgnoreCase(prof.getBrLicneKarte()))
 					{
 						prof.removePredmet(p);
 					}
 				}
+				else
+				{
+					// NOTE(Jovan): Ako prof ne sadrzi jos predmet, a treba dodati
+					if(p.getProfesor().getBrLicneKarte().equalsIgnoreCase(prof.getBrLicneKarte()))
+					{
+						prof.addPredmet(p);
+					}
+				}
 			}
-			
 			// NOTE(Jovan): Provera ogranicenja sa studentima i azuriranje
 			for(Student s : BazaStudenata.getInstance().getStudente())
 			{
-				for(Predmet tmp : s.getPredmeti())
+				// NOTE(Jovan): Ako sadrzi predmet, a ne ispunjava vise zahtev, ukloni
+				if(s.getPredmeti().contains(p))
 				{
-					if(tmp.getSifra().equalsIgnoreCase(p.getSifra()))
+					if(s.getTrenutnaGodina() != p.getGodina())
 					{
-						if(s.getTrenutnaGodina() != p.getGodina())
-						{
-							s.removePredmet(p);
-							p.removeStudent(s);
-						}
+						BazaPredmet.getInstance().getPredmet(p).removeStudent(s);
+						s.removePredmet(p);
 					}
 				}
 			}
