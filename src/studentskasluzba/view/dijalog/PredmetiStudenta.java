@@ -2,6 +2,7 @@ package studentskasluzba.view.dijalog;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -56,7 +57,11 @@ public class PredmetiStudenta extends JDialog{
 		predmetiPanel.add(this.predmeti);
 		
 		this.obrisiButton = new JButton("Obri\u0161i");
-		this.otkaziButton = new JButton("Otka\u017ei");
+		this.otkaziButton = new JButton("Nazad");
+		
+		FlowLayout layout = new FlowLayout();
+		this.buttonsPanel.setLayout(layout);
+		layout.setAlignment(FlowLayout.RIGHT);
 		
 		this.buttonsPanel.add(obrisiButton);
 		this.buttonsPanel.add(otkaziButton);
