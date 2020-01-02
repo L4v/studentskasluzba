@@ -37,8 +37,10 @@ public class ButtonColumnStudenti extends AbstractCellEditor
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				// NOTE(Jovan): Dobavljanje torke u kojoj treba prikazati dugme
+				int row = ButtonColumnStudenti.this.table.convertRowIndexToModel(table.getEditingRow());
 				fireEditingStopped();
-				StudentiNaPredmetu dialog = new StudentiNaPredmetu(table.getSelectedRow());
+				StudentiNaPredmetu dialog = new StudentiNaPredmetu(row);
 				dialog.setVisible(true);
 			}
 		});

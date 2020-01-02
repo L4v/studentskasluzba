@@ -5,7 +5,10 @@ import java.awt.Component;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 public class PredmetTable extends JTable {
 	private static final long serialVersionUID = 3435744544875490220L;
@@ -16,8 +19,10 @@ public class PredmetTable extends JTable {
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableModelPredmet());
-		this.setAutoCreateRowSorter(true);
 		new ButtonColumnStudenti(this, 5);
+		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>((AbstractTableModelPredmet)this.getModel());
+		sorter.setRowFilter(RowFilter.regexFilter("OOP.*", 0));
+		this.setRowSorter(sorter);
 	}
 	
 	// NOTE(Jovan): Promena boje prilikom selekcije torke
