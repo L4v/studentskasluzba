@@ -55,6 +55,7 @@ public class StudentiNaPredmetu extends JDialog{
 		}
 		this.list = new JList<String>(listaStudenata.toArray(new String[0]));
 		this.studenti = new JScrollPane(list);
+		studenti.setPreferredSize(new Dimension(250,150));
 		studentsPanel.add(this.studenti);
 		
 		this.ukloniButton = new JButton("Obrisi");

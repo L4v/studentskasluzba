@@ -51,6 +51,8 @@ public class PredmetiProfesora extends JDialog{
 		
 		this.list = new JList<String>(listaPredmeta.toArray(new String[0]));
 		this.predmeti = new JScrollPane(list);
+		
+		predmeti.setPreferredSize(new Dimension(250,150));
 		predmetiPanel.add(this.predmeti);
 		
 		this.obrisiButton = new JButton("Obri\u0161i");
