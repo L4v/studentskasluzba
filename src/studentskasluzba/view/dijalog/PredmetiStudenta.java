@@ -11,13 +11,12 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import studentskasluzba.model.BazaStudenata;
 import studentskasluzba.model.Predmet;
-import studentskasluzba.model.Student;
+import studentskasluzba.view.listeners.PredmetiStudentaListener;
 
 public class PredmetiStudenta extends JDialog{
 	
@@ -32,7 +31,7 @@ public class PredmetiStudenta extends JDialog{
 	private JButton obrisiButton, otkaziButton;
 	private JList<String> list;
 	private int row;
-	
+
 	public PredmetiStudenta(int row) {
 		super();
 		this.row=row;
@@ -70,35 +69,21 @@ public class PredmetiStudenta extends JDialog{
 		this.add(buttonsPanel, BorderLayout.SOUTH);
 		
 		otkaziButton.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				
 			}
 		});
 		
-		obrisiButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int i = list.getSelectedIndex();
-				if (i==-1) {
-					JOptionPane.showMessageDialog(null, "Niste selektovali predmet!","Warning", JOptionPane.WARNING_MESSAGE);
-					return;
-				}
-				int choise = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da \u017Eelite da obri\u0161ete predmet?","Brisanje predmeta studenta",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-				if (choise==JOptionPane.YES_OPTION) {
-					Predmet p = BazaStudenata.getInstance().getStudent(PredmetiStudenta.this.row).getPredmet(i);
-					Student s = BazaStudenata.getInstance().getStudent(PredmetiStudenta.this.row);
-					s.removePredmet(i);
-					p.removeStudent(s);
-					
-					dispose();
-				}
-			}
-		});
+		obrisiButton.addActionListener(new PredmetiStudentaListener(this));
 		
 	}
 	
+	public JList<String> getList() {
+		return list;
+	}
+	public int getRow() {
+		return row;
+	}
+
 }
