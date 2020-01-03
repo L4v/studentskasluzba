@@ -9,12 +9,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
 
-import studentskasluzba.model.BazaPredmet;
+import studentskasluzba.controller.PredmetController;
 import studentskasluzba.view.dijalog.BrisanjePredmeta;
 import studentskasluzba.view.dijalog.BrisanjeProfesora;
 import studentskasluzba.view.dijalog.BrisanjeStudenta;
 import studentskasluzba.view.dijalog.DodavanjePredmeta;
 import studentskasluzba.view.dijalog.DodavanjeProfesora;
+import studentskasluzba.view.dijalog.DodavanjeProfesoraNaPredmet;
 import studentskasluzba.view.dijalog.DodavanjeStudenta;
 import studentskasluzba.view.dijalog.DodavanjeStudentaNaPredmet;
 import studentskasluzba.view.dijalog.IzmenaPredmeta;
@@ -112,8 +113,25 @@ public class Toolbar extends JToolBar{
 					JOptionPane.showMessageDialog(null, "Odaberite predmet!","Warning", JOptionPane.WARNING_MESSAGE);
 					return;
 				}
-				BazaPredmet.getInstance().getPredmet(row).removeProfesor();
+				PredmetController.getInstance().removeProfesor(row);
 				GlavniProzor.getInstance().azurirajPrikaz();
+			}
+			
+		});
+		
+		// NOTE(Jovan): Dodavanje profesora na predmet
+		profNaPredmet.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int row = GlavniProzor.getInstance().getSelektovanuTorku();
+				if(row == -1)
+				{
+					JOptionPane.showMessageDialog(null, "Odaberite predmet!","Warning", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+				DodavanjeProfesoraNaPredmet view = new DodavanjeProfesoraNaPredmet();
+				view.setVisible(true);
 			}
 			
 		});
@@ -147,8 +165,8 @@ public class Toolbar extends JToolBar{
 							JOptionPane.showMessageDialog(null, "Niste selektovali studenta!");
 							return;
 						}
-						IzmenaStudenta izmeni = new IzmenaStudenta();
-						izmeni.setVisible(true);
+						IzmenaStudenta view = new IzmenaStudenta();
+						view.setVisible(true);
 						break;
 					}
 					case PROFESOR:
@@ -157,8 +175,8 @@ public class Toolbar extends JToolBar{
 							JOptionPane.showMessageDialog(null, "Niste selektovali profesora!");
 							return;
 						}
-						IzmenaProfesora izmeni = new IzmenaProfesora();
-						izmeni.setVisible(true);
+						IzmenaProfesora view = new IzmenaProfesora();
+						view.setVisible(true);
 						break;
 					}
 					case PREDMET:
@@ -168,8 +186,8 @@ public class Toolbar extends JToolBar{
 							JOptionPane.showMessageDialog(null, "Niste selektovali predmet!");
 							return;
 						}
-						IzmenaPredmeta izmeni = new IzmenaPredmeta();
-						izmeni.setVisible(true);
+						IzmenaPredmeta view = new IzmenaPredmeta();
+						view.setVisible(true);
 						break;
 					}
 				}
@@ -193,8 +211,8 @@ public class Toolbar extends JToolBar{
 							JOptionPane.showMessageDialog(null, "Niste selektovali studenta!");
 							return;
 						}
-						BrisanjeStudenta obrisi = new BrisanjeStudenta();
-						obrisi.setVisible(true);
+						BrisanjeStudenta view = new BrisanjeStudenta();
+						view.setVisible(true);
 						break;
 					}
 					case PROFESOR:
@@ -203,8 +221,8 @@ public class Toolbar extends JToolBar{
 							JOptionPane.showMessageDialog(null, "Niste selektovali profesora!");
 							return;
 						}
-						BrisanjeProfesora obrisi = new BrisanjeProfesora();
-						obrisi.setVisible(true);
+						BrisanjeProfesora view = new BrisanjeProfesora();
+						view.setVisible(true);
 						break;
 					}
 					case PREDMET:
@@ -213,8 +231,8 @@ public class Toolbar extends JToolBar{
 							JOptionPane.showMessageDialog(null, "Niste selektovali predmet!");
 							return;
 						}
-						BrisanjePredmeta obrisi = new BrisanjePredmeta();
-						obrisi.setVisible(true);
+						BrisanjePredmeta view = new BrisanjePredmeta();
+						view.setVisible(true);
 						break;
 					}
 				}
