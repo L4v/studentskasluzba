@@ -9,22 +9,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
 
-import studentskasluzba.controller.PredmetController;
-import studentskasluzba.view.dijalog.BrisanjePredmeta;
-import studentskasluzba.view.dijalog.BrisanjeProfesora;
-import studentskasluzba.view.dijalog.BrisanjeStudenta;
-import studentskasluzba.view.dijalog.DodavanjePredmeta;
-import studentskasluzba.view.dijalog.DodavanjeProfesora;
-import studentskasluzba.view.dijalog.DodavanjeProfesoraNaPredmet;
-import studentskasluzba.view.dijalog.DodavanjeStudenta;
 import studentskasluzba.view.dijalog.DodavanjeStudentaNaPredmet;
-import studentskasluzba.view.dijalog.IzmenaPredmeta;
-import studentskasluzba.view.dijalog.IzmenaProfesora;
-import studentskasluzba.view.dijalog.IzmenaStudenta;
 import studentskasluzba.view.dugmici.DodajDugme;
 import studentskasluzba.view.dugmici.IzmeniDugme;
 import studentskasluzba.view.dugmici.ObrisiDugme;
 import studentskasluzba.view.dugmici.PretraziDugme;
+import studentskasluzba.view.listeners.BrisanjeProfesoraSaPredmetaToolbar;
+import studentskasluzba.view.listeners.BrisanjeToolbarListener;
+import studentskasluzba.view.listeners.DodavanjeProfesoraNaPredmetToolbar;
+import studentskasluzba.view.listeners.DodavanjeToolbarListener;
+import studentskasluzba.view.listeners.IzmenaToolbarListener;
 import studentskasluzba.view.listeners.PretragaPredmetaListener;
 
 public class Toolbar extends JToolBar{
@@ -69,72 +63,13 @@ public class Toolbar extends JToolBar{
 		// NOTE(Jovan): Dodavanje studenta/predmeta/profesora u zavisnosti
 		// od selektovanog taba
 		
-		dodaj.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				switch(GlavniProzor.getInstance().getSelektovanTab())
-				{
-				 case STUDENT:
-				 {
-					DodavanjeStudenta dodaj = new DodavanjeStudenta();
-					dodaj.setVisible(true);
-					break;
-				 }
-				 case PROFESOR:
-				 {
-					 DodavanjeProfesora dodaj = new DodavanjeProfesora();
-					 dodaj.setVisible(true);
-					 break;
-				 }
-				 case PREDMET:
-				 {
-					DodavanjePredmeta dodaj = new DodavanjePredmeta();
-					dodaj.setVisible(true);
-					break;
-				 }
-				 default:
-				 {
-					 return;
-				 }
-			}
-			
-			}
-		});
+		dodaj.addActionListener(new DodavanjeToolbarListener());
 		
 		// NOTE(Jovan): Uklanjanje profesora sa predmeta
-		profSaPredmeta.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int row = GlavniProzor.getInstance().getSelektovanuTorku();
-				if(row == -1)
-				{
-					JOptionPane.showMessageDialog(null, "Odaberite predmet!","Warning", JOptionPane.WARNING_MESSAGE);
-					return;
-				}
-				PredmetController.getInstance().removeProfesor(row);
-				GlavniProzor.getInstance().azurirajPrikaz();
-			}
-			
-		});
+		profSaPredmeta.addActionListener(new BrisanjeProfesoraSaPredmetaToolbar());
 		
 		// NOTE(Jovan): Dodavanje profesora na predmet
-		profNaPredmet.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				int row = GlavniProzor.getInstance().getSelektovanuTorku();
-				if(row == -1)
-				{
-					JOptionPane.showMessageDialog(null, "Odaberite predmet!","Warning", JOptionPane.WARNING_MESSAGE);
-					return;
-				}
-				DodavanjeProfesoraNaPredmet view = new DodavanjeProfesoraNaPredmet();
-				view.setVisible(true);
-			}
-			
-		});
+		profNaPredmet.addActionListener(new DodavanjeProfesoraNaPredmetToolbar());
 		
 		// NOTE(Jovan): Dodavanje studenta na predmet
 		studentNaPredmet.addActionListener(new ActionListener() {
@@ -153,92 +88,11 @@ public class Toolbar extends JToolBar{
 		});
 		
 		//NOTE(Kristian) : izmena studenta,profesora,predmeta
-		izmeni.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				switch(GlavniProzor.getInstance().getSelektovanTab())
-				{
-					case STUDENT:
-					{
-						if (GlavniProzor.getInstance().getSelektovanuTorku()==-1) {
-							JOptionPane.showMessageDialog(null, "Niste selektovali studenta!");
-							return;
-						}
-						IzmenaStudenta view = new IzmenaStudenta();
-						view.setVisible(true);
-						break;
-					}
-					case PROFESOR:
-					{
-						if (GlavniProzor.getInstance().getSelektovanuTorku()==-1) {
-							JOptionPane.showMessageDialog(null, "Niste selektovali profesora!");
-							return;
-						}
-						IzmenaProfesora view = new IzmenaProfesora();
-						view.setVisible(true);
-						break;
-					}
-					case PREDMET:
-					{
-						if(GlavniProzor.getInstance().getSelektovanuTorku()==-1)
-						{
-							JOptionPane.showMessageDialog(null, "Niste selektovali predmet!");
-							return;
-						}
-						IzmenaPredmeta view = new IzmenaPredmeta();
-						view.setVisible(true);
-						break;
-					}
-				}
-			}
-			
-		});
+		izmeni.addActionListener(new IzmenaToolbarListener());
 		
-		
-		
-		// NOTE(Kristian): izmena studenta,profesora,predmeta
+		// NOTE(Kristian): brisanje studenta,profesora,predmeta
 		// od selektovanog taba
-		obrisi.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				switch(GlavniProzor.getInstance().getSelektovanTab())
-				{
-					case STUDENT:
-					{
-						if (GlavniProzor.getInstance().getSelektovanuTorku()==-1) {
-							JOptionPane.showMessageDialog(null, "Niste selektovali studenta!");
-							return;
-						}
-						BrisanjeStudenta view = new BrisanjeStudenta();
-						view.setVisible(true);
-						break;
-					}
-					case PROFESOR:
-					{
-						if (GlavniProzor.getInstance().getSelektovanuTorku()==-1) {
-							JOptionPane.showMessageDialog(null, "Niste selektovali profesora!");
-							return;
-						}
-						BrisanjeProfesora view = new BrisanjeProfesora();
-						view.setVisible(true);
-						break;
-					}
-					case PREDMET:
-					{
-						if (GlavniProzor.getInstance().getSelektovanuTorku()==-1) {
-							JOptionPane.showMessageDialog(null, "Niste selektovali predmet!");
-							return;
-						}
-						BrisanjePredmeta view = new BrisanjePredmeta();
-						view.setVisible(true);
-						break;
-					}
-				}
-			}
-			
-		});
+		obrisi.addActionListener(new BrisanjeToolbarListener());
 		
 		// NOTE(Jovan): Lista listenera
 		listeners = new ArrayList<ActionListener>();
@@ -247,7 +101,10 @@ public class Toolbar extends JToolBar{
 		pretraga = new PretragaPolje();
 		pretrazi = new PretraziDugme("Pretra\u017ei");
 		pretragaPredmetaListener = new PretragaPredmetaListener(pretraga);
+		
+		// NOTE(Jovan): Dodavanje u listu listenera
 		listeners.add(pretragaPredmetaListener);
+		
 		this.add(pretraga);
 		this.add(pretrazi);
 	}
