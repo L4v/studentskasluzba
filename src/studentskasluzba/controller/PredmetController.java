@@ -153,18 +153,41 @@ public class PredmetController {
 		GlavniProzor.getInstance().saveAllDBs();
 	}
 	
-	public boolean addProfesor(int row, String lk)
+	/* NOTE(Jovan): Error kodovi:
+	 * 0  - Proslo kako treba
+	 * -1 - Postoji vec profesor na predmetu
+	 * -2 - Zeljeni profesor ne postoji 
+	 */
+	public int addProfesor(int row, String lk)
 	{
-		boolean Result = false;
-		for(Profesor p : BazaProfesor.getInstance().getProfesore())
+		int Result = 0;
+		boolean Found = false;
+		Predmet predmet = BazaPredmet.getInstance().getPredmet(row);
+		if(predmet.getProfesor().getBrLicneKarte().equalsIgnoreCase("NEMA"))
 		{
-			if(p.getBrLicneKarte().equalsIgnoreCase(lk))
+			for(Profesor p : BazaProfesor.getInstance().getProfesore())
 			{
-				BazaPredmet.getInstance().getPredmet(row).setProfesor(p);
-				GlavniProzor.getInstance().azurirajPrikaz();
-				GlavniProzor.getInstance().saveAllDBs();
-				break;
+				if(p.getBrLicneKarte().equalsIgnoreCase(lk))
+				{
+					Found = true;
+					// NOTE(Jovan): Dodavanje predmeta kod profesora
+					BazaProfesor.getInstance().getProfesor(p.getBrLicneKarte()).addPredmet(BazaPredmet.getInstance().getPredmet(row));
+					
+					// NOTE(Jovan): Dodavanje profesora na predmet i azuriranje
+					BazaPredmet.getInstance().getPredmet(row).setProfesor(p);
+					GlavniProzor.getInstance().azurirajPrikaz();
+					GlavniProzor.getInstance().saveAllDBs();
+					break;
+				}
 			}
+			if(!Found)
+			{
+				Result = -2;
+			}
+		}
+		else
+		{
+			Result = -1;
 		}
 		return Result;
 	}

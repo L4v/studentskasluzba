@@ -73,13 +73,22 @@ public class DodavanjeProfesoraNaPredmet extends JDialog{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(!PredmetController.getInstance().addProfesor(GlavniProzor.getInstance().getSelektovanuTorku(), text.getText()) &&
-						DodavanjeProfesoraNaPredmet.this.potvrda.isEnabled())
+				int kod;
+				// NOTE(Jovan): Kontroler ce vratiti error kod != 0 ako ne uspe dodavanje
+				if((kod = PredmetController.getInstance().addProfesor(GlavniProzor.getInstance().getSelektovanuTorku(), text.getText())) != 0)
 				{
-					JOptionPane.showMessageDialog(null, "Profesor ne postoji!","Warning", JOptionPane.WARNING_MESSAGE);
+					if(kod == -1)
+					{
+						JOptionPane.showMessageDialog(null, "Predmet ve\u0107 ima profesora!", "Warning", JOptionPane.WARNING_MESSAGE);
+					}
+					else if(kod == -2)
+					{
+						JOptionPane.showMessageDialog(null, "Profesor ne postoji!","Warning", JOptionPane.WARNING_MESSAGE);
+					}
 				}
 				else
 				{
+					// NOTE(Jovan): Sve je proslo
 					dispose();
 				}
 			}
