@@ -18,7 +18,7 @@ public class IzmenaProfesoraListener implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(this.view.getDodajButton().isEnabled())
+		if(this.view.getIzmeniButton().isEnabled())
 		{
 			Profesor p = new Profesor(view.getIme().getText(), view.getPrezime().getText(), view.getDatum().getText(),
 					view.getAdrStanovanja().getText(), view.getTelefon().getText(), view.getEmail().getText(), view.getAdrKancelarije().getText(),

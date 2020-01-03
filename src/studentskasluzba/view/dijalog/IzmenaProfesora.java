@@ -10,7 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import studentskasluzba.controller.ProfesorController;
 import studentskasluzba.model.Profesor;
@@ -25,7 +27,7 @@ public class IzmenaProfesora extends JDialog{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private JButton dodajButton, otkaziButton;
+	private JButton izmeniButton, otkaziButton;
 	private JTextField ime, prezime, datum, adrStanovanja,
 	telefon, email, adrKancelarije, brLicneKarte, titula, zvanje;
 	
@@ -40,12 +42,12 @@ public class IzmenaProfesora extends JDialog{
 		GridBagLayout layout = new GridBagLayout();
 		getContentPane().setLayout(layout);
 		
-		dodajButton = new JButton("Potvrda");
+		izmeniButton = new JButton("Potvrda");
 		otkaziButton = new JButton("Odustanak");
 		
 		JPanel panel = new JPanel();
 		panel.add(otkaziButton);
-		panel.add(dodajButton);
+		panel.add(izmeniButton);
 		
 		ime = new JTextField();
 		ime.addFocusListener(new IzmenaProfesoraFocus(this, 0));
@@ -230,8 +232,9 @@ public class IzmenaProfesora extends JDialog{
 		titula.setText(p.getTitula());
 		zvanje.setText(p.getZvanje());
 		
-		dodajButton.addActionListener(new IzmenaProfesoraListener(this));
-
+		izmeniButton.addActionListener(new IzmenaProfesoraListener(this));
+		JRootPane root = SwingUtilities.getRootPane(izmeniButton);
+		root.setDefaultButton(izmeniButton);
 		otkaziButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -240,8 +243,8 @@ public class IzmenaProfesora extends JDialog{
 		});
 	}
 	
-	public JButton getDodajButton() {
-		return dodajButton;
+	public JButton getIzmeniButton() {
+		return izmeniButton;
 	}
 
 	public JTextField getIme() {

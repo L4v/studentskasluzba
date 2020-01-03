@@ -10,7 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import studentskasluzba.view.listeners.DodavanjeProfesoraFocus;
 import studentskasluzba.view.listeners.DodavanjeProfesoraListener;
@@ -211,7 +213,8 @@ public class DodavanjeProfesora extends JDialog{
 		getContentPane().add(panel, c21);
 		
 		dodajButton.addActionListener(new DodavanjeProfesoraListener(this));
-		
+		JRootPane root = SwingUtilities.getRootPane(dodajButton);
+		root.setDefaultButton(dodajButton);
 		otkaziButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

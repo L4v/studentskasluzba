@@ -43,11 +43,11 @@ public class IzmenaProfesoraFocus implements FocusListener{
 				((duzina > 0) && (text.getText().length() != duzina)))
 		{
 			text.setBackground(new Color(231, 76, 60));
-			this.view.getDodajButton().setEnabled(false);
+			this.view.getIzmeniButton().setEnabled(false);
 		}
 		else
 		{
-			this.view.getDodajButton().setEnabled(true);
+			this.view.getIzmeniButton().setEnabled(true);
 		}
 	}
 }
