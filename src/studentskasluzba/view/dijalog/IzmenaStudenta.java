@@ -94,6 +94,7 @@ public class IzmenaStudenta extends JDialog{
 		adresaT = new JTextField();
 		brTelefonaT = new JTextField();
 		brIndeksaT = new JTextField();
+		brIndeksaT.setEnabled(false); //broj indeksa ne mozemo menjati to je i jedinstveno
 		
 		//dodatno
 		emailT = new JTextField();
@@ -104,11 +105,11 @@ public class IzmenaStudenta extends JDialog{
 		prezimeT.addFocusListener(new IzmenaStudentaFocus(this,0));
 		datRodjT.addFocusListener(new IzmenaStudentaFocus(this,-2));
 		adresaT.addFocusListener(new IzmenaStudentaFocus(this,0));
-		brTelefonaT.addFocusListener(new IzmenaStudentaFocus(this,-1));
+		brTelefonaT.addFocusListener(new IzmenaStudentaFocus(this,-5));
 		brIndeksaT.addFocusListener(new IzmenaStudentaFocus(this,-1));
 		emailT.addFocusListener(new IzmenaStudentaFocus(this,-3));
 		datumUpisaT.addFocusListener(new IzmenaStudentaFocus(this,-2));
-		prosekT.addFocusListener(new IzmenaStudentaFocus(this,-2));
+		prosekT.addFocusListener(new IzmenaStudentaFocus(this,-4));
 		
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridx = 0;
