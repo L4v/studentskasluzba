@@ -1,11 +1,10 @@
 package studentskasluzba.view;
 
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 
 public class PredmetTab extends JScrollPane{
 	private static final long serialVersionUID = 5244473018970087368L;
-	private JTable tabelaPredmeta;
+	private PredmetTable tabelaPredmeta;
 	
 	public PredmetTab()
 	{
@@ -17,6 +16,11 @@ public class PredmetTab extends JScrollPane{
 		tabelaPredmeta.setFillsViewportHeight(true);
 		this.setViewportView(tabelaPredmeta);
 		
+	}
+	
+	public PredmetTable getTable()
+	{
+		return this.tabelaPredmeta;
 	}
 	
 	public int getSelektovanuTorku()

@@ -23,10 +23,10 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 	private JTabbedPane tabbedPane;
 	private ProfesorTab profesorTab;
 	private PredmetTab predmetTab;
+	private StudentTab studentTab;
 	
 	private Toolbar glavniToolbar;
 	
-	private StudentTab studentTab;
 	// NOTE(Jovan): Sluzi za Dodaj i slicne operacije koje zavise
 	// od toga koji je tab selektovan
 	private SelektovanTab selektovanTab;
@@ -187,6 +187,12 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 			}
 		}
 	}
+	
+	public PredmetTable getPredmetTable()
+	{
+		return this.predmetTab.getTable();
+	}
+	
 	public void azurirajPrikaz() {
 		AbstractTableModelStudent modelStudenta = studentTab.getModel();
 		AbstractTableModelPredmet modelPredmeta = predmetTab.getModel();

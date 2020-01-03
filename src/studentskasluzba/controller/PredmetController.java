@@ -168,4 +168,10 @@ public class PredmetController {
 		}
 		return Result;
 	}
+	
+	public void pretraziPredmet(String regex)
+	{
+		GlavniProzor.getInstance().getPredmetTable().setFilter(regex);
+		GlavniProzor.getInstance().azurirajPrikaz();
+	}
 }

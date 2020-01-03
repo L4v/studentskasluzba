@@ -22,16 +22,21 @@ import studentskasluzba.view.dijalog.IzmenaStudenta;
 import studentskasluzba.view.dugmici.DodajDugme;
 import studentskasluzba.view.dugmici.IzmeniDugme;
 import studentskasluzba.view.dugmici.ObrisiDugme;
-import studentskasluzba.view.dugmici.PretragaDugme;
+import studentskasluzba.view.dugmici.PretraziDugme;
+import studentskasluzba.view.listeners.PretragaPredmetaListener;
 
 public class Toolbar extends JToolBar{
 	private static final long serialVersionUID = -4611960868780210810L;
 	DodajDugme dodaj;
 	IzmeniDugme izmeni;
 	ObrisiDugme obrisi;
+	PretragaPolje pretraga;
+	PretraziDugme pretrazi;
 	private DodajDugme profNaPredmet;
 	private DodajDugme studentNaPredmet;
 	private ObrisiDugme profSaPredmeta;
+	// TODO(Jovan): Mozda da bude lista?
+	private PretragaPredmetaListener pretragaPredmetaListener;
 	// NOTE(Jovan): Sluzi za odredjivanje dugmica koji
 	// ce se prikazati
 	
@@ -215,11 +220,11 @@ public class Toolbar extends JToolBar{
 		});
 		
 		// NOTE(Jovan): Search polje i dugme
-		PretragaPolje pretraga = new PretragaPolje();
-		PretragaDugme pretrazi = new PretragaDugme();
-		
+		pretraga = new PretragaPolje();
+		pretrazi = new PretraziDugme("Pretra\u017ei");
+		pretragaPredmetaListener = new PretragaPredmetaListener(pretraga);
 		this.add(pretraga);
-		this.add(pretrazi);		
+		this.add(pretrazi);
 	}
 
 	
@@ -237,6 +242,10 @@ public class Toolbar extends JToolBar{
 				profNaPredmet.setVisible(false);
 				profSaPredmeta.setVisible(false);
 				studentNaPredmet.setVisible(false);
+				pretraga.setDefaultText("indeks:<XX-YY/ZZZZ>;ime:<ime>;prezime:<prezime>");
+				
+				pretrazi.removeActionListener(pretragaPredmetaListener);
+				pretraga.removeActionListener(pretragaPredmetaListener);
 				break;
 			}
 			case PROFESOR:
@@ -247,6 +256,10 @@ public class Toolbar extends JToolBar{
 				profNaPredmet.setVisible(false);
 				profSaPredmeta.setVisible(false);
 				studentNaPredmet.setVisible(false);
+				pretraga.setDefaultText("licna_karta:<xxxxxxxxx>;ime:<ime>;prezime:<prezime>");
+				
+				pretrazi.removeActionListener(pretragaPredmetaListener);
+				pretraga.removeActionListener(pretragaPredmetaListener);
 				break;
 			}
 			case PREDMET:
@@ -257,6 +270,10 @@ public class Toolbar extends JToolBar{
 				profNaPredmet.setVisible(true);
 				profSaPredmeta.setVisible(true);
 				studentNaPredmet.setVisible(true);
+				pretraga.setDefaultText("sifra:<sifra>;naziv:<naziv>");
+				
+				pretrazi.addActionListener(pretragaPredmetaListener);
+				pretraga.addActionListener(pretragaPredmetaListener);
 				break;
 			}
 		default:

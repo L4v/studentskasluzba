@@ -12,7 +12,7 @@ import javax.swing.table.TableRowSorter;
 
 public class PredmetTable extends JTable {
 	private static final long serialVersionUID = 3435744544875490220L;
-
+	private TableRowSorter<TableModel> sorter;
 	public PredmetTable()
 	{
 		this.setRowSelectionAllowed(true);
@@ -20,9 +20,14 @@ public class PredmetTable extends JTable {
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableModelPredmet());
 		new ButtonColumnStudenti(this, 5);
-		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>((AbstractTableModelPredmet)this.getModel());
-		sorter.setRowFilter(RowFilter.regexFilter("OOP.*", 0));
+		sorter = new TableRowSorter<TableModel>((AbstractTableModelPredmet)this.getModel());
+		//sorter.setRowFilter(RowFilter.regexFilter("OOP.*", 0));
 		this.setRowSorter(sorter);
+	}
+	
+	public void setFilter(String s)
+	{
+		sorter.setRowFilter(RowFilter.regexFilter(s, 0));
 	}
 	
 	// NOTE(Jovan): Promena boje prilikom selekcije torke
