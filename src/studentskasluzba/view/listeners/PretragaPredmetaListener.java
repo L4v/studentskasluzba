@@ -24,9 +24,17 @@ public class PretragaPredmetaListener implements ActionListener{
 			return;
 		}
 		String[] tokens = text.split(";");
+		String[] labels = {"sifra:", "naziv:"};
 		StringBuilder sb = new StringBuilder();
-		sb.append(tokens[0].replace("sifra:", ""));
-		//sb.append(tokens[1].replace("naziv", ""));
+		int i = 0;
+		for(String token : tokens)
+		{
+			if(!token.equalsIgnoreCase("") && !token.equalsIgnoreCase(labels[i]))
+			{
+				sb.append(token.replace(labels[i], ""));
+			}
+			i++;
+		}
 		String regex = sb.toString();
 		PredmetController.getInstance().pretraziPredmet(regex);
 	}

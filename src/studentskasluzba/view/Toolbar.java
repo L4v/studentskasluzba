@@ -3,6 +3,7 @@ package studentskasluzba.view;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -37,6 +38,8 @@ public class Toolbar extends JToolBar{
 	private ObrisiDugme profSaPredmeta;
 	// TODO(Jovan): Mozda da bude lista?
 	private PretragaPredmetaListener pretragaPredmetaListener;
+	
+	private ArrayList<ActionListener> listeners;
 	// NOTE(Jovan): Sluzi za odredjivanje dugmica koji
 	// ce se prikazati
 	
@@ -219,10 +222,14 @@ public class Toolbar extends JToolBar{
 			
 		});
 		
+		// NOTE(Jovan): Lista listenera
+		listeners = new ArrayList<ActionListener>();
+		
 		// NOTE(Jovan): Search polje i dugme
 		pretraga = new PretragaPolje();
 		pretrazi = new PretraziDugme("Pretra\u017ei");
 		pretragaPredmetaListener = new PretragaPredmetaListener(pretraga);
+		listeners.add(pretragaPredmetaListener);
 		this.add(pretraga);
 		this.add(pretrazi);
 	}
@@ -244,8 +251,13 @@ public class Toolbar extends JToolBar{
 				studentNaPredmet.setVisible(false);
 				pretraga.setDefaultText("indeks:<XX-YY/ZZZZ>;ime:<ime>;prezime:<prezime>");
 				
-				pretrazi.removeActionListener(pretragaPredmetaListener);
-				pretraga.removeActionListener(pretragaPredmetaListener);
+				// NOTE(Jovan): uklanjanje svih listenera
+				for(ActionListener l : listeners)
+				{
+					pretrazi.removeActionListener(l);
+					pretraga.removeActionListener(l);
+				}
+				// TODO(Jovan->Kris): Dodati pretragaStudentaListener
 				break;
 			}
 			case PROFESOR:
@@ -258,8 +270,12 @@ public class Toolbar extends JToolBar{
 				studentNaPredmet.setVisible(false);
 				pretraga.setDefaultText("licna_karta:<xxxxxxxxx>;ime:<ime>;prezime:<prezime>");
 				
-				pretrazi.removeActionListener(pretragaPredmetaListener);
-				pretraga.removeActionListener(pretragaPredmetaListener);
+				// NOTE(Jovan): Uklanjanje svih listenera
+				for(ActionListener l : listeners)
+				{
+					pretrazi.removeActionListener(l);
+					pretraga.removeActionListener(l);
+				}
 				break;
 			}
 			case PREDMET:
@@ -272,6 +288,13 @@ public class Toolbar extends JToolBar{
 				studentNaPredmet.setVisible(true);
 				pretraga.setDefaultText("sifra:<sifra>;naziv:<naziv>");
 				
+				// NOTE(Jovan): Uklanjanje svih listenera
+				for(ActionListener l : listeners)
+				{
+					pretrazi.removeActionListener(l);
+					pretraga.removeActionListener(l);
+				}
+				// NOTE(Jovan): Postavljanje listenera za pretragu predmeta
 				pretrazi.addActionListener(pretragaPredmetaListener);
 				pretraga.addActionListener(pretragaPredmetaListener);
 				break;
