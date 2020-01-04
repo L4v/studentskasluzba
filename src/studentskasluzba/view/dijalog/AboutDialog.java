@@ -66,10 +66,10 @@ public class AboutDialog extends JDialog{
 		stud.add(new JLabel(
 				"<html><b>KRATKA BIOGRAFIJA STUDENTA 1:</b><br/>"
 				+ "<br/>"
-				+ "Kristian Farka\u0161 je ro\u0111en 27.10.1998. u Novom Sadu. Osnovnu <br/>"
-				+ "\u0161kolu 'Sonja Marinkovi\u0107' je zavr\u0161io 2013. godine u Novom Sadu. <br/>"
-				+ "Gimnaziju  'Svetozar Markovi\u0107' je zavr\u0161io 2017. godine.  <br/>"  
-				+ "Trenutno je student tre\u0107e godine Fakulteta tehni\u010dkih nauka, <br/>"
+				+ "Kristian Farka\u0161 je ro\u0111en 27.10.1998. u Novom Sadu. Osnovnu "
+				+ "\u0161kolu 'Sonja Marinkovi\u0107' je zavr\u0161io 2013. godine u Novom Sadu. "
+				+ "Gimnaziju  'Svetozar Markovi\u0107' je zavr\u0161io 2017. godine.  "  
+				+ "Trenutno je student tre\u0107e godine Fakulteta tehni\u010dkih nauka, "
 				+ "na smeru Ra\u010dunarstvo i automatika.</html>"));
 		
 		
@@ -86,9 +86,9 @@ public class AboutDialog extends JDialog{
 		tmp2.setHorizontalAlignment(JLabel.CENTER);
 		
 		stud.add(tmp2);
-		stud.add(new JLabel("<html><b>KRATKA BIOGRAFIJA STUDENTA 2:</b><br/><br/>Jovan Ivo\u0161evi\u0107 (i njegov ma\u010Dak), ro\u0111en 10.03.1998. (Jovan, ne ma\u010Dak) u Novom Sadu.<br/>"
-				+ "I\u0161ao u O\u0160 '\u017Darko Zrenjanin' i zavr\u0161io T\u0160 'Pavle Savi\u0107' kao Tehni\u010dar za industrijsku farmaceutsku tehnologiju. <br/> "
-				+ "Trenutno je zajedno sa kolegom Kristianom student tre\u0107e godine na Fakultetu tehni\u010dkih nauka na smeru Ra\u010dunarstvo i automatika.<br/>"
+		stud.add(new JLabel("<html><b>KRATKA BIOGRAFIJA STUDENTA 2:</b><br/><br/>Jovan Ivo\u0161evi\u0107 (i njegov ma\u010Dak), ro\u0111en 10.03.1998. (Jovan, ne ma\u010Dak) u Novom Sadu."
+				+ "I\u0161ao u O\u0160 '\u017Darko Zrenjanin' i zavr\u0161io T\u0160 'Pavle Savi\u0107' kao Tehni\u010dar za industrijsku farmaceutsku tehnologiju. "
+				+ "Trenutno je zajedno sa kolegom Kristianom student tre\u0107e godine na Fakultetu tehni\u010dkih nauka na smeru Ra\u010dunarstvo i automatika."
 				+ "Hvala na kori\u0161\u0107enju na\u0161e aplikacije :)</html>"));
 		
 				

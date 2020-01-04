@@ -17,7 +17,7 @@ public class PretragaPolje extends JTextField{
 		super();
 		this.setText(defaultTekst);
 		// NOTE(Jovan): Da ne bi kolabiralo
-		this.setColumns(80);
+		this.setColumns(40);
 		this.inFocus = false;
 		// NOTE(Jovan): Listener za izmenu teksta pri fokusu
 		this.addFocusListener(new FocusListener() {
