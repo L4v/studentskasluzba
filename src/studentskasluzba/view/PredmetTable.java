@@ -21,13 +21,18 @@ public class PredmetTable extends JTable {
 		this.setModel(new AbstractTableModelPredmet());
 		new ButtonColumnStudenti(this, 5);
 		sorter = new TableRowSorter<TableModel>((AbstractTableModelPredmet)this.getModel());
-		//sorter.setRowFilter(RowFilter.regexFilter("OOP.*", 0));
 		this.setRowSorter(sorter);
 	}
 	
-	public void setFilter(String s)
+	public void clearFilter()
 	{
-		sorter.setRowFilter(RowFilter.regexFilter(s, 0));
+		sorter.setRowFilter(RowFilter.regexFilter("", 0, 1));
+	}
+	
+	public void setFilter(String s, int i)
+	{
+		String regex = "(?i)" + s + "(?-i)";
+		sorter.setRowFilter(RowFilter.regexFilter(regex, i));
 	}
 	
 	// NOTE(Jovan): Promena boje prilikom selekcije torke

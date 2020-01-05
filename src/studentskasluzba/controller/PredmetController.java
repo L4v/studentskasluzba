@@ -192,9 +192,31 @@ public class PredmetController {
 		return Result;
 	}
 	
-	public void pretraziPredmet(String regex)
+	public void pretraziPredmet(String pairs)
 	{
-		GlavniProzor.getInstance().getPredmetTable().setFilter(regex);
-		GlavniProzor.getInstance().azurirajPrikaz();
+		if(pairs.equalsIgnoreCase(""))
+		{
+			GlavniProzor.getInstance().getPredmetTable().clearFilter();
+			GlavniProzor.getInstance().azurirajPrikaz();	
+		}
+		String[] pair = pairs.split(":");
+		if(pair.length < 2)
+		{
+			return;
+		}
+		switch(pair[0])
+		{
+			case "NAZIV":
+			{
+				GlavniProzor.getInstance().getPredmetTable().setFilter(pair[1], 1);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			}break;
+			case "SIFRA":
+			{
+				GlavniProzor.getInstance().getPredmetTable().setFilter(pair[1], 0);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			}break;
+			default: return;
+		}
 	}
 }

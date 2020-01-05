@@ -124,7 +124,7 @@ public class Toolbar extends JToolBar{
 				profNaPredmet.setVisible(false);
 				profSaPredmeta.setVisible(false);
 				studentNaPredmet.setVisible(false);
-				pretraga.setDefaultText("indeks:<XX-YY/ZZZZ>;ime:<ime>;prezime:<prezime>");
+				pretraga.setDefaultText("ime:<ime>;prezime:<prezime>;indeks:<XX-YY/ZZZZ>");
 				
 				// NOTE(Jovan): uklanjanje svih listenera
 				for(ActionListener l : listeners)
@@ -143,7 +143,7 @@ public class Toolbar extends JToolBar{
 				profNaPredmet.setVisible(false);
 				profSaPredmeta.setVisible(false);
 				studentNaPredmet.setVisible(false);
-				pretraga.setDefaultText("licna_karta:<xxxxxxxxx>;ime:<ime>;prezime:<prezime>");
+				pretraga.setDefaultText("ime:<ime>;prezime:<prezime>;lk:<xxxxxxxxx>");
 				
 				// NOTE(Jovan): Uklanjanje svih listenera
 				for(ActionListener l : listeners)
@@ -161,7 +161,7 @@ public class Toolbar extends JToolBar{
 				profNaPredmet.setVisible(true);
 				profSaPredmeta.setVisible(true);
 				studentNaPredmet.setVisible(true);
-				pretraga.setDefaultText("sifra:<sifra>;naziv:<naziv>");
+				pretraga.setDefaultText("naziv:<naziv>;\u0161ifra:<\u0161ifra>");
 				
 				// NOTE(Jovan): Uklanjanje svih listenera
 				for(ActionListener l : listeners)
