@@ -1,11 +1,10 @@
 package studentskasluzba.view;
 
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 
 public class StudentTab extends JScrollPane{
 	private static final long serialVersionUID = 1L;
-	private JTable tabelaStudenata;
+	private StudentTable tabelaStudenata;
 	public StudentTab()
 	{
 		super();
@@ -21,5 +20,9 @@ public class StudentTab extends JScrollPane{
 	public AbstractTableModelStudent getModel()
 	{
 		return (AbstractTableModelStudent)this.tabelaStudenata.getModel();
+	}
+	
+	public StudentTable getTable() {
+		return this.tabelaStudenata;
 	}
 }

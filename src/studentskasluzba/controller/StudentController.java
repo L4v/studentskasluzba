@@ -103,10 +103,40 @@ private static StudentController instance = null;
 		GlavniProzor.getInstance().saveAllDBs();
 		
 	}
-
 	
 	public Student getStudent(int selectedRow) {
-		
 		return BazaStudenata.getInstance().getStudent(selectedRow);
 	}
+	
+	public void pretragaStudenta(String tokens) {
+		if(tokens.equalsIgnoreCase("")) {    // da se vrati u prvobitan polozaj iz filtriranja u normalno stanje
+			GlavniProzor.getInstance().getStudentTable().clearFilter();
+			GlavniProzor.getInstance().azurirajPrikaz();
+		}
+		
+		String[] token = tokens.split(":");
+		
+		if(token.length < 2) { // ukoliko nesto nije navedeno 
+			return;
+		}
+		
+		switch(token[0]){
+			case "ime" : {
+				GlavniProzor.getInstance().getStudentTable().setFilter(token[1], 1);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			} break;
+			case "prezime" : {
+				GlavniProzor.getInstance().getStudentTable().setFilter(token[1], 2);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			} break;
+			case "indeks" : {
+				GlavniProzor.getInstance().getStudentTable().setFilter(token[1], 0);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			} break;
+			default: return;
+		}
+	}
+	
+	
+	
 }

@@ -188,6 +188,10 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 		}
 	}
 	
+	public StudentTable getStudentTable() {
+		return this.studentTab.getTable();
+	}
+	
 	public PredmetTable getPredmetTable()
 	{
 		return this.predmetTab.getTable();
