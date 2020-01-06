@@ -20,6 +20,7 @@ import studentskasluzba.view.listeners.DodavanjeProfesoraNaPredmetToolbar;
 import studentskasluzba.view.listeners.DodavanjeToolbarListener;
 import studentskasluzba.view.listeners.IzmenaToolbarListener;
 import studentskasluzba.view.listeners.PretragaPredmetaListener;
+import studentskasluzba.view.listeners.PretragaProfesoraListener;
 
 public class Toolbar extends JToolBar{
 	private static final long serialVersionUID = -4611960868780210810L;
@@ -33,6 +34,7 @@ public class Toolbar extends JToolBar{
 	private ObrisiDugme profSaPredmeta;
 	// TODO(Jovan): Mozda da bude lista?
 	private PretragaPredmetaListener pretragaPredmetaListener;
+	private PretragaProfesoraListener pretragaProfesoraListener;
 	
 	private ArrayList<ActionListener> listeners;
 	// NOTE(Jovan): Sluzi za odredjivanje dugmica koji
@@ -101,9 +103,11 @@ public class Toolbar extends JToolBar{
 		pretraga = new PretragaPolje();
 		pretrazi = new PretraziDugme("Pretra\u017ei");
 		pretragaPredmetaListener = new PretragaPredmetaListener(pretraga);
+		pretragaProfesoraListener = new PretragaProfesoraListener(pretraga);
 		
 		// NOTE(Jovan): Dodavanje u listu listenera
 		listeners.add(pretragaPredmetaListener);
+		listeners.add(pretragaProfesoraListener);
 		
 		this.add(pretraga);
 		this.add(pretrazi);
@@ -151,6 +155,8 @@ public class Toolbar extends JToolBar{
 					pretrazi.removeActionListener(l);
 					pretraga.removeActionListener(l);
 				}
+				pretrazi.addActionListener(pretragaProfesoraListener);
+				pretraga.addActionListener(pretragaProfesoraListener);
 				break;
 			}
 			case PREDMET:

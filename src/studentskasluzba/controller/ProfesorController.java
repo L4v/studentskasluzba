@@ -59,6 +59,39 @@ public class ProfesorController {
 		GlavniProzor.getInstance().saveAllDBs();
 	}
 	
+	public void pretraziProfesor(String pairs)
+	{
+		if(pairs.equalsIgnoreCase(""))
+		{
+			GlavniProzor.getInstance().getProfesorTable().clearFilter();
+			GlavniProzor.getInstance().azurirajPrikaz();	
+		}
+		String[] pair = pairs.split(":");
+		if(pair.length < 2)
+		{
+			return;
+		}
+		switch(pair[0])
+		{
+			case "IME":
+			{
+				GlavniProzor.getInstance().getProfesorTable().setFilter(pair[1], 1);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			}break;
+			case "PREZIME":
+			{
+				GlavniProzor.getInstance().getProfesorTable().setFilter(pair[1], 2);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			}break;
+			case "LK":
+			{
+				GlavniProzor.getInstance().getProfesorTable().setFilter(pair[1], 0);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			}break;
+			default: return;
+		}
+	}
+	
 	public Iterable<Profesor> getProfesore()
 	{
 		return BazaProfesor.getInstance().getProfesore();

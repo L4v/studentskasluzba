@@ -31,6 +31,7 @@ public class PredmetTable extends JTable {
 	
 	public void setFilter(String s, int i)
 	{
+		// NOTE(Jovan): Da bude case-insensitive
 		String regex = "(?i)" + s + "(?-i)";
 		sorter.setRowFilter(RowFilter.regexFilter(regex, i));
 	}

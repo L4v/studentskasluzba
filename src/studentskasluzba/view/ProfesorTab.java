@@ -1,11 +1,10 @@
 package studentskasluzba.view;
 
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 
 public class ProfesorTab extends JScrollPane{
 	private static final long serialVersionUID = -6138361184893356221L;
-	private JTable tabelaProfesora;
+	private ProfesorTable tabelaProfesora;
 	public ProfesorTab()
 	{
 		super();
@@ -20,6 +19,11 @@ public class ProfesorTab extends JScrollPane{
 	public int getSelektovanuTorku()
 	{
 		return this.tabelaProfesora.getSelectedRow();
+	}
+	
+	public ProfesorTable getTable()
+	{
+		return this.tabelaProfesora;
 	}
 	
 	public AbstractTableModelProfesor getModel()
