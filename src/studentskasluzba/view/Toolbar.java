@@ -1,12 +1,13 @@
 package studentskasluzba.view;
 
-import java.awt.FlowLayout;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
 import studentskasluzba.view.dijalog.DodavanjeStudentaNaPredmet;
@@ -32,7 +33,8 @@ public class Toolbar extends JToolBar{
 	private DodajDugme profNaPredmet;
 	private DodajDugme studentNaPredmet;
 	private ObrisiDugme profSaPredmeta;
-	// TODO(Jovan): Mozda da bude lista?
+	private JPanel buttonsPanel;
+	private JPanel searchPanel;
 	private PretragaPredmetaListener pretragaPredmetaListener;
 	private PretragaProfesoraListener pretragaProfesoraListener;
 	
@@ -45,23 +47,26 @@ public class Toolbar extends JToolBar{
 		super();
 		// NOTE(Jovan): Onesposobljava pomeranje
 		this.setFloatable(false);
-		this.setLayout(new FlowLayout(FlowLayout.LEFT));
+		//this.setLayout(new FlowLayout(FlowLayout.LEFT));
 		// NOTE(Jovan): Default dugmici za Add, Edit, Delete
+		this.setLayout(new BorderLayout());
 		dodaj = new DodajDugme("Dodaj");
 		izmeni = new IzmeniDugme();
 		obrisi = new ObrisiDugme("Obrisi");
-		this.add(dodaj);
-		this.add(izmeni);
-		this.add(obrisi);
+		buttonsPanel = new JPanel();
+		searchPanel = new JPanel();
+		buttonsPanel.add(dodaj);
+		buttonsPanel.add(izmeni);
+		buttonsPanel.add(obrisi);
 		profNaPredmet = new DodajDugme("Dodaj profesora na predmet");
 		profNaPredmet.setIcon(new ImageIcon(getClass().getResource("/icons/add-prof.png")));
 		profSaPredmeta = new ObrisiDugme("Ukloni profesora sa predmeta");
 		profSaPredmeta.setIcon(new ImageIcon(getClass().getResource("/icons/remove-prof.png")));
 		studentNaPredmet = new DodajDugme("Dodaj studenta na predmet");
-		this.add(profNaPredmet);
-		this.add(profSaPredmeta);
-		this.add(studentNaPredmet);
-		
+		buttonsPanel.add(profNaPredmet);
+		buttonsPanel.add(profSaPredmeta);
+		buttonsPanel.add(studentNaPredmet);
+		this.add(buttonsPanel, BorderLayout.WEST);
 		// NOTE(Jovan): Dodavanje studenta/predmeta/profesora u zavisnosti
 		// od selektovanog taba
 		
@@ -108,9 +113,9 @@ public class Toolbar extends JToolBar{
 		// NOTE(Jovan): Dodavanje u listu listenera
 		listeners.add(pretragaPredmetaListener);
 		listeners.add(pretragaProfesoraListener);
-		
-		this.add(pretraga);
-		this.add(pretrazi);
+		searchPanel.add(pretraga);
+		searchPanel.add(pretrazi);
+		this.add(searchPanel, BorderLayout.EAST);
 	}
 
 	
