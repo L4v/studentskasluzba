@@ -29,7 +29,7 @@ public class StudentTable extends JTable{
 	}
 	
 	public void clearFilter() {
-		sorter.setRowFilter(RowFilter.regexFilter("", 0, 1));
+		sorter.setRowFilter(RowFilter.regexFilter("", 0, 1, 2));
 	}
 	
 	public void setFilter(String s, int i) {
