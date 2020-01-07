@@ -108,7 +108,7 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 		glavniToolbar = new Toolbar(); 
 		this.add(glavniToolbar, BorderLayout.NORTH);
 		
-		MojMenuBar menu = new MojMenuBar();
+		MenuBar menu = new MenuBar();
 		this.setJMenuBar(menu);
 		
 		StatusBar st_bar=new StatusBar();

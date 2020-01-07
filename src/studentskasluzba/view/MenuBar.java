@@ -18,9 +18,9 @@ import studentskasluzba.view.listeners.MenuBarEditListener;
 import studentskasluzba.view.listeners.MenuBarNewListener;
 
 @SuppressWarnings("serial")
-public class MojMenuBar extends JMenuBar{
+public class MenuBar extends JMenuBar{
 
-	public MojMenuBar() {
+	public MenuBar() {
 		
 		//FILE
 		JMenu file=new JMenu("File");
@@ -43,8 +43,8 @@ public class MojMenuBar extends JMenuBar{
 		miClose.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int choise = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da \u017Eelite da zatvorite aplikaciju?","Zatvaranje aplikacije",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-				if (choise==JOptionPane.YES_OPTION) {
+				int choice = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da \u017Eelite da zatvorite aplikaciju?","Zatvaranje aplikacije",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+				if (choice==JOptionPane.YES_OPTION) {
 					GlavniProzor.getInstance().saveAllDBs();
 					System.exit(0);
 				}
