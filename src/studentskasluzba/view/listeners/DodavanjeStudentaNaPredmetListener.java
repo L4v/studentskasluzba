@@ -23,7 +23,7 @@ public class DodavanjeStudentaNaPredmetListener implements ActionListener{
 		int ret = StudentController.getInstance().addStudentNaPredmet(view.getUnos().getText(), GlavniProzor.getInstance().getSelektovanuTorku());
 		
 		if(ret == 1) {
-			JOptionPane.showMessageDialog(null, "Student ne postoji u bazi podataka!","Warning", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Student ne postoji u bazi!","Warning", JOptionPane.WARNING_MESSAGE);
 			this.view.dispose();
 		} else if(ret == 2) {
 			JOptionPane.showMessageDialog(null, "Trenutna godina studija studenta nije ista sa predmetom!","Warning", JOptionPane.WARNING_MESSAGE);
@@ -34,7 +34,8 @@ public class DodavanjeStudentaNaPredmetListener implements ActionListener{
 		} else {
 			this.view.dispose();
 		}
+		
 	}
-	
+
 	
 }

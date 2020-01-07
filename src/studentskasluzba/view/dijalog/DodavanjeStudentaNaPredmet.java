@@ -22,6 +22,7 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 	private static final long serialVersionUID = 1L;
 
 	JTextField unos;
+	JButton potvrda, odustanak;
 	
 	public DodavanjeStudentaNaPredmet() {
 	
@@ -34,8 +35,8 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 		
 		JLabel message = new JLabel("Indeks studenta*");
 		unos = new JTextField();
-		JButton potvrda = new JButton("Potvrda");
-		JButton odustanak = new JButton("Odustanak");
+		potvrda = new JButton("Potvrda");
+		odustanak = new JButton("Odustanak");
 		
 		JPanel p = new JPanel();
 		p.add(odustanak);
@@ -74,8 +75,12 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 		});
 		
 		potvrda.addActionListener(new DodavanjeStudentaNaPredmetListener(this));
-		//unos.addActionListener(new DodavanjeStudentaNaPredmetListener(this));
+		//unos.addFocusListener(new DodStudNaPredFocus1(this));
 		
+	}
+
+	public JButton getPotvrda() {
+		return potvrda;
 	}
 
 	public JTextField getUnos() {

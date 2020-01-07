@@ -84,7 +84,7 @@ private static StudentController instance = null;
 			return 2;   //ako tren god studenta nije ista sa predmetom
 		}
 		if(!p.addStudent(s)) {
-			return 3;   //ako student vec postoji
+			return 3;   //ako student vec pohadja predmet
 		}
 		BazaStudenata.getInstance().getStudent(brIndeksa).addPredmet(p);
 		GlavniProzor.getInstance().azurirajPrikaz();
