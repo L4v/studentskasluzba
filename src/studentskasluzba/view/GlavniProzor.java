@@ -121,7 +121,7 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 		profesorTab = new ProfesorTab();
 		predmetTab = new PredmetTab();
 		studentTab = new StudentTab();
-		tabbedPane.addTab("Student", studentTab);
+		tabbedPane.addTab("Studenti", studentTab);
 		tabbedPane.addTab("Profesori", profesorTab);
 		tabbedPane.addTab("Predmeti", predmetTab);
 		this.add(tabbedPane, BorderLayout.CENTER);

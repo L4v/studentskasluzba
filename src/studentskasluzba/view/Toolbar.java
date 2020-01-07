@@ -22,6 +22,7 @@ import studentskasluzba.view.listeners.DodavanjeToolbarListener;
 import studentskasluzba.view.listeners.IzmenaToolbarListener;
 import studentskasluzba.view.listeners.PretragaPredmetaListener;
 import studentskasluzba.view.listeners.PretragaProfesoraListener;
+import studentskasluzba.view.listeners.PretragaStudentaListener;
 
 public class Toolbar extends JToolBar{
 	private static final long serialVersionUID = -4611960868780210810L;
@@ -36,6 +37,7 @@ public class Toolbar extends JToolBar{
 	private JPanel buttonsPanel;
 	private JPanel searchPanel;
 	private PretragaPredmetaListener pretragaPredmetaListener;
+	private PretragaStudentaListener pretragaStudentaListener;
 	private PretragaProfesoraListener pretragaProfesoraListener;
 	
 	private ArrayList<ActionListener> listeners;
@@ -108,10 +110,12 @@ public class Toolbar extends JToolBar{
 		pretraga = new PretragaPolje();
 		pretrazi = new PretraziDugme("Pretra\u017ei");
 		pretragaPredmetaListener = new PretragaPredmetaListener(pretraga);
+		pretragaStudentaListener = new PretragaStudentaListener(pretraga);
 		pretragaProfesoraListener = new PretragaProfesoraListener(pretraga);
 		
 		// NOTE(Jovan): Dodavanje u listu listenera
 		listeners.add(pretragaPredmetaListener);
+		listeners.add(pretragaStudentaListener);
 		listeners.add(pretragaProfesoraListener);
 		searchPanel.add(pretraga);
 		searchPanel.add(pretrazi);
@@ -141,7 +145,8 @@ public class Toolbar extends JToolBar{
 					pretrazi.removeActionListener(l);
 					pretraga.removeActionListener(l);
 				}
-				// TODO(Jovan->Kris): Dodati pretragaStudentaListener
+				pretrazi.addActionListener(pretragaStudentaListener);
+				pretraga.addActionListener(pretragaStudentaListener);
 				break;
 			}
 			case PROFESOR:

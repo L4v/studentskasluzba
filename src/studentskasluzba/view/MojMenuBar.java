@@ -33,8 +33,8 @@ public class MojMenuBar extends JMenuBar{
 		miNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		
 		miClose.setIcon(new ImageIcon("res/icons/delete-button.png"));
-		miClose.setMnemonic(KeyEvent.VK_X);
-		miClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
+		miClose.setMnemonic(KeyEvent.VK_Q);
+		miClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
 		
 		//dodavanje funkcionalnosti new
 		miNew.addActionListener(new MenuBarNewListener());
@@ -90,8 +90,8 @@ public class MojMenuBar extends JMenuBar{
 		miHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
 		
 		miAbout.setIcon(new ImageIcon("res/icons/about.png"));
-		miAbout.setMnemonic(KeyEvent.VK_A);
-		miAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
+		miAbout.setMnemonic(KeyEvent.VK_O);
+		miAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
 		
 		//dodavanje funkcionalnosti help
 		miHelp.addActionListener(new ActionListener() {
