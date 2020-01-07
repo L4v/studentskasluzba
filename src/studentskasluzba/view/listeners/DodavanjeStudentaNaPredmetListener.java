@@ -24,10 +24,8 @@ public class DodavanjeStudentaNaPredmetListener implements ActionListener{
 		
 		if(ret == 1) {
 			JOptionPane.showMessageDialog(null, "Student ne postoji u bazi!","Warning", JOptionPane.WARNING_MESSAGE);
-			this.view.dispose();
 		} else if(ret == 2) {
 			JOptionPane.showMessageDialog(null, "Trenutna godina studija studenta nije ista sa predmetom!","Warning", JOptionPane.WARNING_MESSAGE);
-			this.view.dispose();
 		} else if(ret == 3){
 			JOptionPane.showMessageDialog(null, "Student ve\u0107 poha\u0111a ovaj predmet.");
 			this.view.dispose();
