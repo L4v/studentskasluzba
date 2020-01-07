@@ -10,8 +10,11 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
+import studentskasluzba.view.listeners.DodStudNaPredFocus1;
 import studentskasluzba.view.listeners.DodavanjeStudentaNaPredmetListener;
 
 public class DodavanjeStudentaNaPredmet extends JDialog{
@@ -75,8 +78,9 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 		});
 		
 		potvrda.addActionListener(new DodavanjeStudentaNaPredmetListener(this));
-		//unos.addFocusListener(new DodStudNaPredFocus1(this));
-		
+		unos.addFocusListener(new DodStudNaPredFocus1(this));
+		JRootPane root = SwingUtilities.getRootPane(this.potvrda);
+		root.setDefaultButton(this.potvrda);
 	}
 
 	public JButton getPotvrda() {

@@ -13,7 +13,9 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JRootPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import studentskasluzba.view.listeners.DodavanjeStudentaFocus;
 import studentskasluzba.view.listeners.DodavanjeStudentaListener;
@@ -275,6 +277,8 @@ public class DodavanjeStudenta extends JDialog{
 		potvrdi.setEnabled(false);
 		dodavanjeStudListener = new DodavanjeStudentaListener(this);
 		potvrdi.addActionListener(dodavanjeStudListener);	
+		JRootPane root = SwingUtilities.getRootPane(this.potvrdi);
+		root.setDefaultButton(this.potvrdi);
 		
 		otkazi.addActionListener(new ActionListener() {		
 			@Override
