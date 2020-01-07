@@ -7,6 +7,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -42,7 +43,7 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 	{
 		super();
 		// NOTE(Jovan): Podesavanja prozora
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setSize(screenSize.width * 3/4, screenSize.height * 3/4);
 		this.setMinimumSize(new Dimension(screenSize.width * 3/4, screenSize.height * 3/4));
@@ -67,7 +68,13 @@ public class GlavniProzor extends JFrame implements ChangeListener{
 			// NOTE(Jovan): Prilikom gasenja aplikacije sacuvaj baze
 			@Override
 			public void windowClosing(WindowEvent arg0) {
-				saveAllDBs();
+				int confirm = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da \u017Eelite da zatvorite aplikaciju?","Zatvaranje aplikacije",
+						JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+				if(confirm==JOptionPane.YES_OPTION)
+				{
+					saveAllDBs();
+					arg0.getWindow().dispose();
+				}
 			}
 
 			@Override
