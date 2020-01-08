@@ -25,8 +25,8 @@ public class BrisanjeStudentaSaPredmetaListener implements ActionListener{
 			return;
 		}
 		
-		int choise = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da \u017Eelite da obri\u0161ete studenta?","Brisanje studenta sa predmeta",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-		if (choise==JOptionPane.YES_OPTION) {
+		int choice = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da \u017Eelite da obri\u0161ete studenta?","Brisanje studenta sa predmeta",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+		if (choice==JOptionPane.YES_OPTION) {
 			StudentController.getInstance().removeStudentSaPredmeta(GlavniProzor.getInstance().getSelektovanuTorku(), view.getList().getSelectedIndex());
 		}
 		

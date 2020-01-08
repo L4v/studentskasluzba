@@ -48,7 +48,15 @@ public class AboutDialog extends JDialog{
 		stud.add(tmp);
 		stud.add(new JLabel(
 				"<html><b>KRATAK OPIS APLIKACIJE:</b><br/>"
-				+ "<br/>"));
+				+ "<br/>"
+				+ "Ova aplikacija predstavlja zajedni\u010dki trud Jovana Ivo\u0161evi\u0107a i Kristiana Farka\u0161a u vidu predmetnog projekta \u010diji "
+				+ "cilj jeste da simulira hipoteti\u010dku studentsku slu\u017ebu. <br/>"
+				+ "Aplikacija se sastoji od grafi\u010dkog korisni\u010dkog interfejsa pomo\u0107u kojeg korisnik mo\u017ee da komunicira sa bazom podataka studentske "
+				+ "slu\u017ebe i izvr\u0161ava odre\u0111ene komande, poput: <br/>"
+				+ " - Dodavanje studenta/profesora/predmeta u bazu, odnosno uklanjanje iz baze <br/>"
+				+ " - Dodavanje/uklanjanje studenta/profesora na/sa predmet/a <br/>"
+				+ " - Izmena podataka postoje\u0107ih studenta, profesora ili predmeta<br></html> " 
+				));
 		
 		ImageIcon icon1=null;
 		try {

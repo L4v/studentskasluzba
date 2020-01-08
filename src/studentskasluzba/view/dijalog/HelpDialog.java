@@ -45,7 +45,7 @@ public class HelpDialog extends JDialog {
 				+ "Za ukljanjanje profesora sa predmeta, potrebno je kliknuti na pretposlednje dugme (i naravno treba selektovati predmet sa kojeg uklanjamo profesor). <br/><br/>"
 				+ " - Za pretragu studenta/profesora/predmeta uneti podatke odnosno kriterijum pretrage u formatu koji je naveden u odgovaraju\u0107em polju za pretragu u zavisnosti od izabranog tab-a. "
 				+ "U tabeli \u0107e ostati entiteti koji zadovoljavaju zadati kriterijum.<br/><br/>"
-				+ " - Klikom u Menu Bar-u na Help -> About ili samo Ctrl + O, mo\u017eete na\u0107i kratak opis aplikacije kao i kratku biografiju dva autora.<br/>"
+				+ " - Klikom u Menu Bar-u na Help -> About ili samo Ctrl + O, mo\u017eete na\u0107i kratak opis aplikacije kao i kratku biografiju dva autora.<br/></html>"
 				);
 		
 		JButton ok = new JButton("OK");
