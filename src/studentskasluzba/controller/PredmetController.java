@@ -163,7 +163,7 @@ public class PredmetController {
 		int Result = 0;
 		boolean Found = false;
 		Predmet predmet = BazaPredmet.getInstance().getPredmet(row);
-		if(predmet.getProfesor().getIme().equalsIgnoreCase("NEMA"))
+		if(predmet.getProfesor().getBrLicneKarte().equalsIgnoreCase("null"))
 		{
 			for(Profesor p : BazaProfesor.getInstance().getProfesore())
 			{

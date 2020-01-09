@@ -59,7 +59,7 @@ public class IzmenaPredmeta extends JDialog{
 			profesori.addItem(p);
 		}
 		// NOTE(Jovan): Placeholder
-		profesori.addItem(new Profesor("NEMA", "", "", "", "", "", "", "", "", ""));
+		profesori.addItem(new Profesor("", "", "", "", "", "", "", "null", "", ""));
 		profesori.setSelectedItem(selektovanPredmet.getProfesor());
 		
 		// TODO(Jovan): Ograniciti semestar na osnovu godine

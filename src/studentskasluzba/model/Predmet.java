@@ -100,7 +100,7 @@ public class Predmet implements Serializable {
 	
 	public void removeProfesor()
 	{
-		this.profesor = new Profesor("NEMA", "", "", "", "", "", "", "NEMA", "", "");
+		this.profesor = new Profesor("", "", "", "", "", "", "", "null", "", "");
 	}
 
 	// NOTE(Jovan): Sluzi za .remove() metodu

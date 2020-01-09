@@ -157,7 +157,15 @@ public class Profesor implements Serializable {
 	@Override
 	public String toString()
 	{
-		String Result = this.brLicneKarte + " " + this.ime + " " + this.prezime;
+		String Result;
+		if(this.brLicneKarte.equalsIgnoreCase("null"))
+		{
+			Result = this.brLicneKarte;
+		}
+		else	
+		{
+			Result = this.brLicneKarte + ", " + this.ime + " " + this.prezime;
+		}
 		return Result;
 	}
 

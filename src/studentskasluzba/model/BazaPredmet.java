@@ -218,7 +218,14 @@ public class BazaPredmet {
 			}
 			case 4:
 			{
-				return Result.getProfesor().getIme() + " " + Result.getProfesor().getPrezime();
+				if(Result.getProfesor().getBrLicneKarte().equalsIgnoreCase("null"))
+				{
+					return Result.getProfesor().getBrLicneKarte();
+				}
+				else
+				{
+					return Result.getProfesor().getBrLicneKarte() + ", " + Result.getProfesor().getIme() + " " + Result.getProfesor().getPrezime();
+				}
 			}
 			default:
 			{

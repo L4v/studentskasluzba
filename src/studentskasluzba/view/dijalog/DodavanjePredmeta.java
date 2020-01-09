@@ -66,9 +66,9 @@ public class DodavanjePredmeta extends JDialog{
 		{
 			profesori.addItem(p);
 		}
-		// NOTE(Jovan): Dodajemo "nema" kako bi imali mogucnost
+		// NOTE(Jovan): Dodajemo "null" kako bi imali mogucnost
 		// da ne odaberemo jos profesora za predmet
-		Profesor nema = new Profesor("NEMA", "", "", "", "", "", "", "", "", "");
+		Profesor nema = new Profesor("", "", "", "", "", "", "", "null", "", "");
 		profesori.addItem(nema);
 		
 		fieldsPanel = new JPanel(new GridLayout(5, 2));
