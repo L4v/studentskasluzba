@@ -52,7 +52,7 @@ public class DodavanjeProfesora extends JDialog{
 		adrStanovanja = new JTextField();
 		adrStanovanja.addFocusListener(new DodavanjeProfesoraFocus(this,0));
 		telefon = new JTextField();
-		telefon.addFocusListener(new DodavanjeProfesoraFocus(this,-4));
+		telefon.addFocusListener(new DodavanjeProfesoraFocus(this,0));
 		email = new JTextField();
 		email.addFocusListener(new DodavanjeProfesoraFocus(this,-3));
 		adrKancelarije = new JTextField();

@@ -58,7 +58,7 @@ public class IzmenaProfesora extends JDialog{
 		adrStanovanja = new JTextField();
 		adrStanovanja.addFocusListener(new IzmenaProfesoraFocus(this, 0));
 		telefon = new JTextField();
-		telefon.addFocusListener(new IzmenaProfesoraFocus(this, -4));
+		telefon.addFocusListener(new IzmenaProfesoraFocus(this, 0));
 		email = new JTextField();
 		email.addFocusListener(new IzmenaProfesoraFocus(this, -3));
 		adrKancelarije = new JTextField();

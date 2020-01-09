@@ -105,7 +105,7 @@ public class DodavanjeStudenta extends JDialog{
 		prezimeT.addFocusListener(new DodavanjeStudentaFocus(this,0));
 		datRodjT.addFocusListener(new DodavanjeStudentaFocus(this,-2));
 		adresaT.addFocusListener(new DodavanjeStudentaFocus(this,0));
-		brTelefonaT.addFocusListener(new DodavanjeStudentaFocus(this,-5));
+		brTelefonaT.addFocusListener(new DodavanjeStudentaFocus(this,0));
 		brIndeksaT.addFocusListener(new DodavanjeStudentaFocus(this,-1));
 		emailT.addFocusListener(new DodavanjeStudentaFocus(this,-3));
 		datumUpisaT.addFocusListener(new DodavanjeStudentaFocus(this,-2));
