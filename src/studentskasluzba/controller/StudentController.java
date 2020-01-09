@@ -95,10 +95,9 @@ private static StudentController instance = null;
 	
 	public void removeStudentSaPredmeta(int selectedRowPredmet, int selectedRowStudent) {
 		
-		Student s = BazaPredmet.getInstance().getPredmet(selectedRowPredmet).getStudent(selectedRowStudent);
 		Predmet p = BazaPredmet.getInstance().getPredmet(selectedRowPredmet);
 		p.removeStudent(selectedRowStudent);
-		s.removePredmet(p);
+		BazaPredmet.getInstance().getPredmet(selectedRowPredmet).getStudent(selectedRowStudent).removePredmet(p);
 		GlavniProzor.getInstance().azurirajPrikaz();
 		GlavniProzor.getInstance().saveAllDBs();
 		

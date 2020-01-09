@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import studentskasluzba.controller.StudentController;
-import studentskasluzba.view.GlavniProzor;
 import studentskasluzba.view.dijalog.StudentiNaPredmetu;
 
 public class BrisanjeStudentaSaPredmetaListener implements ActionListener{
@@ -27,7 +26,7 @@ public class BrisanjeStudentaSaPredmetaListener implements ActionListener{
 		
 		int choice = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da \u017Eelite da obri\u0161ete studenta?","Brisanje studenta sa predmeta",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
 		if (choice==JOptionPane.YES_OPTION) {
-			StudentController.getInstance().removeStudentSaPredmeta(GlavniProzor.getInstance().getSelektovanuTorku(), view.getList().getSelectedIndex());
+			StudentController.getInstance().removeStudentSaPredmeta(view.getRow(), view.getList().getSelectedIndex());
 		}
 		
 		this.view.dispose();
