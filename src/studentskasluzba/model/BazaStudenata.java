@@ -59,7 +59,7 @@ public class BazaStudenata {
 	{
 		FileInputStream fi;
 			try {
-				// NOTE(Jovan): Ako ne postoji fajl, napravi
+				// Ukoliko fajl ne postoji, napravi
 				File dbFile = new File(NAME_DB);
 				dbFile.createNewFile();
 				fi = new FileInputStream(new File(NAME_DB));
@@ -69,15 +69,15 @@ public class BazaStudenata {
 					oi = new ObjectInputStream(fi);
 				}catch(EOFException e)
 				{
-					// NOTE(Jovan): Ovo ce se okinuti u slucaju da je kreiran prazan fajl,
+					// Ovo ce se okinuti u slucaju da je kreiran prazan fajl,
 					// pa izlazimo iz metode
 					fi.close();
 					return;
 				}
 
-				// NOTE(Jovan): Drop bazu kako bi ucitali novu
+				// obrisi bazu kako bi ucitali novu
 				dropDB();
-					// NOTE(Jovan): Ne pozivamo addStudent metodu jer moze doci do kruznog
+					// Ne pozivamo addStudent metodu jer moze doci do kruznog
 					// pozivanja koda, pa do stack overflowa kada se popuni backtrace
 
 				Student s;
@@ -89,7 +89,7 @@ public class BazaStudenata {
 					}
 					catch(EOFException e)
 					{
-						// NOTE(Jovan): Kada dodje do kraja file-a, izbacice EOF exception,
+						// Kada dodje do kraja file-a, izbacice EOF exception,
 						// pa ga ovde hvatamo i prekidamo petlju
 						break;
 					}
@@ -131,7 +131,7 @@ public class BazaStudenata {
 			}
 	}
 	
-	// NOTE(Jovan): Prilikom loadovanja da dropuje celu bazu
+	// Prilikom loadovanja da obrise celu bazu
 	private void dropDB()
 	{
 		this.studenti.clear();
