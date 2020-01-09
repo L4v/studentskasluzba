@@ -58,7 +58,7 @@ public class DodavanjeProfesora extends JDialog{
 		adrKancelarije = new JTextField();
 		adrKancelarije.addFocusListener(new DodavanjeProfesoraFocus(this,0));
 		brLicneKarte = new JTextField();
-		brLicneKarte.addFocusListener(new DodavanjeProfesoraFocus(this,9));
+		brLicneKarte.addFocusListener(new DodavanjeProfesoraFocus(this,-4));
 		titula = new JTextField();
 		titula.addFocusListener(new DodavanjeProfesoraFocus(this,0));
 		zvanje = new JTextField();

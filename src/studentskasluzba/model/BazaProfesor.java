@@ -44,13 +44,6 @@ public class BazaProfesor {
 		Obelezja.add("Telefon");
 		Obelezja.add("Email");
 		Obelezja.add("Adresa kancelarije");
-		
-		Profesor tmp = new Profesor("Savo", "Oroz", "01.01.1901", "Balzakova 69", "0607671370",
-				"savo.oroz@savoandco.com", "Savin Trg 5", "123456789", "Nzm", "Nempojma");
-		Profesor tmp2 =new Profesor("Petar", "Peric", "11.01.1901", "Aalzakova 69", "0607671370",
-				"petar.per@savoandco.com", "Savin Trg 5", "435456789", "Ne znam", "Nemam pojma");
-		Torke.add(tmp);
-		Torke.add(tmp2);
 	}
 	
 

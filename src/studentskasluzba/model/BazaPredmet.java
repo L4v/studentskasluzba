@@ -38,11 +38,6 @@ public class BazaPredmet {
 		obelezja.add("Semestar");
 		obelezja.add("Godina");
 		obelezja.add("Profesor");
-		Profesor savo = new Profesor("Savo", "Oroz", "01.01.1901", "Balzakova 69", "0607671370",
-				"savo.oroz@savoandco.com", "Savin Trg 5", "123456789", "Nzm", "Nempojma");
-		Predmet tmp = new Predmet("OOP-1", "Objektno", 2, 1, savo);
-		
-		torke.add(tmp);
 	}
 	public void loadDB()
 	{
