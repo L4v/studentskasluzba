@@ -20,6 +20,7 @@ import studentskasluzba.controller.PredmetController;
 import studentskasluzba.controller.ProfesorController;
 import studentskasluzba.model.Predmet;
 import studentskasluzba.model.Profesor;
+import studentskasluzba.view.listeners.IzmenaPredmetaComboListener;
 import studentskasluzba.view.listeners.IzmenaPredmetaFocusTxt;
 import studentskasluzba.view.listeners.IzmenaPredmetaListener;
 
@@ -64,15 +65,18 @@ public class IzmenaPredmeta extends JDialog{
 		// TODO(Jovan): Ograniciti semestar na osnovu godine
 		godina = new JComboBox<Integer>();
 		semestar = new JComboBox<Integer>();
-		for(int i = 1; i <= 8; ++i)
+		for(int i = 1; i <= 4; ++i)
 		{
-			semestar.addItem(i);
-			if(i <= 4)
-			{
-				godina.addItem(i);
-			}
+			godina.addItem(i);
 		}
 		godina.setSelectedItem(selektovanPredmet.getGodina());
+		int god = selektovanPredmet.getGodina();
+		semestar.addItem(god*2 - 1);
+		semestar.addItem(god*2);
+		
+		godina.addActionListener(new IzmenaPredmetaComboListener(this));
+		
+		
 		fieldsPanel = new JPanel(new GridLayout(5, 2));
 		fieldsPanel.add(new JLabel("\u0160ifra*"));
 		fieldsPanel.add(sifra);

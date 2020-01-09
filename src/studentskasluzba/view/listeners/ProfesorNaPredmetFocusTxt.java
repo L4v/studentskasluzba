@@ -27,7 +27,7 @@ public class ProfesorNaPredmetFocusTxt implements FocusListener{
 	public void focusLost(FocusEvent arg0) {
 		JTextField text =(JTextField) arg0.getComponent();
 		if(text.getText().isEmpty() ||
-				(text.getText().length() != 9))
+				(text.getText().matches("\"\\d{9}\"") == false))
 		{
 			text.setBackground(new Color(231, 76, 60));
 			this.view.getPotvrda().setEnabled(false);

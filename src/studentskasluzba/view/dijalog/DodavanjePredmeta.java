@@ -18,6 +18,7 @@ import javax.swing.SwingUtilities;
 
 import studentskasluzba.controller.ProfesorController;
 import studentskasluzba.model.Profesor;
+import studentskasluzba.view.listeners.DodavanjePredmetaComboListener;
 import studentskasluzba.view.listeners.DodavanjePredmetaFocusTxt;
 import studentskasluzba.view.listeners.DodavanjePredmetaListener;
 
@@ -49,15 +50,16 @@ public class DodavanjePredmeta extends JDialog{
 		
 		godina = new JComboBox<Integer>();
 		semestar = new JComboBox<Integer>();
-		for(int i = 1; i <= 8; ++i)
+		for(int i = 1; i <= 4; ++i)
 		{
-			semestar.addItem(i);
-			if(i <= 4)
-			{
-				godina.addItem(i);
-			}
+			godina.addItem(i);
 		}
 		
+		int god = (int)godina.getSelectedItem();
+		semestar.addItem(god*2 - 1);
+		semestar.addItem(god*2);
+		
+		godina.addActionListener(new DodavanjePredmetaComboListener(this));
 		
 		profesori = new JComboBox<Profesor>();
 		for (Profesor p : ProfesorController.getInstance().getProfesore())
