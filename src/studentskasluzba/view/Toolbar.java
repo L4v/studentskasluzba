@@ -137,7 +137,7 @@ public class Toolbar extends JToolBar{
 				profNaPredmet.setVisible(false);
 				profSaPredmeta.setVisible(false);
 				studentNaPredmet.setVisible(false);
-				pretraga.setDefaultText("ime:<ime>;prezime:<prezime>;indeks:<XX-YY/ZZZZ>");
+				pretraga.setDefaultText("ime:<ime>;prezime:<prezime>;indeks:<XX YYY/ZZZZ>");
 				
 				// NOTE(Jovan): uklanjanje svih listenera
 				for(ActionListener l : listeners)
