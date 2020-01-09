@@ -1,6 +1,7 @@
 package studentskasluzba.view.dijalog;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,9 +24,10 @@ public class AboutDialog extends JDialog{
 	public AboutDialog() {
 		
 		setTitle("About");
-		setSize(800,700);
+		setSize(850,750);
 		setLocationRelativeTo(null);
 		this.setModal(true);
+		this.setMinimumSize(new Dimension(850,750));
 		
 		BorderLayout layout = new BorderLayout();
 		getContentPane().setLayout(layout);

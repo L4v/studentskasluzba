@@ -26,7 +26,7 @@ private DodavanjeStudentaNaPredmet view;
 	@Override
 	public void focusLost(FocusEvent e) {
 		JTextField text =(JTextField) e.getComponent();
-		if(text.getText().isEmpty() || (text.getText().matches("[a-zA-Z]{2}-\\d{1,3}\\/\\d{4}") == false))
+		if(text.getText().isEmpty() || (text.getText().matches("[a-zA-Z]{2} \\d{1,3}\\/\\d{4}") == false))
 		{
 			text.setBackground(new Color(231, 76, 60));
 			this.view.getPotvrda().setEnabled(false);

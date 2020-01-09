@@ -1,5 +1,6 @@
 package studentskasluzba.view.dijalog;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -28,6 +29,7 @@ public class BrisanjePredmeta extends JDialog{
 		setSize(400,150);
 		setLocationRelativeTo(null);
 		this.setModal(true);
+		this.setMinimumSize(new Dimension(400,150));
 		
 		getContentPane().setLayout(new GridBagLayout());
 		

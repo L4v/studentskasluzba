@@ -65,7 +65,7 @@ public class IzmenaProfesora extends JDialog{
 		adrKancelarije.addFocusListener(new IzmenaProfesoraFocus(this, 0));
 		brLicneKarte = new JTextField();
 		brLicneKarte.setEnabled(false); //broj licne karte ne mozemo menjati to je i jedinstveno
-		brLicneKarte.addFocusListener(new IzmenaProfesoraFocus(this, 9));
+		brLicneKarte.addFocusListener(new IzmenaProfesoraFocus(this, -4));
 		titula = new JTextField();
 		titula.addFocusListener(new IzmenaProfesoraFocus(this, 0));
 		zvanje = new JTextField();
