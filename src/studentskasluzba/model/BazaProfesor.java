@@ -264,6 +264,15 @@ public class BazaProfesor {
 		return Obelezja.get(column);
 	}
 	
+	public void removePredmet(int row, int index)
+	{
+		Predmet p = BazaProfesor.getInstance().getProfesor(row).getPredmet(index);
+		BazaProfesor.getInstance().getProfesor(row).getPredmet(index).removeProfesor();
+		BazaProfesor.getInstance().getProfesor(row).removePredmet(p);
+		GlavniProzor.getInstance().azurirajPrikaz();
+		GlavniProzor.getInstance().saveAllDBs();
+	}
+	
 	public void izmeniProfesora(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon,String email, String adresaKancelarije, String brLicneKarte, String titula, String zvanje) {
 		for(Profesor p : Torke) {
 			if(p.getBrLicneKarte().equals(brLicneKarte)) {

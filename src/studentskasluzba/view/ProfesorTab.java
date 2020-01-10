@@ -18,7 +18,15 @@ public class ProfesorTab extends JScrollPane{
 	
 	public int getSelektovanuTorku()
 	{
-		return this.tabelaProfesora.convertRowIndexToModel(tabelaProfesora.getSelectedRow());
+		int row = tabelaProfesora.getSelectedRow();
+		if(row == -1)
+		{
+			return row;
+		}
+		else
+		{
+			return this.tabelaProfesora.convertRowIndexToModel(row);
+		}
 	}
 	
 	public ProfesorTable getTable()

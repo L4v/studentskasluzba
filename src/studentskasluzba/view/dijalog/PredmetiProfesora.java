@@ -11,14 +11,12 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import studentskasluzba.model.BazaProfesor;
 import studentskasluzba.model.Predmet;
-import studentskasluzba.model.Profesor;
-import studentskasluzba.view.GlavniProzor;
+import studentskasluzba.view.listeners.PredmetiProfesoraListener;
 
 public class PredmetiProfesora extends JDialog{
 
@@ -78,27 +76,17 @@ public class PredmetiProfesora extends JDialog{
 			}
 		});
 		
-		obrisiButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int i = list.getSelectedIndex();
-				if (i==-1) {
-					JOptionPane.showMessageDialog(null, "Niste selektovali predmet!","Warning", JOptionPane.WARNING_MESSAGE);
-					return;
-				}
-				int choise = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da \u017Eelite da obri\u0161ete predmet?","Brisanje predmeta profesora",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-				if (choise==JOptionPane.YES_OPTION) {
-					Predmet p = BazaProfesor.getInstance().getProfesor(PredmetiProfesora.this.row).getPredmet(i);
-					Profesor prof = BazaProfesor.getInstance().getProfesor(PredmetiProfesora.this.row);
-					p.removeProfesor();
-					prof.removePredmet(p);
-					GlavniProzor.getInstance().azurirajPrikaz();
-					GlavniProzor.getInstance().saveAllDBs();
-					dispose();
-				}
-			}
-		});
+		obrisiButton.addActionListener(new PredmetiProfesoraListener(this));
 		
+	}
+	
+	public int getRow()
+	{
+		return this.row;
+	}
+	
+	public JList<String> getList()
+	{
+		return this.list;
 	}
 }

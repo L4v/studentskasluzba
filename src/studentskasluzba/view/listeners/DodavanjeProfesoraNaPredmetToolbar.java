@@ -15,7 +15,7 @@ public class DodavanjeProfesoraNaPredmetToolbar implements ActionListener{
 		int row = GlavniProzor.getInstance().getSelektovanuTorku();
 		if(row == -1)
 		{
-			JOptionPane.showMessageDialog(null, "Odaberite predmet!","Warning", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Niste selektovali predmett!");
 			return;
 		}
 		DodavanjeProfesoraNaPredmet view = new DodavanjeProfesoraNaPredmet();

@@ -15,7 +15,15 @@ public class StudentTab extends JScrollPane{
 	
 	public int getSelektovanuTorku()
 	{
-		return this.tabelaStudenata.convertRowIndexToModel(tabelaStudenata.getSelectedRow());
+		int row = tabelaStudenata.getSelectedRow();
+		if(row == -1)
+		{
+			return row;
+		}
+		else
+		{
+			return this.tabelaStudenata.convertRowIndexToModel(row);
+		}
 	}
 	public AbstractTableModelStudent getModel()
 	{
