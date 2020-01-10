@@ -25,7 +25,7 @@ public class PredmetTab extends JScrollPane{
 	
 	public int getSelektovanuTorku()
 	{
-		return this.tabelaPredmeta.getSelectedRow();
+		return this.tabelaPredmeta.convertRowIndexToModel(tabelaPredmeta.getSelectedRow());
 	}
 	
 	public AbstractTableModelPredmet getModel()

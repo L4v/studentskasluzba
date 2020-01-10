@@ -15,7 +15,7 @@ public class StudentTab extends JScrollPane{
 	
 	public int getSelektovanuTorku()
 	{
-		return this.tabelaStudenata.getSelectedRow();
+		return this.tabelaStudenata.convertRowIndexToModel(tabelaStudenata.getSelectedRow());
 	}
 	public AbstractTableModelStudent getModel()
 	{
