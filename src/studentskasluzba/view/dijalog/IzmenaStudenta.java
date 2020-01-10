@@ -1,5 +1,6 @@
 package studentskasluzba.view.dijalog;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -55,6 +56,7 @@ public class IzmenaStudenta extends JDialog{
 		setSize(450,550);
 		setLocationRelativeTo(null);
 		this.setModal(true);
+		this.setMinimumSize(new Dimension(350,550));
 		
 		GridBagLayout layout = new GridBagLayout();
 		getContentPane().setLayout(layout);
