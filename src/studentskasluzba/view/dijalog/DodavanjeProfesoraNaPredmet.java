@@ -30,7 +30,7 @@ public class DodavanjeProfesoraNaPredmet extends JDialog{
 		int row = GlavniProzor.getInstance().getSelektovanuTorku();
 		this.setTitle("Predmet - dodavanje profesora na: " +
 				BazaPredmet.getInstance().getValueAt(row , 1));
-		setSize(400,150);
+		setSize(450,150);
 		setLocationRelativeTo(null);
 		this.setModal(true);
 		
