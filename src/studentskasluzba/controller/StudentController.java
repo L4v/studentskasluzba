@@ -107,7 +107,7 @@ private static StudentController instance = null;
 	}
 	
 	public void pretragaStudenta(String tokens) {
-		if(tokens.equalsIgnoreCase("")) {    // da se vrati u prvobitan polozaj iz filtriranja u normalno stanje
+		if(tokens.equals("")) {    // da se vrati u prvobitan polozaj iz filtriranja u normalno stanje
 			GlavniProzor.getInstance().getStudentTable().clearFilter();
 			GlavniProzor.getInstance().azurirajPrikaz();
 		}
@@ -119,6 +119,10 @@ private static StudentController instance = null;
 		}
 		
 		switch(token[0]){
+			case "indeks" : {
+			GlavniProzor.getInstance().getStudentTable().setFilter(token[1], 0);
+			GlavniProzor.getInstance().azurirajPrikaz();
+			} break;
 			case "ime" : {
 				GlavniProzor.getInstance().getStudentTable().setFilter(token[1], 1);
 				GlavniProzor.getInstance().azurirajPrikaz();
@@ -127,8 +131,40 @@ private static StudentController instance = null;
 				GlavniProzor.getInstance().getStudentTable().setFilter(token[1], 2);
 				GlavniProzor.getInstance().azurirajPrikaz();
 			} break;
-			case "indeks" : {
-				GlavniProzor.getInstance().getStudentTable().setFilter(token[1], 0);
+			case "godina studija" :{
+				GlavniProzor.getInstance().getStudentTable().setFilter(token[1], 3);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			} break;
+			case "status" :{
+				GlavniProzor.getInstance().getStudentTable().setFilter(token[1], 4);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			} break;
+			case "prosek" :{
+				GlavniProzor.getInstance().getStudentTable().setFilter(token[1], 5);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			} break;
+			case "datum upisa" :{
+				GlavniProzor.getInstance().getStudentTable().setFilter(token[1], 6);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			} break;
+			case "kontakt telefon" :{
+				GlavniProzor.getInstance().getStudentTable().setFilter(token[1], 7);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			} break;
+			case "email" :{
+				GlavniProzor.getInstance().getStudentTable().setFilter(token[1], 8);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			} break;
+			case "adresa" :{
+				GlavniProzor.getInstance().getStudentTable().setFilter(token[1], 9);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			} break;
+			case "datum rodjenja" :{
+				GlavniProzor.getInstance().getStudentTable().setFilter(token[1], 10);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			} break;
+			case "datum ro\u0111enja" :{
+				GlavniProzor.getInstance().getStudentTable().setFilter(token[1], 10);
 				GlavniProzor.getInstance().azurirajPrikaz();
 			} break;
 			default: return;

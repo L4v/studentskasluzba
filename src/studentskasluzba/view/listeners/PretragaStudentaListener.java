@@ -16,8 +16,8 @@ public class PretragaStudentaListener implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String unos = view.getText().toLowerCase();
-		if(unos.equalsIgnoreCase(view.getDefaultTekst())) {
+		String unos = view.getText(); //.toLowerCase
+		if(unos.equals(view.getDefaultTekst())) {
 			StudentController.getInstance().pretragaStudenta("");
 			return;
 		}
