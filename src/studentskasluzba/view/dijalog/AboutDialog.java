@@ -21,6 +21,8 @@ public class AboutDialog extends JDialog{
 	 */
 	private static final long serialVersionUID = 1L;
 
+	JButton ok;
+	
 	public AboutDialog() {
 		
 		setTitle("About");
@@ -103,7 +105,7 @@ public class AboutDialog extends JDialog{
 		
 				
 		
-		JButton ok = new JButton("OK");
+		ok = new JButton("OK");
 		bttn.add(ok);
 		
 		ok.addActionListener(new ActionListener() {
