@@ -72,7 +72,7 @@ public class DodavanjePredmeta extends JDialog{
 		profesori.addItem(nema);
 		
 		fieldsPanel = new JPanel(new GridLayout(5, 2));
-		fieldsPanel.add(new JLabel("\u0161ifra predmeta*"));
+		fieldsPanel.add(new JLabel("\u0160ifra predmeta*"));
 		fieldsPanel.add(sifra);
 		fieldsPanel.add(new JLabel("Naziv predmeta*"));
 		fieldsPanel.add(naziv);
