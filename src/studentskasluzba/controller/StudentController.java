@@ -1,5 +1,7 @@
 package studentskasluzba.controller;
 
+import java.util.ArrayList;
+
 import studentskasluzba.model.BazaPredmet;
 import studentskasluzba.model.BazaStudenata;
 import studentskasluzba.model.Predmet;
@@ -104,6 +106,15 @@ private static StudentController instance = null;
 	
 	public Student getStudent(int selectedRow) {
 		return BazaStudenata.getInstance().getStudent(selectedRow);
+	}
+	
+	public ArrayList<Predmet> getPredmete(int row)
+	{
+		return BazaStudenata.getInstance().getStudent(row).getPredmeti();
+	}
+	
+	public String getIndeks(int row) {
+		return BazaStudenata.getInstance().getValueAt(row, 0);
 	}
 	
 	public void pretragaStudenta(String tokens) {

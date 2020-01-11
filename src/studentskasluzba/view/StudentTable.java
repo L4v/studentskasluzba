@@ -33,7 +33,7 @@ public class StudentTable extends JTable{
 	}
 	
 	public void setFilter(String s, int i) {
-		String regex = "(?i)" + s + "(?-i)";
+		String regex = s;
 		sorter.setRowFilter(RowFilter.regexFilter(regex, i));
 	}
 	

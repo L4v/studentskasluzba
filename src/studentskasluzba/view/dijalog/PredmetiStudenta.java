@@ -14,7 +14,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import studentskasluzba.model.BazaStudenata;
+import studentskasluzba.controller.StudentController;
 import studentskasluzba.model.Predmet;
 import studentskasluzba.view.listeners.PredmetiStudentaListener;
 
@@ -39,13 +39,13 @@ public class PredmetiStudenta extends JDialog{
 		this.setMinimumSize(new Dimension(450,250));
 		this.setLocationRelativeTo(null);
 		this.setModal(true);
-		this.setTitle("Predmeti studenta: " + BazaStudenata.getInstance().getValueAt(this.row, 0));
+		this.setTitle("Predmeti studenta: " + StudentController.getInstance().getIndeks(this.row));
 		
 		this.predmetiPanel = new JPanel();
 		this.buttonsPanel = new JPanel(new GridLayout(1, 2));
 		
 		ArrayList<String> listaPredmeta = new ArrayList<String>();
-		for(Predmet p : BazaStudenata.getInstance().getStudent(row).getPredmeti()) {
+		for(Predmet p : StudentController.getInstance().getPredmete(row)) {
 			listaPredmeta.add(p.getNaziv());
 		}
 		
