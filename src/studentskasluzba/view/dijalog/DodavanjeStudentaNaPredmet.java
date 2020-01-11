@@ -1,5 +1,6 @@
 package studentskasluzba.view.dijalog;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -31,6 +32,7 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 	
 		setTitle("Predmet - dodavanje studenta");
 		setSize(400,150);
+		setMinimumSize(new Dimension(400, 150));
 		setLocationRelativeTo(null);
 		this.setModal(true);
 		

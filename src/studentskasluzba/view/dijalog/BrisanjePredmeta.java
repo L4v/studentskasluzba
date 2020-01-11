@@ -26,10 +26,10 @@ public class BrisanjePredmeta extends JDialog{
 	public BrisanjePredmeta() {
 		
 		setTitle("Brisanje predmeta");
-		setSize(400,150);
+		setSize(450,150);
 		setLocationRelativeTo(null);
 		this.setModal(true);
-		this.setMinimumSize(new Dimension(400,150));
+		this.setMinimumSize(new Dimension(450,150));
 		
 		getContentPane().setLayout(new GridBagLayout());
 		

@@ -17,7 +17,7 @@ public class PretragaProfesoraListener implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		String text = view.getText().toUpperCase();
+		String text = view.getText();
 		if(text.equalsIgnoreCase(view.getDefaultTekst()))
 		{
 			ProfesorController.getInstance().pretraziProfesor(text);

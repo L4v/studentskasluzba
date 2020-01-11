@@ -73,19 +73,54 @@ public class ProfesorController {
 		}
 		switch(pair[0])
 		{
-			case "IME":
+			case "ime":
 			{
 				GlavniProzor.getInstance().getProfesorTable().setFilter(pair[1], 1);
 				GlavniProzor.getInstance().azurirajPrikaz();
 			}break;
-			case "PREZIME":
+			case "prezime":
 			{
 				GlavniProzor.getInstance().getProfesorTable().setFilter(pair[1], 2);
 				GlavniProzor.getInstance().azurirajPrikaz();
 			}break;
-			case "LK":
+			case "licna karta":
 			{
 				GlavniProzor.getInstance().getProfesorTable().setFilter(pair[1], 0);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			}break;
+			case "titula":
+			{
+				GlavniProzor.getInstance().getProfesorTable().setFilter(pair[1], 3);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			}break;
+			case "zvanje":
+			{
+				GlavniProzor.getInstance().getProfesorTable().setFilter(pair[1], 4);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			}break;
+			case "datum rodjenja":
+			{
+				GlavniProzor.getInstance().getProfesorTable().setFilter(pair[1], 5);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			}break;
+			case "adresa stanovanja":
+			{
+				GlavniProzor.getInstance().getProfesorTable().setFilter(pair[1], 6);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			}break;
+			case "telefon":
+			{
+				GlavniProzor.getInstance().getProfesorTable().setFilter(pair[7], 0);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			}break;
+			case "email":
+			{
+				GlavniProzor.getInstance().getProfesorTable().setFilter(pair[8], 0);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			}break;
+			case "adresa kancelarije":
+			{
+				GlavniProzor.getInstance().getProfesorTable().setFilter(pair[9], 0);
 				GlavniProzor.getInstance().azurirajPrikaz();
 			}break;
 			default: return;

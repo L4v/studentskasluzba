@@ -206,14 +206,29 @@ public class PredmetController {
 		}
 		switch(pair[0])
 		{
-			case "NAZIV":
+			case "naziv":
 			{
 				GlavniProzor.getInstance().getPredmetTable().setFilter(pair[1], 1);
 				GlavniProzor.getInstance().azurirajPrikaz();
 			}break;
-			case "SIFRA":
+			case "sifra":
 			{
 				GlavniProzor.getInstance().getPredmetTable().setFilter(pair[1], 0);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			}break;
+			case "semestar":
+			{
+				GlavniProzor.getInstance().getPredmetTable().setFilter(pair[1], 2);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			}break;
+			case "godina":
+			{
+				GlavniProzor.getInstance().getPredmetTable().setFilter(pair[1], 3);
+				GlavniProzor.getInstance().azurirajPrikaz();
+			}break;
+			case "profesor":
+			{
+				GlavniProzor.getInstance().getPredmetTable().setFilter(pair[1], 4);
 				GlavniProzor.getInstance().azurirajPrikaz();
 			}break;
 			default: return;

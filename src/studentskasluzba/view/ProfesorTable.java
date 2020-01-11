@@ -33,7 +33,7 @@ public class ProfesorTable extends JTable{
 	public void setFilter(String s, int i)
 	{
 		// NOTE(Jovan): Da bude case-insensitive
-		String regex = "(?i)" + s + "(?-i)";
+		String regex = s;
 		sorter.setRowFilter(RowFilter.regexFilter(regex, i));
 	}
 	
