@@ -96,7 +96,7 @@ public class PredmetController {
 			for(Profesor prof : BazaProfesor.getInstance().getProfesore())
 			{
 				// Uklanjanje ako treba
-				if(prof.getPredmeti().contains(p))
+				if(prof.getPredmete().contains(p))
 				{
 					if(!p.getProfesor().getBrLicneKarte().equalsIgnoreCase(prof.getBrLicneKarte()))
 					{
@@ -190,6 +190,11 @@ public class PredmetController {
 			Result = -1;
 		}
 		return Result;
+	}
+	
+	public String getSifra(int row)
+	{
+		return BazaPredmet.getInstance().getValueAt(row, 0);
 	}
 	
 	public void pretraziPredmet(String pairs)

@@ -66,7 +66,7 @@ public class Profesor implements Serializable {
 		return this.predmeti.get(i);
 	}
 	
-	public ArrayList<Predmet> getPredmeti(){
+	public ArrayList<Predmet> getPredmete(){
 		return this.predmeti;
 	}
 	

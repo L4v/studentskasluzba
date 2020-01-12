@@ -127,6 +127,11 @@ public class ProfesorController {
 		}
 	}
 	
+	public String getLK(int row)
+	{
+		return BazaProfesor.getInstance().getValueAt(row, 0);
+	}
+	
 	public Iterable<Profesor> getProfesore()
 	{
 		return BazaProfesor.getInstance().getProfesore();

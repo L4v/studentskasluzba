@@ -17,7 +17,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import studentskasluzba.controller.PredmetController;
-import studentskasluzba.model.BazaPredmet;
 import studentskasluzba.view.GlavniProzor;
 import studentskasluzba.view.listeners.ProfesorNaPredmetFocusTxt;
 public class DodavanjeProfesoraNaPredmet extends JDialog{
@@ -30,7 +29,7 @@ public class DodavanjeProfesoraNaPredmet extends JDialog{
 	{
 		int row = GlavniProzor.getInstance().getSelektovanuTorku();
 		this.setTitle("Predmet - dodavanje profesora na: " +
-				BazaPredmet.getInstance().getValueAt(row , 1));
+				PredmetController.getInstance().getSifra(row));
 		setSize(450,150);
 		setMinimumSize(new Dimension(450, 150));
 		setLocationRelativeTo(null);

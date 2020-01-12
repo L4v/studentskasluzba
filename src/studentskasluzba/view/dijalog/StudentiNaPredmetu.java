@@ -11,11 +11,10 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JList;
-
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import studentskasluzba.model.BazaPredmet;
+import studentskasluzba.controller.PredmetController;
 import studentskasluzba.model.Student;
 import studentskasluzba.view.listeners.BrisanjeStudentaSaPredmetaListener;
 
@@ -38,13 +37,13 @@ public class StudentiNaPredmetu extends JDialog{
 		this.setLocationRelativeTo(null);
 		this.setModal(true);
 		this.setTitle("Studenti na predmetu: " + 
-		BazaPredmet.getInstance().getValueAt(this.row, 1));
+		PredmetController.getInstance().getSifra(row));
 		
 		this.studentsPanel = new JPanel();
 		this.buttonsPanel = new JPanel(new GridLayout(1, 2));
 		
 		ArrayList<String> listaStudenata = new ArrayList<String>();
-		for(Student s : BazaPredmet.getInstance().getPredmet(row).getStudenti())
+		for(Student s : PredmetController.getInstance().getSelektovan().getStudenti())
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.append(s.getIndeks());
