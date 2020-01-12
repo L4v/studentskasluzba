@@ -15,7 +15,7 @@ public class HelpDialog extends JDialog {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
 	public HelpDialog() {
 		
 		setTitle("Help");
@@ -50,7 +50,7 @@ public class HelpDialog extends JDialog {
 		
 		JButton ok = new JButton("OK");
 		bttn.add(ok);
-		
+
 		ok.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
